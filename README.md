@@ -1,1 +1,0 @@
-# kazuogawa.github.io
