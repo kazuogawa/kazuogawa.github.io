@@ -1,0 +1,15 @@
+---
+import { profile } from '../data/profile';
+import ProjectCard from './ProjectCard';
+
+const { projects } = profile;
+---
+
+<section id="projects" class="scroll-mt-20 px-6 py-20">
+  <div class="mx-auto max-w-5xl">
+    <h2 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Projects</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {projects.map((project) => <ProjectCard project={project} client:visible />)}
+    </div>
+  </div>
+</section>

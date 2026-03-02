@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Kazuhisa Ogawa's Portfolio" } = Astro.props;
+const { seo, analytics } = profile;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={seo.description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={seo.canonicalUrl} />
+    <link rel="icon" href="/images/favicon.ico" />
+    <title>{title}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <script
+      is:inline
+      src={`https://www.googletagmanager.com/gtag/js?id=${analytics.googleAnalyticsId}`}
+      async></script>
+    <script is:inline define:vars={{ gaId: analytics.googleAnalyticsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', gaId);
+    </script>
+
+    <!-- Open Graph / Twitter Cards -->
+    <meta property="og:title" content={seo.ogTitle} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonicalUrl} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Schema.org JSON-LD -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name.ja,
+        alternateName: profile.name.en,
+        url: seo.canonicalUrl,
+        image: `${seo.canonicalUrl}images/myphoto.jpg`,
+        description: seo.description,
+        sameAs: profile.social.map((s) => s.url),
+      })}
+    />
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <slot />
+  </body>
+</html>
