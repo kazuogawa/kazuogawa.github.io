@@ -9,7 +9,11 @@ const { experience } = profile;
   <div class="mx-auto max-w-3xl">
     <h2 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Experience</h2>
     <div class="relative">
-      {experience.map((entry) => <ExperienceItem entry={entry} />)}
+      {
+        experience.map((entry, i) => (
+          <ExperienceItem entry={entry} isLast={i === experience.length - 1} />
+        ))
+      }
     </div>
   </div>
 </section>

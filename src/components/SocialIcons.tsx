@@ -30,7 +30,7 @@ interface Props {
 
 export default function SocialIcons({ links }: Props) {
   return (
-    <div className="flex gap-4">
+    <nav aria-label="ソーシャルリンク" className="flex gap-4">
       {links.map((link) => (
         <a
           key={link.platform}
@@ -43,6 +43,6 @@ export default function SocialIcons({ links }: Props) {
           {iconPaths[link.icon]}
         </a>
       ))}
-    </div>
+    </nav>
   );
 }

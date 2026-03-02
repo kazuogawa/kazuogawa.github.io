@@ -15,7 +15,7 @@ export const profile: Profile = {
   social: [
     { platform: 'Facebook', url: 'https://facebook.com/ogawa.kaz', icon: 'facebook' },
     { platform: 'X', url: 'https://twitter.com/kazz_ogawa', icon: 'x' },
-    { platform: 'Qiita', url: 'http://qiita.com/kazz_ogawa', icon: 'qiita' },
+    { platform: 'Qiita', url: 'https://qiita.com/kazz_ogawa', icon: 'qiita' },
     { platform: 'Zenn', url: 'https://zenn.dev/kazz_ogawa', icon: 'zenn' },
   ],
 
@@ -47,7 +47,19 @@ export const profile: Profile = {
       role: 'FullStack Engineering',
       company: '株式会社サイバーエース（サイバーエージェント出向）',
       period: '2025 - now',
+      tech: 'Python, React, TypeScript, Next.js, Go, Claude Code',
+      tools: 'GitHub, Repsona',
       projects: [
+        {
+          title: 'アカウントカルテのWebUI開発',
+          link: 'https://prtimes.jp/main/html/rd/p/000000031.000085778.html',
+          details: [
+            '広告アカウントの状態を可視化するツールのWebUI開発',
+            'フロントエンドはReact, TypeScript, Next.jsを使用',
+            'バックエンドはPython, FastAPIを使用',
+            'フロントエンド、バックエンド両方の開発速度が早く、社内表彰を受賞',
+          ],
+        },
         {
           title: '極予測Swipeの開発',
           link: 'https://prtimes.jp/main/html/rd/p/000000042.000085778.html',
@@ -56,6 +68,7 @@ export const profile: Profile = {
             '作成したLPの事前の効果予測が可能',
             'カードを出し分けてABテスト実施可能',
             '先行導入いただいたクライアントにおいて、8社中7社で効果改善を確認済み',
+            '社内表彰を受賞',
           ],
         },
         {
