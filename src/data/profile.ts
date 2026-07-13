@@ -43,7 +43,7 @@ export const profile: Profile = {
 
   experience: [
     {
-      role: 'Software Engineering / AI-Enabled Development',
+      role: 'Software Engineer / AI-Enabled Development',
       company: '株式会社サイバーエース（株式会社サイバーエージェントから出向）',
       period: '2025.01 - 2026.07',
       tech: 'React, TypeScript, Next.js, Go, Python, FastAPI, GCP, Claude Code, Kiro',
@@ -77,7 +77,7 @@ export const profile: Profile = {
           details: [
             '縦型スワイプLPを作成・管理できる「極予測Swipe」の主要機能を開発',
             'Reactによる管理画面、Next.jsとGraphQLによるAPI、スワイプ型LPをビルドする機能を実装',
-            '他部署と連携しながら仕様と技術要件を短期間で整理し、主要機能をほぼ1人で担当',
+            '他部署と連携しながら仕様と技術要件を短期間で整理し、主要機能の設計・実装を主担当として推進',
             '先行導入8社中7社で効果改善を確認',
             '領域横断での開発と貢献を評価され、社内表彰を受賞',
           ],
