@@ -1,0 +1,89 @@
+name: Codex implementation task
+description: Codexへ確認・実装・検証・Pull Request作成を依頼するIssue
+title: '[Codex] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issueの作成だけではCodexは起動しません。内容を確認後、リポジトリ所有者がCodexをassigneeへ指定してください。
+        実行手順は [CODEX_ISSUE_WORKFLOW.md](https://github.com/kazuogawa/kazuogawa.github.io/blob/master/.github/CODEX_ISSUE_WORKFLOW.md) に従います。
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 背景・目的
+      description: なぜこの変更が必要か、解決したい課題を記載してください。
+      placeholder: この変更で解決したい課題を記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: 現在の状態
+      description: 現在の挙動、再現手順、エラーなどを記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-state
+    attributes:
+      label: 期待する状態
+      description: 修正後にどのような状態になってほしいかを記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 対象範囲
+      description: 変更してよい機能、画面、ファイル、データを記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 対象外
+      description: 今回変更してはいけないもの、後続対応とするものを記載してください。
+      placeholder: ない場合は「なし」と記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 受入条件
+      description: 完了と判断できる条件をチェックリスト形式で記載してください。
+      value: |
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: 確認方法
+      description: 実行すべきコマンドや手動確認の手順を記載してください。
+      value: |
+        - [ ] npm run check
+        - [ ] npm run build
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考資料
+      description: 関連URL、スクリーンショット、参考Issueなどを記載してください。
+      placeholder: ない場合は「なし」と記載してください。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security
+    attributes:
+      label: 公開情報の確認
+      options:
+        - label: Issue本文、コメント、添付資料に秘密情報や公開できない情報を含めていません。
+          required: true
