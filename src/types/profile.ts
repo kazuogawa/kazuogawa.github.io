@@ -33,6 +33,13 @@ export interface Project {
   link?: string;
 }
 
+export interface Contact {
+  title: string;
+  description: string;
+  primaryAction: { label: string; url: string };
+  responseNote: string;
+}
+
 export interface Profile {
   name: { ja: string; en: string; aka: string };
   title: string;
@@ -44,6 +51,7 @@ export interface Profile {
   skills: SkillCategory[];
   experience: ExperienceEntry[];
   projects: Project[];
+  contact: Contact;
   analytics: { googleAnalyticsId: string };
   seo: {
     description: string;

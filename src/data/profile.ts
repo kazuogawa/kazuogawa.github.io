@@ -203,6 +203,18 @@ export const profile: Profile = {
     },
   ],
 
+  contact: {
+    title: 'お問い合わせ',
+    description:
+      'AI活用、Webアプリケーション開発、データ基盤、開発プロセス改善などのご相談を受け付けています。内容が固まっていない段階でもお気軽にご連絡ください。',
+    primaryAction: {
+      label: '問い合わせフォームを開く',
+      url: 'https://form.run/@kazuogawa-consultation',
+    },
+    responseNote:
+      'フォーム送信後、内容を確認のうえ返信します。相談内容が固まっていない段階でも歓迎です。',
+  },
+
   projects: [
     {
       title: 'AI開発生産性向上',

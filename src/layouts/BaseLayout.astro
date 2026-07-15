@@ -65,6 +65,12 @@ const { seo, analytics } = profile;
         image: `${seo.canonicalUrl}images/myphoto.jpg`,
         description: seo.description,
         sameAs: profile.social.map((s) => s.url),
+        contactPoint: {
+          '@type': 'ContactPoint',
+          url: profile.contact.primaryAction.url,
+          contactType: 'inquiries',
+          availableLanguage: ['ja', 'en'],
+        },
       })}
     />
   </head>
