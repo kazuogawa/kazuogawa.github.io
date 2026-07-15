@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
+import Header from '../components/Header';
 import Hero from '../components/Hero.astro';
 import Skills from '../components/Skills';
 import Experience from '../components/Experience.astro';
@@ -11,7 +11,7 @@ import { profile } from '../data/profile';
 ---
 
 <BaseLayout>
-  <Header />
+  <Header client:visible />
   <main>
     <Hero />
     <section id="skills" class="scroll-mt-20 bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
