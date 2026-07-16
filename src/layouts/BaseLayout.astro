@@ -1,13 +1,16 @@
 ---
 import '../styles/global.css';
 import { profile } from '../data/profile';
+import type { SeoMetadata } from '../types/profile';
 
 interface Props {
   title?: string;
+  seo?: SeoMetadata;
 }
 
-const { title = "Kazuhisa Ogawa's Portfolio" } = Astro.props;
-const { seo, analytics } = profile;
+const { title = "Kazuhisa Ogawa's Portfolio", seo: seoOverride } = Astro.props;
+const { analytics } = profile;
+const pageSeo = seoOverride ?? profile.seo;
 ---
 
 <!doctype html>
@@ -15,9 +18,9 @@ const { seo, analytics } = profile;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={seo.description} />
+    <meta name="description" content={pageSeo.description} />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="canonical" href={seo.canonicalUrl} />
+    <link rel="canonical" href={pageSeo.canonicalUrl} />
     <link rel="icon" href="/images/favicon.ico" />
     <title>{title}</title>
 
@@ -45,10 +48,10 @@ const { seo, analytics } = profile;
     </script>
 
     <!-- Open Graph / Twitter Cards -->
-    <meta property="og:title" content={seo.ogTitle} />
-    <meta property="og:description" content={seo.description} />
-    <meta property="og:url" content={seo.canonicalUrl} />
-    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:title" content={pageSeo.ogTitle} />
+    <meta property="og:description" content={pageSeo.description} />
+    <meta property="og:url" content={pageSeo.canonicalUrl} />
+    <meta property="og:image" content={pageSeo.ogImage} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -61,9 +64,9 @@ const { seo, analytics } = profile;
         '@type': 'Person',
         name: profile.name.ja,
         alternateName: profile.name.en,
-        url: seo.canonicalUrl,
-        image: `${seo.canonicalUrl}images/myphoto.jpg`,
-        description: seo.description,
+        url: profile.seo.canonicalUrl,
+        image: `${profile.seo.canonicalUrl}images/myphoto.jpg`,
+        description: profile.seo.description,
         sameAs: profile.social.map((s) => s.url),
         contactPoint: {
           '@type': 'ContactPoint',
