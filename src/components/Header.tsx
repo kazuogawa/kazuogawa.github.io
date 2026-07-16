@@ -1,15 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
 
-const navItems = [
+interface Props {
+  page?: 'home' | 'services';
+}
+
+const homeNavItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Services', href: '/services/' },
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Header() {
+const servicesNavItems = [
+  { label: 'Portfolio', href: '/' },
+  { label: 'Services', href: '#services' },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#contact' },
+];
+
+export default function Header({ page = 'home' }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const navItems = page === 'services' ? servicesNavItems : homeNavItems;
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
@@ -38,7 +51,10 @@ export default function Header() {
       className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/80"
     >
       <nav className="relative mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#" className="text-lg font-bold text-slate-900 dark:text-white">
+        <a
+          href={page === 'home' ? '#hero' : '/'}
+          className="text-lg font-bold text-slate-900 dark:text-white"
+        >
           K.Ogawa
         </a>
 

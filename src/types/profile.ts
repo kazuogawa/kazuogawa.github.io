@@ -40,6 +40,44 @@ export interface Contact {
   responseNote: string;
 }
 
+export interface ServiceOffering {
+  title: string;
+  summary: string;
+  challenges: string[];
+  support: string[];
+  evidence: string[];
+}
+
+export interface ServiceProcessStep {
+  title: string;
+  description: string;
+}
+
+export interface EngagementOption {
+  title: string;
+  description: string;
+  examples: string[];
+}
+
+export interface SeoMetadata {
+  description: string;
+  ogImage: string;
+  canonicalUrl: string;
+  ogTitle: string;
+}
+
+export interface ServicesContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  offerings: ServiceOffering[];
+  process: ServiceProcessStep[];
+  engagementOptions: EngagementOption[];
+  termsNote: string;
+  overviewAction: { label: string; url: string };
+  seo: SeoMetadata;
+}
+
 export interface Profile {
   name: { ja: string; en: string; aka: string };
   title: string;
@@ -52,11 +90,7 @@ export interface Profile {
   experience: ExperienceEntry[];
   projects: Project[];
   contact: Contact;
+  services: ServicesContent;
   analytics: { googleAnalyticsId: string };
-  seo: {
-    description: string;
-    ogImage: string;
-    canonicalUrl: string;
-    ogTitle: string;
-  };
+  seo: SeoMetadata;
 }
