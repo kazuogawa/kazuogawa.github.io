@@ -45,7 +45,7 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 以下を読み、その設計と制約に従うこと。
 
 - `LOOP.md`: ループ設定（有効なループ、人間ゲート、予算、停止・無進捗検知）。
-- `loop-constraints.md` / `docs/safety.md`: 拘束制約と安全方針（denylist、自動マージ禁止、最小権限）。
+- `loop-constraints.md` / `docs/safety.md`: 拘束制約と安全方針（禁止パス、自動マージ禁止、最小権限）。
 - `loop-budget.md` / `loop-run-log.md`: トークン予算と実行ログ。
 - `STATE.md`: ループの状態（High Priority / Watch / Noise）。各 run で更新する。
 - `.agents/skills/`: Codexが自動検出するリポジトリ固有スキル群。
@@ -55,6 +55,6 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 運用ルール:
 
 - 現在は **L1（report-only）**。1〜2週間安定させるまで自動修正は行わない。
-- `master` へ直接 push しない。修正は必ずドラフト PR で提案し、人間レビュー後に ready にする。
-- 1項目の修正試行は最大 3 回。無進捗・超過時は `STATE.md` の High Priority に記録し escalate する。
+- push・PR・mergeは `loop-constraints.md`、保護パスは `docs/safety.md` の拘束ルールに従う。
+- 予算・修正試行・停止条件は `loop-budget.md` の上限に従う。
 - 参照先が存在しない、または読み取れない場合は実行を開始せず、その旨を報告すること。

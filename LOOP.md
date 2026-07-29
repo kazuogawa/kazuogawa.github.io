@@ -10,9 +10,9 @@ Astroポートフォリオの品質と問い合わせ導線を継続的に確認
 
 現在はL1（報告のみ）。1〜2週間安定させ、明示的にL2へ変更するまで自動修正しない。
 
-## Codex Automations設定
+## Scheduled Task設定
 
-Codex AppのAutomationsで次を設定する。
+ChatGPTデスクトップアプリのScheduled Tasksで次を設定する。
 
 | 項目        | 設定値                      |
 | ----------- | --------------------------- |
@@ -21,7 +21,7 @@ Codex AppのAutomationsで次を設定する。
 | Environment | Local                       |
 | Prompt      | 下記                        |
 
-`STATE.md` と `loop-run-log.md` はローカル管理でgit対象外のため、EnvironmentはLocalを使う。
+`STATE.md` と `loop-run-log.md` はgit管理対象だが、初期検証では現在の作業ツリーへ結果を残すためEnvironmentはLocalを使う。各run後は両ファイルに未コミット差分が生じるため、内容を確認してからcommitする。
 
 ```text
 このプロジェクトで $loop-constraints、$loop-budget、$loop-triage の順に1回実行してください。
@@ -32,32 +32,33 @@ STATE.mdを読み、High Priority、Watch List、Recent Noise、Post-Run Critiqu
 
 手動実行では、同じプロンプトをCodexへ入力する。
 
-## Human Gates
+## L2昇格ゲート
 
-- L2チェックリストが完了するまで自動修正しない。
-- `master` へ直接pushしない。
-- 修正は必ずドラフトPRで提案し、人間レビュー後にready化する。
-- SEOメタ、Google Analytics、`.github/workflows/` などのインフラ変更は人間承認必須。
-- Issue・PRのcloseおよびmergeは人間が行う。
+次をすべて満たし、人間が本ファイルのステータスをL2へ変更するまでL1を維持する。
+
+- 1〜2週間、かつ5回以上のL1 runを確認した。
+- Scheduled Taskが `STATE.md` と `loop-run-log.md` 以外を変更していない。
+- `npm run check` と `npm run build` が継続して成功している。
+- 予算超過、無進捗、想定外の権限要求が発生していない。
+- 未確認のブラウザ操作、外部リンク、依存脆弱性を人間が把握している。
+- L2で許可する変更範囲と人間ゲートをレビューした。
+
+push、PR、mergeの拘束ルールは `loop-constraints.md`、保護パスと承認範囲は `docs/safety.md` を正本とする。
 
 ## Worktreeとmaker/checker
 
 - L1ではworktreeもサブエージェントも使用しない。
 - L2の修正は隔離worktreeと `codex/loop-<identifier>` ブランチを使う。
-- `$minimal-fix` をmaker、`.codex/agents/verifier.toml` と `$loop-verifier` をcheckerとして分離する。
-- 1項目の修正試行は最大3回。無進捗または超過時は `STATE.md` のHigh Priorityへescalateする。
+- `$minimal-fix` をmakerとする。checkerは `.codex/agents/verifier.toml` で定義した `verifier` agentが `$loop-verifier` の手順を使って実行する。
+- 修正試行の上限とescalation条件は `loop-budget.md` を正本とする。
 
-## 停止と予算
+## 予算と停止
 
-- 上限は1日2 run、100k tokens。
-- 80%到達でreport-only、100%到達で停止する。
-- `STATE.md` の `pause_all: true` がkill switch。
-- kill switchを有効にしたらCodex Automationも人間が無効化する。
-- 詳細は `loop-budget.md` と `loop-run-log.md` に従う。
+集計期間、token・修正試行・サブエージェントの上限、self-throttle、kill switchは `loop-budget.md` を正本とする。停止時はScheduled Taskも人間が無効化する。
 
 ## MCP
 
-L1ではMCPや外部コネクタを使わない。導入時は `docs/safety.md` に用途と権限範囲を追記し、人間承認を得る。
+L1ではMCPや外部コネクタを使わない。導入条件と権限範囲は `docs/safety.md` を正本とする。
 
 ## 参照
 

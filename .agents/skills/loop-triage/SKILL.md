@@ -26,13 +26,13 @@ description: Astroポートフォリオのcheck、build、レスポンシブ表�
 
 ## STATE更新
 
-`STATE.md` の次のセクションだけを更新する。
+`STATE.md` の `Loop Control` は変更せず、次のフィールドとセクションだけを更新する。
 
+- `Last run` フィールド: 日時、パターン、レベル、結果
 - `High Priority`: 今日対応すべき失敗、または人間判断
 - `Watch List`: 低優先度または未確認項目
 - `Recent Noise`: 問題なしと確認できた項目
 - `Post-Run Critique`: 検証上の不足と次回の具体的な改善
-- `Last run`: 日時、パターン、レベル、結果
 
 各findingには影響、証拠または再現条件、判明している対象ファイル、推奨する次の行動を含め、簡潔に記述する。
 

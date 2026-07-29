@@ -35,7 +35,9 @@ GitHub IssueからCodexへ委任されたタスクは、以下の手順で確認
 
 ## 4. 検証
 
-最低限、以下を実行する。
+変更範囲に応じて検証する。
+
+ソース、依存関係、ビルド設定、またはGitHub Actions workflowなど、サイトのbuild・deployへ影響する変更では以下を実行する。
 
 ```bash
 npm ci
@@ -43,7 +45,14 @@ npm run check
 npm run build
 ```
 
-変更内容に応じた追加確認が必要な場合は実施する。テストを実行できない場合は、未実施の項目と理由をPull Requestへ記載する。
+Markdownやエージェント設定など、build・deployへ影響しない文書・運用設定だけの変更では、対象ファイルのフォーマットと差分を検証する。サイトのcheck・buildは不要とする。
+
+```bash
+npm exec -- prettier --check <変更したファイル>
+git diff --check
+```
+
+変更内容に応じた追加確認が必要な場合は実施する。判断に迷う場合はbuild・deployへ影響する変更として扱う。検証を実行できない場合は、未実施の項目と理由をPull Requestへ記載する。
 
 ## 5. Pull Request
 
@@ -51,7 +60,7 @@ npm run build
 
 - Issueの確認結果
 - 変更概要
-- 実行したテストと結果
+- 実行した検証と結果
 - 未確認事項または残存リスク
 - `Closes #<Issue番号>`
 

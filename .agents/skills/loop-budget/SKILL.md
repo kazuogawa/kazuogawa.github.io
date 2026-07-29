@@ -1,6 +1,6 @@
 ---
 name: loop-budget
-description: ポートフォリオループの実行回数、推定トークン、self-throttle閾値、kill switchを各runの開始時と終了時に確認する。loop-constraintsの後、loop-triageの前に使用する。
+description: ポートフォリオループの推定トークン、self-throttle閾値、kill switchを各runの開始時と終了時に確認する。loop-constraintsの後、loop-triageの前に使用する。
 ---
 
 # Loop Budget
@@ -8,15 +8,15 @@ description: ポートフォリオループの実行回数、推定トークン�
 ## Run開始時
 
 1. `loop-budget.md`、`loop-run-log.md`、`STATE.md` を読む。
-2. 過去24時間の `daily-triage` のrun数と `tokens_estimate` の合計を求める。
-3. 複数の上限がある場合は、最も厳しい制限を適用する。
-4. `pause_all: true` または使用量100%以上なら即時終了する。
-5. 使用量80%以上ならreport-onlyを強制する。
-6. L1では残予算にかかわらずサブエージェントを0に制限する。
-7. 対応候補も監視候補もなければ、5k tokens未満を目安に早期終了する。
+2. 現在時刻から遡る24時間について、`daily-triage` の `tokens_estimate` の合計を求める。
+3. `loop-budget.md` の上限、self-throttle、kill switchを適用する。複数の上限がある場合は、最も厳しい制限を使う。
+4. 同文書が停止を要求する場合は、チェックや編集を行わず終了する。
+5. L1では残予算にかかわらず、同文書に定めたサブエージェント上限を適用する。
+6. 対応候補も監視候補もない場合は、同文書の早期終了目安に従う。
 
 ## Run終了時
 
-`loop-run-log.md` の `## Recent Runs` に、同ファイルのスキーマどおりJSONを1件だけ追記する。L1では `actions_taken` を必ず0にする。
+1. `loop-run-log.md` から、現在時刻を基準に30日より古いrunエントリを削除する。
+2. `## Recent Runs` に、同ファイルのスキーマどおりJSONを1件だけ追記する。L1では `actions_taken` を必ず0にする。
 
 self-throttleが発生した場合は、`loop-budget.md` の `## Alerts This Period` と `STATE.md` のHigh Priorityにも簡潔に記録する。
