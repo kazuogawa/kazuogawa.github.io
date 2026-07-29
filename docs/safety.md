@@ -30,16 +30,16 @@
 
 ## 5. ツール / MCP スコープ（最小権限）
 
-- 各スキルは `SKILL.md` の `allowed-tools` で必要最小限のツールのみを宣言する。
-  - `loop-triage`: 読み取り + `git log` / `npm run check` / `npm run build` / `npm audit` + `STATE.md` の編集のみ。
-  - `minimal-fix`: 上記 + ファイル編集 + `git worktree` / `commit`（push・merge 権限は持たせない）。
-  - `loop-verifier`: 読み取り + `git diff` / `npm run check` / `npm run build` のみ（編集不可）。
+- 各スキルの手順とCodexのsandbox／approval設定で必要最小限の権限に制限する。
+  - `loop-triage`: 読み取り + `git log` / `npm run check` / `npm run build` / `npm audit` + `STATE.md` / `loop-run-log.md` の編集のみ。
+  - `minimal-fix`: L2移行後のみ。上記 + ファイル編集 + `git worktree` / `commit`。push・mergeは人間承認必須。
+  - `loop-verifier`: 読み取り + `git diff` / `npm run check` / `npm run build` のみ。編集不可。
 - **MCP / 外部コネクタは本パターンでは不要**。導入時は本節にサーバ名・スコープ・用途を明記してから使う。
 
 ## 6. エスカレーション / 停止
 
 - 1項目あたりの修正試行は最大 3 回。超過または無進捗は escalate（`STATE.md` High Priority + 人間通知）。
-- 予算 80% 到達で report-only、`loop-pause-all` 有効時は即終了（`loop-budget.md`）。
+- 予算80%到達でreport-only、`STATE.md` の `pause_all: true` で即終了する（`loop-budget.md`）。
 
 ## 参照
 

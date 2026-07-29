@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Loop Constraints'
+  short_description: 'ループ実行前に拘束制約・安全方針・停止条件を読み込みます'
+  default_prompt: '$loop-constraints を使い、このリポジトリのループ制約を読み込んで適用してください。'

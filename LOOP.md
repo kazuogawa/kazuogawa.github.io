@@ -1,60 +1,72 @@
-# Loop 設定 — kazuogawa-portfolio
+# Loop設定 — kazuogawa-portfolio（Codex）
 
-個人ポートフォリオ（Astro + React + TypeScript + Tailwind, GitHub Pages 公開）の
-品質・問い合わせ導線を継続的にトリアージするための最小構成。
+Astroポートフォリオの品質と問い合わせ導線を継続的に確認するCodex向けループ。
 
 ## 有効なループ
 
-| パターン | 周期 | ステータス | 内容 |
-|---------|------|-----------|------|
-| Portfolio Triage | 1d | L1 report-only | `skills/loop-triage` を実行し、`STATE.md` を更新するだけ（自動修正なし） |
+| パターン         | 周期 | ステータス     | 実行Skill                                             |
+| ---------------- | ---- | -------------- | ----------------------------------------------------- |
+| Portfolio Triage | 1日  | L1 report-only | `$loop-constraints` → `$loop-budget` → `$loop-triage` |
 
-> 現在は **L1（報告のみ）**。1〜2週間安定させてから L2（ドラフトPRでの小修正）へ引き上げる。
+現在はL1（報告のみ）。1〜2週間安定させ、明示的にL2へ変更するまで自動修正しない。
 
-## 人間ゲート（Human Gates）
+## Codex Automations設定
 
-- L2 チェックリストが完了するまで自動修正は行わない。
-- `master` への直接 push は禁止。修正は必ずドラフト PR で提案し、人間レビュー後に ready にする。
-- SEO メタ / Google Analytics / インフラ設定（`.github/workflows/` 等）の変更は人間承認必須。
+Codex AppのAutomationsで次を設定する。
 
-## 実行の隔離（Worktree Isolation）
+| 項目        | 設定値                      |
+| ----------- | --------------------------- |
+| Project     | このリポジトリ              |
+| Cadence     | Daily（任意のローカル時刻） |
+| Environment | Local                       |
+| Prompt      | 下記                        |
 
-- L2 の修正は必ず隔離した git worktree（例: `git worktree add ../portfolio-loop-<issue>`）で行い、
-  作業ブランチは `codex/loop-<短い識別子>` とする。`master` の作業ツリーは汚さない。
-- 検証（`npm run check` / `npm run build`）は worktree 内で実行する。
+`STATE.md` と `loop-run-log.md` はローカル管理でgit対象外のため、EnvironmentはLocalを使う。
 
-## 停止・無進捗の検知（Stall / No-Progress）
+```text
+このプロジェクトで $loop-constraints、$loop-budget、$loop-triage の順に1回実行してください。
+STATE.mdを読み、High Priority、Watch List、Recent Noise、Post-Run Critique、Last runを更新してください。
+終了時に$loop-budgetでloop-run-log.mdへ記録してください。
+現在はL1 report-onlyです。ソース修正、サブエージェント、worktree、push、Issue・PR操作は行わないでください。
+```
 
-- 1項目あたりの修正試行は **最大 3 回**。同じエラー・同じ差分を繰り返したら「無進捗」とみなす。
-- 無進捗、または3回超過時は、自動でループを続けず **escalate**（`STATE.md` の High Priority に記録し人間へ通知）する。
-- 各試行は `loop-run-log.md` に記録し、`loop-budget` / `loop-constraints` スキルの上限を尊重する。
-- 予算 80% 到達で report-only、`loop-pause-all` 有効時は即終了。
+手動実行では、同じプロンプトをCodexへ入力する。
 
-## MCP / コネクタ
+## Human Gates
 
-- このパターン（Portfolio Triage）では **MCP は不要**。外部コネクタは使わない。
-  将来 Linear / Slack 連携などが必要になった場合のみ `docs/safety.md` にスコープを追記して導入する。
+- L2チェックリストが完了するまで自動修正しない。
+- `master` へ直接pushしない。
+- 修正は必ずドラフトPRで提案し、人間レビュー後にready化する。
+- SEOメタ、Google Analytics、`.github/workflows/` などのインフラ変更は人間承認必須。
+- Issue・PRのcloseおよびmergeは人間が行う。
 
-## 予算（Budget）
+## Worktreeとmaker/checker
 
-- 1 run あたりサブエージェント spawn 上限: 0（L1） / 2（L2）
-- 1日あたりトークン上限: 100k（詳細は `loop-budget.md`）
-- 各 run の結果は `loop-run-log.md` に追記。run の開始/終了時に `loop-budget` スキルを実行する。
-- kill switch: `loop-pause-all` — スケジューラを停止し人間へ通知する。
-- コスト見積り: `npx @cobusgreyling/loop-cost --pattern daily-triage --level L1 --cadence 1d`
+- L1ではworktreeもサブエージェントも使用しない。
+- L2の修正は隔離worktreeと `codex/loop-<identifier>` ブランチを使う。
+- `$minimal-fix` をmaker、`.codex/agents/verifier.toml` と `$loop-verifier` をcheckerとして分離する。
+- 1項目の修正試行は最大3回。無進捗または超過時は `STATE.md` のHigh Priorityへescalateする。
+
+## 停止と予算
+
+- 上限は1日2 run、100k tokens。
+- 80%到達でreport-only、100%到達で停止する。
+- `STATE.md` の `pause_all: true` がkill switch。
+- kill switchを有効にしたらCodex Automationも人間が無効化する。
+- 詳細は `loop-budget.md` と `loop-run-log.md` に従う。
+
+## MCP
+
+L1ではMCPや外部コネクタを使わない。導入時は `docs/safety.md` に用途と権限範囲を追記し、人間承認を得る。
 
 ## 参照
 
-- 安全方針: `docs/safety.md`
 - 制約: `loop-constraints.md`
+- 安全方針: `docs/safety.md`
+- 予算: `loop-budget.md`
 - 状態: `STATE.md`
-- 予算: `loop-budget.md` / 実行ログ: `loop-run-log.md`
-- スキル: `skills/loop-triage`, `skills/loop-verifier`, `skills/minimal-fix`, `skills/loop-budget`, `skills/loop-constraints`
+- 実行ログ: `loop-run-log.md`
+- Skills: `.agents/skills/`
+- checker設定: `.codex/agents/verifier.toml`
 - 品質基準: `.github/PORTFOLIO_REVIEW_GUIDELINES.md`
-- Issue 起点タスク: `.github/CODEX_ISSUE_WORKFLOW.md`
-
-## First loop（grok）
-
-```
-/loop 1d Run loop-triage. Update STATE.md. No auto-fix in week one.
-```
+- Issue起点タスク: `.github/CODEX_ISSUE_WORKFLOW.md`

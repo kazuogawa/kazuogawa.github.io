@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Portfolio Loop Triage'
+  short_description: 'ポートフォリオ品質をL1報告専用モードでトリアージします'
+  default_prompt: '$loop-triage を使い、report-onlyのポートフォリオトリアージを1回実行してください。'

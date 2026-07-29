@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Loop Budget'
+  short_description: 'ループ実行前後の予算・回数・停止条件を安全に確認します'
+  default_prompt: '$loop-budget を使い、run開始前と終了時にループ予算を確認してください。'
