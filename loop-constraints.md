@@ -11,14 +11,12 @@
 - 事前に伝えずに push しない。
 - 人間の承認なしに `master` へ自動マージしない。
 - 修正は必ずドラフト PR で提案し、レビュー後に ready にする。
-- PR 本文には「変更概要 / 実行したテストと結果 / 残存リスク」を記載する（`.github/CODEX_ISSUE_WORKFLOW.md` 準拠）。
+- PR 本文には「変更概要 / 実行した検証と結果 / 残存リスク」を記載する（`.github/CODEX_ISSUE_WORKFLOW.md` 準拠）。
 
 ## Paths（変更してよい範囲）
 
-- `.env`, `.env.*`, `auth/`, `payments/`, `secrets/`, `credentials/` は編集しない。
-- インフラ / CI 設定（`.github/workflows/`, `astro.config.mjs`, `deploy.yml` 等）は人間承認なしに編集しない。
+- 禁止パスと人間承認必須パスは `docs/safety.md` を正本とし、その分類に従う。
 - コンテンツ更新は原則 `src/data/profile.ts` のみを編集する（`AGENTS.md` 規約）。
-- SEO 要件（`<html lang="ja">` / meta description / canonical / OG・Twitter メタ / Schema.org JSON-LD / Google Analytics `G-HR4K43KTKS`）を削除・破壊しない。
 
 ## Code（コード品質）
 
@@ -28,7 +26,6 @@
 - 条件レンダリングは三項演算子を使う（`&&` を使わない）。
 - テストやチェックを無効化して CI を通さない。
 - 無関係なリファクタリング・依存更新をしない（1 run につき 1 修正）。
-- 1項目あたりの修正試行は最大 3 回。超えたら escalate する。
 
 ## Communication（連絡）
 
@@ -37,8 +34,7 @@
 
 ## Budget（予算）
 
-- トークン消費が 1日上限の 80% に達したら report-only モードへ切り替える。
-- `STATE.md` の `pause_all: true` が有効なら即座に終了する。
+- 各runの開始時と終了時に `$loop-budget` を実行し、`loop-budget.md` の上限・停止条件に従う。
 
 ---
 

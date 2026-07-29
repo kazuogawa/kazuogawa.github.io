@@ -12,8 +12,12 @@ Closes #
 
 ## 確認結果
 
-- [ ] `npm run check`
-- [ ] `npm run build`
+- [ ] build・deploy影響あり: `npm run check`
+- [ ] build・deploy影響あり: `npm run build`
+- [ ] 文書・運用設定のみ: 対象ファイルのPrettier確認
+- [ ] `git diff --check`
+
+該当しない項目は理由を添えて `N/A` とする。
 
 ## 未確認事項・残存リスク
 

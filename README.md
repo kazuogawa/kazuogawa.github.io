@@ -47,4 +47,4 @@ src/
 
 ## デプロイ
 
-`master` ブランチへのpushで GitHub Actions が自動実行され、GitHub Pages にデプロイされます。
+`master` ブランチへbuild対象の変更をpushするとGitHub Actionsが自動実行され、GitHub Pagesにデプロイされます。Markdownやエージェント運用設定だけの変更はデプロイ対象外です。
