@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Loop Verifier'
+  short_description: 'L2修正案を独立したcheckerとして厳格に検証します'
+  default_prompt: '$loop-verifier を使い、提案されたループ修正を独立して検証してください。'

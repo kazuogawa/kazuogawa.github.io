@@ -48,7 +48,7 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 - `loop-constraints.md` / `docs/safety.md`: 拘束制約と安全方針（denylist、自動マージ禁止、最小権限）。
 - `loop-budget.md` / `loop-run-log.md`: トークン予算と実行ログ。
 - `STATE.md`: ループの状態（High Priority / Watch / Noise）。各 run で更新する。
-- `skills/`: ループが読み込むスキル群。
+- `.agents/skills/`: Codexが自動検出するリポジトリ固有スキル群。
   - `loop-constraints`（ガードレール）→ `loop-budget`（予算確認）→ `loop-triage`（信号抽出）の順で実行。
   - L2 以降の修正は `minimal-fix`（maker）→ `loop-verifier`（checker）で maker/checker を分離する。
 

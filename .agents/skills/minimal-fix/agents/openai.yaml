@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Minimal Loop Fix'
+  short_description: 'L2で承認済み単一項目の最小修正案を隔離して作成します'
+  default_prompt: '$minimal-fix を使い、承認済みのL2修正を隔離worktreeで1件だけ実施してください。'
+policy:
+  allow_implicit_invocation: false

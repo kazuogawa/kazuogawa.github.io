@@ -4,9 +4,9 @@
 
 ## 1日あたりの上限
 
-| ループ | 最大 run/日 | 最大 tokens/日 | 最大 サブエージェント spawn/run |
-|--------|-------------|----------------|--------------------------------|
-| Portfolio Triage | 2 | 100k | 0（L1） / 2（L2） |
+| ループ           | 最大 run/日 | 最大 tokens/日 | 最大 サブエージェント spawn/run |
+| ---------------- | ----------- | -------------- | ------------------------------- |
+| Portfolio Triage | 2           | 100k           | 0（L1） / 2（L2）               |
 
 ## 予算超過時の対応
 
@@ -16,8 +16,9 @@
 
 ## kill switch
 
-- コマンド／Issue ラベル: `loop-pause-all`
-- 再開は、人間が `STATE.md` のフラグを解除した後のみ。
+- `STATE.md` の `## Loop Control` にある `pause_all` を `true` にすると停止する。
+- kill switch有効時は、Codex AppのAutomationも人間が無効化する。
+- 再開は、人間が `pause_all: false` に戻してAutomationを再度有効化した後のみ。
 
 ## コスト見積り
 

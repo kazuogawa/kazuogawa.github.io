@@ -2,7 +2,3 @@
 node_modules/
 dist/
 .astro/
-
-# Loop engineering — ローカル帳簿（リポジトリにコミットしない）
-STATE.md
-loop-run-log.md
