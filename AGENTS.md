@@ -38,3 +38,23 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 
 表示品質、レスポンシブ対応、問い合わせ導線をレビューする場合は、
 `.github/PORTFOLIO_REVIEW_GUIDELINES.md` を読み、その基準に従うこと。
+
+## ループエンジニアリング運用
+
+ループ（定期トリアージ・自動修正提案）を実行・改善する場合は、作業開始前に
+以下を読み、その設計と制約に従うこと。
+
+- `LOOP.md`: ループ設定（有効なループ、人間ゲート、予算、停止・無進捗検知）。
+- `loop-constraints.md` / `docs/safety.md`: 拘束制約と安全方針（denylist、自動マージ禁止、最小権限）。
+- `loop-budget.md` / `loop-run-log.md`: トークン予算と実行ログ。
+- `STATE.md`: ループの状態（High Priority / Watch / Noise）。各 run で更新する。
+- `skills/`: ループが読み込むスキル群。
+  - `loop-constraints`（ガードレール）→ `loop-budget`（予算確認）→ `loop-triage`（信号抽出）の順で実行。
+  - L2 以降の修正は `minimal-fix`（maker）→ `loop-verifier`（checker）で maker/checker を分離する。
+
+運用ルール:
+
+- 現在は **L1（report-only）**。1〜2週間安定させるまで自動修正は行わない。
+- `master` へ直接 push しない。修正は必ずドラフト PR で提案し、人間レビュー後に ready にする。
+- 1項目の修正試行は最大 3 回。無進捗・超過時は `STATE.md` の High Priority に記録し escalate する。
+- 参照先が存在しない、または読み取れない場合は実行を開始せず、その旨を報告すること。
