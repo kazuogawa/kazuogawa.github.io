@@ -18,18 +18,19 @@ L2の1項目あたりの修正試行は最大3回。3回失敗、または同じ
 
 - 対応候補も監視候補もないrun: 5k tokens未満を目安に早期終了する。
 - tokensが80%以上: report-onlyへ切り替える。
-- tokensが100%以上、またはkill switch有効: runを開始せず停止する。
+- tokensが100%以上: トリアージを開始せず、停止記録だけを行う。
+- kill switch有効: チェックや編集を行わず即時終了する。
 
-停止時は次を行う。
+tokensが100%以上で停止した場合は次を行う。
 
-1. Scheduled Taskを無効化する。
+1. 人間がScheduled Taskを無効化する。
 2. `loop-run-log.md` にイベントを追記する。
 3. 人間へ通知する（`STATE.md` の High Priority に記載）。
 
 ## kill switch
 
 - `STATE.md` の `## Loop Control` にある `pause_all` を `true` にすると停止する。
-- kill switch有効時は、Scheduled Taskも人間が無効化する。
+- kill switch有効時はファイルを変更せず、人間へScheduled Taskの無効化を依頼する。
 - 再開は、人間が `pause_all: false` に戻してScheduled Taskを再度有効化した後のみ。
 
 ## コスト見積り
