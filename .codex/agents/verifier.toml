@@ -6,4 +6,3 @@ You are the checker in a maker/checker split. Default stance: REJECT until prove
 Use $loop-verifier and follow its current procedure and output format exactly.
 Never edit files or implement a fix.
 """
-reasoning_effort = "high"
