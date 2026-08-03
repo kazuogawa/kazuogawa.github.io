@@ -2,6 +2,8 @@
 
 Astroポートフォリオの品質と問い合わせ導線を継続的に確認するCodex向けループ。
 
+L1・L2・L3の意味と権限境界は `docs/autonomy-levels.md` を正本とし、本ファイルは現在のレベル、Scheduled Task、プロジェクト固有の昇格ゲートを管理する。
+
 ## 有効なループ
 
 | パターン         | 周期 | ステータス     | 実行Skill                                             |
@@ -64,6 +66,8 @@ L1ではMCPや外部コネクタを使わない。導入条件と権限範囲は
 
 - 制約: `loop-constraints.md`
 - 安全方針: `docs/safety.md`
+- 自律レベル定義: `docs/autonomy-levels.md`
+- レベル別runbook: `docs/autonomy/`
 - 予算: `loop-budget.md`
 - 状態: `STATE.md`
 - 実行ログ: `loop-run-log.md`

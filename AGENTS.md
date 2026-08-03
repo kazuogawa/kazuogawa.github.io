@@ -45,6 +45,7 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 以下を読み、その設計と制約に従うこと。
 
 - `LOOP.md`: ループ設定（有効なループ、人間ゲート、予算、停止・無進捗検知）。
+- `docs/autonomy-levels.md` / `docs/autonomy/`: L1・L2・L3の共通定義と現在レベルのrunbook。
 - `loop-constraints.md` / `docs/safety.md`: 拘束制約と安全方針（禁止パス、自動マージ禁止、最小権限）。
 - `loop-budget.md` / `loop-run-log.md`: トークン予算と実行ログ。
 - `STATE.md`: ループの状態（High Priority / Watch / Noise）。各 run で更新する。

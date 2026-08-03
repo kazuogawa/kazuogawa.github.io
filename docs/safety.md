@@ -45,5 +45,5 @@ push、PR、merge、closeの拘束ルールは `loop-constraints.md` を正本�
 
 ## 参照
 
-- `loop-constraints.md` / `loop-budget.md` / `LOOP.md`
+- `loop-constraints.md` / `loop-budget.md` / `LOOP.md` / `docs/autonomy-levels.md`
 - `.github/CODEX_ISSUE_WORKFLOW.md` / `.github/PORTFOLIO_REVIEW_GUIDELINES.md`
