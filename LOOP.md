@@ -4,13 +4,19 @@ Astroポートフォリオの品質と問い合わせ導線を継続的に確認
 
 L1・L2・L3の意味と権限境界は `docs/autonomy-levels.md` を正本とし、本ファイルは現在のレベル、Scheduled Task、プロジェクト固有の昇格ゲートを管理する。
 
+## 現在の自律レベル
+
+```yaml
+current_level: L1
+```
+
+自律レベルは人間だけが変更できる。変更時は `docs/autonomy-levels.md` の昇格・降格手順に従う。
+
 ## 有効なループ
 
-| パターン         | 周期 | ステータス     | 実行Skill                                             |
-| ---------------- | ---- | -------------- | ----------------------------------------------------- |
-| Portfolio Triage | 1日  | L1 report-only | `$loop-constraints` → `$loop-budget` → `$loop-triage` |
-
-現在はL1（報告のみ）。1〜2週間安定させ、明示的にL2へ変更するまで自動修正しない。
+| パターン         | 周期 | 実行手順                                             |
+| ---------------- | ---- | ---------------------------------------------------- |
+| Portfolio Triage | 1日  | `$loop-constraints` → 現在レベルのrunbookと必須Skill |
 
 ## Scheduled Task設定
 
@@ -26,17 +32,16 @@ ChatGPTデスクトップアプリのScheduled Tasksで次を設定する。
 `STATE.md` と `loop-run-log.md` はgit管理対象だが、初期検証では現在の作業ツリーへ結果を残すためEnvironmentはLocalを使う。各run後は両ファイルに未コミット差分が生じるため、内容を確認してからcommitする。
 
 ```text
-このプロジェクトで $loop-constraints、$loop-budget、$loop-triage の順に1回実行してください。
-STATE.mdを読み、High Priority、Watch List、Recent Noise、Post-Run Critique、Last runを更新してください。
-終了時に$loop-budgetでloop-run-log.mdへ記録してください。
-現在はL1 report-onlyです。ソース修正、サブエージェント、worktree、push、Issue・PR操作は行わないでください。
+LOOP.mdのcurrent_levelを確認し、$loop-constraintsを最初に実行してください。
+続いて、現在レベルのrunbookとそこに記載された必須Skillに従い、ループを1回実行してください。
+STATE.mdとloop-run-log.mdをrunbookで許可された範囲だけ更新してください。
 ```
 
 手動実行では、同じプロンプトをCodexへ入力する。
 
 ## L2昇格ゲート
 
-次をすべて満たし、人間が本ファイルのステータスをL2へ変更するまでL1を維持する。
+次をすべて満たし、人間が `current_level` をL2へ変更するまでL1を維持する。
 
 - 1〜2週間、かつ5回以上のL1 runを確認した。
 - Scheduled Taskが `STATE.md` と `loop-run-log.md` 以外を変更していない。
@@ -47,10 +52,9 @@ STATE.mdを読み、High Priority、Watch List、Recent Noise、Post-Run Critiqu
 
 push、PR、mergeの拘束ルールは `loop-constraints.md`、保護パスと承認範囲は `docs/safety.md` を正本とする。
 
-## Worktreeとmaker/checker
+## Maker / checker
 
-- L1ではworktreeもサブエージェントも使用しない。
-- L2の修正は隔離worktreeと `codex/loop-<identifier>` ブランチを使う。
+- 修正を行うrunのworktree、ブランチ、push権限は、現在レベルのrunbookに従う。
 - `$minimal-fix` をmakerとする。checkerは `.codex/agents/verifier.toml` で定義した `verifier` agentが `$loop-verifier` の手順を使って実行する。
 - 修正試行の上限とescalation条件は `loop-budget.md` を正本とする。
 
@@ -58,9 +62,9 @@ push、PR、mergeの拘束ルールは `loop-constraints.md`、保護パスと�
 
 集計期間、token・修正試行・サブエージェントの上限、self-throttle、kill switchは `loop-budget.md` を正本とする。停止時はScheduled Taskも人間が無効化する。
 
-## MCP
+## 外部接続 / MCP
 
-L1ではMCPや外部コネクタを使わない。導入条件と権限範囲は `docs/safety.md` を正本とする。
+品質確認に必要なネットワーク、MCP、外部コネクタを利用できる。読み取り・書き込みの範囲は現在レベルのrunbookと `docs/safety.md` に従う。
 
 ## 参照
 

@@ -41,6 +41,7 @@ run開始前に人間が承認したHigh Priority項目を1件だけ扱う。承
 
 - 修正対象をrun開始前に承認する。
 - 承認必須パスを変更する場合は、対象パスと変更内容を個別に承認する。
+- checkerのAPPROVE後は、事前通知を条件として `master` 以外の専用作業ブランチへのpushとドラフトPR作成を許可する。pushごとの追加承認は不要とする。
 - PRのready化、merge、deploy、closeを人間が行う。
 
 ## 停止・escalation
