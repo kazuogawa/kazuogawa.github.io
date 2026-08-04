@@ -38,7 +38,7 @@
 
 ## 6. Push / Merge
 
-push、PR、merge、closeの拘束ルールは `loop-constraints.md` を正本とする。
+push、PR、merge、closeの拘束ルールは `loop-constraints.md` を正本とする。GitHubネイティブのDependabot auto-merge例外はCodexの権限を拡張せず、同文書のbot・ecosystem・update type・target branch・必須チェック条件をすべて満たす場合だけ許可する。
 
 ## 7. エスカレーション / 停止
 
