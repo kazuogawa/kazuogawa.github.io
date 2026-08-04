@@ -29,27 +29,27 @@ make preview
 
 ## Lighthouse計測
 
-Lighthouseはローカルのプロダクションビルドを対象に計測します。まずビルドとプレビューを実行します。
+Lighthouseはローカルのプロダクションビルドを対象に計測します。次のコマンドがビルド、本番プレビューの一時起動、計測、プレビューの終了までを自動で行います。完了後にHTMLレポートをブラウザで開きます。
 
 ```bash
-# ターミナル1
-make check
-make build
-make preview
-```
-
-プレビューを起動したまま、別のターミナルからLighthouseを実行します。標準ではモバイル条件で計測し、完了後にHTMLレポートをブラウザで開きます。
-
-```bash
-# ターミナル2
 make lighthouse
 ```
 
-別のURLを計測する場合は `LIGHTHOUSE_URL` を指定できます。
+標準では、開発サーバーの既定ポート `4321` との競合を避けるため、`http://127.0.0.1:4322` をモバイル条件で計測します。ポートを変更する場合は `LIGHTHOUSE_PORT` を指定できます。
 
 ```bash
-make lighthouse LIGHTHOUSE_URL=https://kazuogawa.github.io/
+make lighthouse LIGHTHOUSE_PORT=4323
 ```
+
+### 低いスコアが出た場合
+
+`make dev` で起動した開発サーバーは計測しないでください。ViteやAstro Dev Toolbarの開発用JavaScriptが含まれるため、実際の公開サイトよりPerformanceスコアが大きく低下します。
+
+レポートのリクエストに `/@vite/client` や `dev-toolbar` が含まれている場合は、開発サーバーを計測しています。`make lighthouse` を実行し直し、計測URLが `http://127.0.0.1:4322` であることを確認してください。
+
+LighthouseのPerformanceスコアは実行環境によって変動するため、必要に応じて複数回計測して中央値で評価します。
+
+計測前の静的チェックは `make check` で別途実行できます。
 
 ## CodexによるIssue並列対応
 
