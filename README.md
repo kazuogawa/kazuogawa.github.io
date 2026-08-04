@@ -27,6 +27,20 @@ make build
 make preview
 ```
 
+## CodexによるIssue並列対応
+
+Codex CLIとGitHub CLIへログインした状態で、PRがリンクされていないopen Issueを古い順に並列対応できます。
+
+```bash
+# 既定では最大3件
+make codex-issues
+
+# 対象件数を指定
+make codex-issues LIMIT=5
+```
+
+リポジトリ固有Skill `$parallel-issue-prs` がIssueごとに `.worktrees/issue-<番号>` を作成し、実装、検証、push、draft PR作成まで行います。作成したworktree、draft PR、branchは自動削除・ready化・mergeされません。
+
 ## プロジェクト構成
 
 ```
