@@ -1,0 +1,14 @@
+---
+import type { SkillCategory } from '../types/profile';
+import SkillCard from './SkillCard.astro';
+
+interface Props {
+  skills: SkillCategory[];
+}
+
+const { skills } = Astro.props;
+---
+
+<div class="grid gap-6 sm:grid-cols-2">
+  {skills.map((skill) => <SkillCard skill={skill} />)}
+</div>

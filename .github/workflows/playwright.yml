@@ -1,0 +1,41 @@
+name: Playwright E2E
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup pnpm and Node
+        uses: pnpm/setup@v1
+        with:
+          runtime: node@24.18.0
+          cache: true
+          install: false
+      - name: Install dependencies
+        run: make install
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Check
+        run: make check
+      - name: Build
+        run: make build
+      - name: Run Playwright tests
+        run: pnpm test:e2e
+      - name: Upload Playwright results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
