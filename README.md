@@ -25,6 +25,9 @@ make build
 
 # ビルド結果プレビュー
 make preview
+
+# Playwright E2Eテスト
+make test-e2e
 ```
 
 ## Lighthouse計測
@@ -54,7 +57,7 @@ make lighthouse LIGHTHOUSE_URL=http://localhost:4322
 
 `make dev` で起動した開発サーバーは計測しないでください。ViteやAstro Dev Toolbarの開発用JavaScriptが含まれるため、実際の公開サイトよりPerformanceスコアが大きく低下します。
 
-レポートのリクエストに `/@vite/client` や `dev-toolbar` が含まれている場合は、開発サーバーを計測しています。`make lighthouse` を実行し直し、計測URLが `http://127.0.0.1:4322` であることを確認してください。
+レポートのリクエストに `/@vite/client` や `dev-toolbar` が含まれている場合は、開発サーバーを計測しています。previewが表示したURLを`LIGHTHOUSE_URL`に指定し、`make lighthouse`を実行し直してください。
 
 LighthouseのPerformanceスコアは実行環境によって変動するため、必要に応じて複数回計測して中央値で評価します。
 
