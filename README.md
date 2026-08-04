@@ -27,6 +27,30 @@ make build
 make preview
 ```
 
+## Lighthouse計測
+
+Lighthouseはローカルのプロダクションビルドを対象に計測します。まずビルドとプレビューを実行します。
+
+```bash
+# ターミナル1
+make check
+make build
+make preview
+```
+
+プレビューを起動したまま、別のターミナルからLighthouseを実行します。標準ではモバイル条件で計測し、完了後にHTMLレポートをブラウザで開きます。
+
+```bash
+# ターミナル2
+make lighthouse
+```
+
+別のURLを計測する場合は `LIGHTHOUSE_URL` を指定できます。
+
+```bash
+make lighthouse LIGHTHOUSE_URL=https://kazuogawa.github.io/
+```
+
 ## CodexによるIssue並列対応
 
 Codex CLIとGitHub CLIへログインした状態で、PRがリンクされていないopen Issueを古い順に並列対応できます。
