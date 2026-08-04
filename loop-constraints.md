@@ -13,6 +13,9 @@
 - L2では修正対象の事前承認とpush前の通知を必要とするが、pushごとの追加承認は不要とする。
 - L3では事前承認されたallowlistの範囲に限り、runごとの追加承認なしでpushとドラフトPR作成を許可する。
 - 人間の承認なしに `master` へ自動マージしない。
+- 例外として、人間が事前承認した `.github/workflows/dependabot-auto-merge.yml` は、`dependabot[bot]` が作成した `master` 向けnpm semver patch PRに限り、必須チェック成功後のsquash auto-mergeを有効化できる。minor・major更新、GitHub Actions更新、他の作成者・target branchは対象外とする。
+- 上記例外はCodexループの自律レベルと権限を拡張しない。CodexはDependabot PRを直接approve、merge、closeせず、workflowの対象条件も自律的に拡張しない。
+- Dependabot auto-mergeを有効化する前に、`master` のbranch protectionで `Check and build` を必須チェックに設定する。保護が無効または必須チェックが失われた場合はauto-mergeを停止する。
 - 修正は必ずドラフト PR で提案し、レビュー後に ready にする。
 - PR 本文には「変更概要 / 実行した検証と結果 / 残存リスク」を記載する（`.github/CODEX_ISSUE_WORKFLOW.md` 準拠）。
 
