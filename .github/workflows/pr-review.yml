@@ -15,6 +15,7 @@ concurrency:
 jobs:
   review:
     name: Review pull request diff
+    if: github.event.pull_request.user.login == 'kazuogawa'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
@@ -65,8 +66,8 @@ jobs:
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           codex-version: 0.144.4
-          model: gpt-5.4-mini
-          effort: medium
+          model: gpt-5.6-sol
+          effort: high
           permission-profile: ':read-only'
           safety-strategy: drop-sudo
           prompt: |
@@ -107,7 +108,10 @@ jobs:
   report:
     name: Publish review result
     needs: review
-    if: always() && needs.review.result != 'cancelled'
+    if: >-
+      always() &&
+      github.event.pull_request.user.login == 'kazuogawa' &&
+      needs.review.result != 'cancelled'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
