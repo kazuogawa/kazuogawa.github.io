@@ -34,12 +34,12 @@ description: GitHub上でPRがリンクされていないopen Issueを古い順�
    - GitHub上でリンクされたPRがない（`-linked:pr`）
    - 作成日時が古い順（`sort:created-asc`）
 2. Issue番号、タイトル、URLを取得し、古い候補から順に確認する。
-3. Issueごとにbranchを `codex/issue-<番号>-task`、worktreeを `.worktrees/issue-<番号>` とする。
+3. Issueごとにbranchを `codex-issue-<番号>-task`、worktreeを `.worktrees/issue-<番号>` とする。remoteの既存branch `codex` とref名が衝突するため、`codex/issue-*` は使用しない。
 4. `git show-ref`、`git ls-remote --heads origin`、`git worktree list --porcelain`、worktreeパスの存在確認により、local branch、remote branch、登録済みworktree、またはパスの衝突を判定する。衝突するIssueは変更・削除・再利用せず、理由を記録して次の候補へ進む。
 5. 衝突しない候補は、リポジトリルートから次の形で作成する。worktreeには必ず絶対パスを使う。
 
    ```bash
-   git worktree add -b "codex/issue-<番号>-task" "<リポジトリルート>/.worktrees/issue-<番号>" origin/master
+   git worktree add -b "codex-issue-<番号>-task" "<リポジトリルート>/.worktrees/issue-<番号>" origin/master
    ```
 
 6. LIMIT件を準備するか、候補が尽きた時点で選択を終える。
