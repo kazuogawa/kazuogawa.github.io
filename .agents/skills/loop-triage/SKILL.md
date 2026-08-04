@@ -14,15 +14,15 @@ description: Astroポートフォリオのcheck、build、レスポンシブ表�
 
 ## 証拠収集
 
-1. `npm run check` を実行する。
-2. `npm run build` を実行する。
+1. `make check` を実行する。
+2. `make build` を実行する。
 3. ビルド警告を確認し、次の要件が保持されていることを確認する。
    - `<html lang="ja">`
    - description、canonical、OG、Twitter Card、Person JSON-LD
    - Google Analytics `G-HR4K43KTKS` とAstroの `is:inline`
    - `public/images/` の参照画像
 4. ブラウザを利用できる場合は、レビュー基準に指定されたPC・スマホviewport、ライト・ダーク、ナビゲーション、メニュー操作、問い合わせ導線を確認する。
-5. ネットワークを利用できる場合のみ `npm audit` と外部リンクの死活確認を行う。実行できない項目は成功扱いにせず、未確認として記録する。
+5. ネットワークを利用できる場合のみ `make audit` と外部リンクの死活確認を行う。実行できない項目は成功扱いにせず、未確認として記録する。
 
 ## STATE更新
 

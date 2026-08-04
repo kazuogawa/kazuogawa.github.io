@@ -11,7 +11,7 @@ description: L2で人間が承認した項目、またはL3でauto-eligibleなHi
 4. High Priorityから現在レベルの対象決定ルールを満たす1項目だけを選ぶ。
 5. 専用worktreeと `codex/loop-<identifier>` ブランチで作業する。
 6. 関連する最小差分だけを作る。禁止パスは変更せず、承認必須パスは明示的な人間承認なしに変更しない。
-7. worktree内で `npm run check` と `npm run build` を実行する。
+7. worktree内で `make check` と `make build` を実行する。
 8. `loop-budget.md` の修正試行上限または無進捗条件に達したら停止してescalateする。
 9. 設定済みの `verifier` checkerへ `$loop-verifier` を使用した独立検証を依頼する。maker自身で検証を完結させない。
 10. APPROVE後のみ、変更概要・検証結果・残存リスクを含むドラフトPRを提案する。ready化、merge、closeは自動で行わない。

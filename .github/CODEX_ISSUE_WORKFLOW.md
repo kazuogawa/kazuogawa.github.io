@@ -40,15 +40,15 @@ GitHub IssueからCodexへ委任されたタスクは、以下の手順で確認
 ソース、依存関係、ビルド設定、またはGitHub Actions workflowなど、サイトのbuild・deployへ影響する変更では以下を実行する。
 
 ```bash
-npm ci
-npm run check
-npm run build
+make install
+make check
+make build
 ```
 
 Markdownやエージェント設定など、build・deployへ影響しない文書・運用設定だけの変更では、対象ファイルのフォーマットと差分を検証する。サイトのcheck・buildは不要とする。
 
 ```bash
-npm exec -- prettier --check <変更したファイル>
+make format-check
 git diff --check
 ```
 

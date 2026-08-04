@@ -45,7 +45,7 @@ STATE.mdとloop-run-log.mdをrunbookで許可された範囲だけ更新して�
 
 - 1〜2週間、かつ5回以上のL1 runを確認した。
 - Scheduled Taskが `STATE.md` と `loop-run-log.md` 以外を変更していない。
-- `npm run check` と `npm run build` が継続して成功している。
+- `make check` と `make build` が継続して成功している。
 - 予算超過、無進捗、想定外の権限要求が発生していない。
 - 未確認のブラウザ操作、外部リンク、依存脆弱性を人間が把握している。
 - L2で許可する変更範囲と人間ゲートをレビューした。

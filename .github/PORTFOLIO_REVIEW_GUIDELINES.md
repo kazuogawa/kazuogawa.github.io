@@ -7,12 +7,12 @@
 最新のビルド結果を対象にするため、次の順序で実行する。
 
 ```bash
-npm run check
-npm run build
-npm run preview
+make check
+make build
+make preview
 ```
 
-`npm run preview` は既存の `dist` を配信するため、必ず先に `npm run build` を実行する。ブラウザを利用できない場合は、目視・操作確認が未実施であることを報告する。
+`make preview` は既存の `dist` を配信するため、必ず先に `make build` を実行する。ブラウザを利用できない場合は、目視・操作確認が未実施であることを報告する。
 
 ## 2. PC表示
 
