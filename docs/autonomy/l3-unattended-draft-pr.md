@@ -42,7 +42,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 3. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
 4. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
 5. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。
-6. APPROVE後だけcommitし、作業ブランチへpushしてドラフトPRを作成する。
+6. APPROVE後だけcommitし、push予定を通知してから作業ブランチへpushし、ドラフトPRを作成する。通知後の追加承認は待たない。
 7. `STATE.md` と `loop-run-log.md` に結果、残存リスク、次の人間操作を記録する。
 
 ## 禁止する操作
@@ -56,6 +56,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 ## 人間ゲート
 
 - L3のallowlistと判定ルールを事前承認する。
+- allowlistの事前承認には、checkerのAPPROVE後に `master` 以外の専用作業ブランチへpushし、ドラフトPRを作成する権限を含む。runごとの追加承認は不要とする。
 - 承認必須パスはL3の自動対象に含めず、必要になった時点でescalateする。
 - 作成されたドラフトPRのready化、merge、deploy、closeを人間が行う。
 

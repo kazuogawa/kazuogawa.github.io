@@ -12,6 +12,7 @@
 次のルールは自律レベルにかかわらず維持する。
 
 - `master` へ直接pushしない。
+- 現在レベルのrunbookで許可された場合に限り、`master` 以外の専用作業ブランチへpushできる。
 - ready化、merge、deploy、Issue・PRのcloseを自動で行わない。
 - 禁止パスを変更しない。承認必須パスは対象ごとの明示的な人間承認なしに変更しない。
 - ソースを修正するrunでは1項目だけを対象にし、隔離worktreeと専用ブランチを使う。
@@ -44,7 +45,7 @@ L3は自動mergeを意味しない。このリポジトリにおけるL3の上�
 自律レベルはエージェントが自分で変更しない。人間が次の手順を完了した場合のみ変更する。
 
 1. `LOOP.md` の昇格ゲートと直近のrun実績をレビューする。
-2. `loop-budget.md`、`docs/safety.md`、対象Skills、Scheduled Taskのpromptを新しいレベルに合わせる。
+2. `loop-budget.md`、`docs/safety.md`、対象Skillsを新しいレベルに合わせる。
 3. `LOOP.md` の現在レベルを変更する。
 4. 文書間のdriftと必須ファイルを検査する。
 5. 低頻度のpilotまたはcanary runから開始し、結果を人間がレビューする。

@@ -60,3 +60,16 @@ JSON のキー名は機械可読のため英語のまま維持すること。
   "outcome": "report-only"
 }
 ```
+
+```json
+{
+  "run_id": "2026-08-04T09:03:53+09:00",
+  "pattern": "daily-triage",
+  "duration_s": 176,
+  "items_found": 4,
+  "actions_taken": 0,
+  "escalations": 0,
+  "tokens_estimate": 18000,
+  "outcome": "report-only"
+}
+```

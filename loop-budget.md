@@ -1,6 +1,6 @@
 # Loop 予算 — kazuogawa-portfolio
 
-> 主ループ: **Portfolio Triage**（周期 1d / 現在 L1 report-only）
+> 主ループ: **Portfolio Triage**（周期 1d / 現在の自律レベルは `LOOP.md` を参照）
 
 ## 集計期間
 

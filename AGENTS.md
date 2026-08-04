@@ -55,7 +55,7 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 
 運用ルール:
 
-- 現在は **L1（report-only）**。1〜2週間安定させるまで自動修正は行わない。
+- 現在の自律レベルは `LOOP.md` を正本とし、対応する `docs/autonomy/` runbookに従う。
 - push・PR・mergeは `loop-constraints.md`、保護パスは `docs/safety.md` の拘束ルールに従う。
 - 予算・修正試行・停止条件は `loop-budget.md` の上限に従う。
 - 参照先が存在しない、または読み取れない場合は実行を開始せず、その旨を報告すること。
