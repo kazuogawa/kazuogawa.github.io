@@ -1,5 +1,16 @@
 enableGlobalVirtualStore: false
 
+# 3 days in minutes. Applies to direct and transitive dependencies.
+minimumReleaseAge: 4320
+minimumReleaseAgeStrict: true
+minimumReleaseAgeIgnoreMissingTime: false
+trustLockfile: false
+trustPolicy: no-downgrade
+# Enforce trust checks during the first week, while avoiding legacy metadata gaps.
+trustPolicyIgnoreAfter: 10080
+blockExoticSubdeps: true
+strictDepBuilds: true
+
 allowBuilds:
   esbuild: true
   sharp: true
