@@ -15,7 +15,7 @@
 ## 許可する操作
 
 - リポジトリと直近履歴の読み取り
-- `npm run check`、`npm run build` などの非破壊的な検証
+- `make check`、`make build` などの非破壊的な検証
 - ネットワーク、MCP、外部コネクタを含む、利用可能かつ許可された環境での読み取り専用の表示・リンク・依存関係検査
 - `STATE.md` と `loop-run-log.md` の更新
 

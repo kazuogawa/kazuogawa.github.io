@@ -15,16 +15,16 @@
 
 ```bash
 # 依存関係インストール
-npm install
+make install
 
 # 開発サーバー起動（http://localhost:4321）
-npm run dev
+make dev
 
 # プロダクションビルド
-npm run build
+make build
 
 # ビルド結果プレビュー
-npm run preview
+make preview
 ```
 
 ## プロジェクト構成
