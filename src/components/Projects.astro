@@ -1,6 +1,6 @@
 ---
 import { profile } from '../data/profile';
-import ProjectCard from './ProjectCard';
+import ProjectCard from './ProjectCard.astro';
 
 const { projects } = profile;
 ---
@@ -9,7 +9,7 @@ const { projects } = profile;
   <div class="mx-auto max-w-5xl">
     <h2 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Projects</h2>
     <div class="grid gap-6 md:grid-cols-3">
-      {projects.map((project) => <ProjectCard project={project} client:visible />)}
+      {projects.map((project) => <ProjectCard project={project} />)}
     </div>
   </div>
 </section>
