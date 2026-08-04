@@ -66,8 +66,8 @@ body:
       label: 確認方法
       description: 実行すべきコマンドや手動確認の手順を記載してください。
       value: |
-        - [ ] npm run check
-        - [ ] npm run build
+        - [ ] make check
+        - [ ] make build
     validations:
       required: true
 

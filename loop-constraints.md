@@ -23,7 +23,7 @@
 
 ## Code（コード品質）
 
-- 修正の前後で `npm run check`（typecheck → lint → format:check）と `npm run build` を実行する。
+- 修正の前後で `make check`（typecheck → lint → format-check）と `make build` を実行する。
 - inline style は禁止。Tailwind のユーティリティクラスを使う。
 - CSS 内で `@apply` を使わない。
 - 条件レンダリングは三項演算子を使う（`&&` を使わない）。

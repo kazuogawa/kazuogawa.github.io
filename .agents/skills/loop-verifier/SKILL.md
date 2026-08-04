@@ -11,8 +11,8 @@ description: L2・L3のポートフォリオ修正案をcheckerとして独立�
 
 1. 現在レベルの対象決定ルールを満たす1項目だけを修正し、無関係な変更を含まない。
 2. 禁止パスまたは未承認の承認必須パスを変更していない。
-3. `npm run check` が成功する。
-4. `npm run build` が成功する。
+3. `make check` が成功する。
+4. `make build` が成功する。
 5. 検証やassertionを弱めたりskipしたりしていない。
 6. SEOメタ、Person JSON-LD、Google Analyticsが保持されている。
 7. 意図した表示・動作を証明している。目視未確認の場合は残存リスクとして明記する。

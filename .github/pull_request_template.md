@@ -12,8 +12,8 @@ Closes #
 
 ## 確認結果
 
-- [ ] build・deploy影響あり: `npm run check`
-- [ ] build・deploy影響あり: `npm run build`
+- [ ] build・deploy影響あり: `make check`
+- [ ] build・deploy影響あり: `make build`
 - [ ] 文書・運用設定のみ: 対象ファイルのPrettier確認
 - [ ] `git diff --check`
 

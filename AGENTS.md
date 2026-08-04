@@ -14,9 +14,9 @@
 
 ## 開発コマンド
 
-- `npm run dev` — 開発サーバー起動
-- `npm run build` — プロダクションビルド
-- `npm run preview` — ビルド結果のプレビュー
+- `make dev` — 開発サーバー起動
+- `make build` — プロダクションビルド
+- `make preview` — ビルド結果のプレビュー
 
 ## エージェント向け指示
 
