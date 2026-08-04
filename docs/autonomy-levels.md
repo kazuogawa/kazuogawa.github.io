@@ -13,7 +13,7 @@
 
 - `master` へ直接pushしない。
 - 現在レベルのrunbookで許可された場合に限り、`master` 以外の専用作業ブランチへpushできる。
-- ready化、merge、deploy、Issue・PRのcloseを自動で行わない。
+- Codexループはready化、merge、deploy、Issue・PRのcloseを自動で行わない。人間が事前承認したGitHubネイティブのDependabot自動化はCodexループの権限外とし、`loop-constraints.md` の限定条件に従う。
 - 禁止パスを変更しない。承認必須パスは対象ごとの明示的な人間承認なしに変更しない。
 - ソースを修正するrunでは1項目だけを対象にし、隔離worktreeと専用ブランチを使う。
 - makerとcheckerを分離し、checkerがAPPROVEするまで修正案を採用しない。
