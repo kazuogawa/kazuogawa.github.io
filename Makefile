@@ -1,7 +1,8 @@
 PNPM ?= pnpm
 LIMIT ?= 3
+LIGHTHOUSE_URL ?= http://localhost:4321
 
-.PHONY: install dev typecheck lint format format-check check build preview audit update verify codex-issues
+.PHONY: install dev typecheck lint format format-check check build preview lighthouse audit update verify codex-issues
 
 install:
 	$(PNPM) install --frozen-lockfile
@@ -28,6 +29,9 @@ build:
 
 preview:
 	$(PNPM) run preview
+
+lighthouse:
+	$(PNPM) exec lighthouse "$(LIGHTHOUSE_URL)" --view
 
 audit:
 	$(PNPM) audit --prod --audit-level=low
