@@ -1,6 +1,7 @@
 PNPM ?= pnpm
+LIMIT ?= 3
 
-.PHONY: install dev typecheck lint format format-check check build preview audit update verify
+.PHONY: install dev typecheck lint format format-check check build preview audit update verify codex-issues
 
 install:
 	$(PNPM) install --frozen-lockfile
@@ -35,3 +36,6 @@ update:
 	$(PNPM) update
 
 verify: check build
+
+codex-issues:
+	codex -C "$(CURDIR)" '$$parallel-issue-prs LIMIT=$(LIMIT)'
