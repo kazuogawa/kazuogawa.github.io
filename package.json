@@ -15,10 +15,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "lint": "eslint . --ext .ts,.tsx,.astro",
-    "format": "prettier --write \"src/**/*.{ts,tsx,astro,css}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,astro,css}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,astro,css}\" \"playwright.config.ts\" \"tests/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,astro,css}\" \"playwright.config.ts\" \"tests/**/*.ts\"",
     "typecheck": "tsc --noEmit",
     "check": "make check",
+    "test:e2e": "playwright test",
     "astro": "astro"
   },
   "dependencies": {
@@ -32,6 +33,8 @@
     "@types/react-dom": "^19.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
     "eslint": "^9.17.0",
     "eslint-plugin-astro": "^1.3.1",
     "@typescript-eslint/parser": "^8.19.0",
