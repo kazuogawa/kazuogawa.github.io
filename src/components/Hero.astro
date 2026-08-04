@@ -1,6 +1,6 @@
 ---
 import { profile } from '../data/profile';
-import SocialIcons from './SocialIcons';
+import SocialIcons from './SocialIcons.astro';
 
 const { name, title, tagline, photo, social } = profile;
 ---
@@ -10,10 +10,12 @@ const { name, title, tagline, photo, social } = profile;
     <div class="flex-shrink-0">
       <img
         src={photo}
+        srcset="/images/myphoto-384.webp 384w, /images/myphoto.webp 448w"
+        sizes="(min-width: 768px) 224px, 192px"
         alt={`${name.ja}のプロフィール写真`}
         class="h-48 w-48 rounded-full object-cover shadow-lg ring-4 ring-white md:h-56 md:w-56 dark:ring-slate-800"
-        width="224"
-        height="224"
+        width="448"
+        height="448"
         loading="eager"
         fetchpriority="high"
       />
@@ -32,7 +34,7 @@ const { name, title, tagline, photo, social } = profile;
         {tagline}
       </p>
       <div class="mt-6 flex justify-center md:justify-start">
-        <SocialIcons links={social} client:visible />
+        <SocialIcons links={social} />
       </div>
     </div>
   </div>

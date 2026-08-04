@@ -19,8 +19,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
       },
     },
   },

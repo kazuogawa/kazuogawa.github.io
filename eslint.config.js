@@ -5,10 +5,18 @@ import react from 'eslint-plugin-react';
 
 export default [
   {
-    ignores: ['dist/**', '.astro/**', 'node_modules/**'],
+    ignores: [
+      'dist/**',
+      '.astro/**',
+      'node_modules/**',
+      'playwright-report/**',
+      'test-results/**',
+      '.worktrees/**',
+      'lighthouse-reports/**',
+    ],
   },
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}', 'playwright.config.ts', 'tests/**/*.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
