@@ -29,16 +29,25 @@ make preview
 
 ## Lighthouse計測
 
-Lighthouseはローカルのプロダクションビルドを対象に計測します。次のコマンドがビルド、本番プレビューの一時起動、計測、プレビューの終了までを自動で行います。完了後にHTMLレポートをブラウザで開きます。
+Lighthouseはローカルのプロダクションビルドを対象に計測します。最初のターミナルでビルドしてからpreviewを起動します。
 
 ```bash
+# ターミナル1
+make build
+make preview
+```
+
+previewを起動したまま、別のターミナルでLighthouseを実行します。完了後にHTMLレポートをブラウザで開き、`lighthouse-reports/latest.report.html` に保存します。このディレクトリはGitの追跡対象外です。
+
+```bash
+# ターミナル2
 make lighthouse
 ```
 
-標準では、開発サーバーの既定ポート `4321` との競合を避けるため、`http://127.0.0.1:4322` をモバイル条件で計測します。ポートを変更する場合は `LIGHTHOUSE_PORT` を指定できます。
+標準の計測URLは `http://localhost:4321` です。previewが別のポートで起動した場合は、表示されたURLを指定します。
 
 ```bash
-make lighthouse LIGHTHOUSE_PORT=4323
+make lighthouse LIGHTHOUSE_URL=http://localhost:4322
 ```
 
 ### 低いスコアが出た場合
