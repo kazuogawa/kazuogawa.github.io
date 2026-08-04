@@ -1,8 +1,9 @@
 PNPM ?= pnpm
 LIMIT ?= 3
-LIGHTHOUSE_PORT ?= 4322
-LIGHTHOUSE_URL ?= http://127.0.0.1:$(LIGHTHOUSE_PORT)
+LIGHTHOUSE_URL ?= http://localhost:4321
 LIGHTHOUSE_FLAGS ?= --view
+LIGHTHOUSE_OUTPUT_DIR ?= lighthouse-reports
+LIGHTHOUSE_REPORT ?= $(LIGHTHOUSE_OUTPUT_DIR)/latest.report.html
 
 .PHONY: install dev typecheck lint format format-check check build preview lighthouse audit update verify codex-issues
 
@@ -32,22 +33,9 @@ build:
 preview:
 	$(PNPM) run preview
 
-lighthouse: build
-	@set -eu; \
-		preview_log="/tmp/kazuogawa-lighthouse-preview.log"; \
-		$(PNPM) exec astro preview --host 127.0.0.1 --port "$(LIGHTHOUSE_PORT)" >"$$preview_log" 2>&1 & \
-		preview_pid=$$!; \
-		trap 'kill "$$preview_pid" 2>/dev/null || true' EXIT INT TERM; \
-		attempt=0; \
-		until curl --fail --silent --output /dev/null "$(LIGHTHOUSE_URL)"; do \
-			attempt=$$((attempt + 1)); \
-			if [ "$$attempt" -ge 30 ]; then \
-				cat "$$preview_log"; \
-				exit 1; \
-			fi; \
-			sleep 1; \
-		done; \
-		$(PNPM) exec lighthouse "$(LIGHTHOUSE_URL)" $(LIGHTHOUSE_FLAGS)
+lighthouse:
+	@mkdir -p "$(LIGHTHOUSE_OUTPUT_DIR)"
+	$(PNPM) exec lighthouse "$(LIGHTHOUSE_URL)" --output=html --output-path="$(LIGHTHOUSE_REPORT)" $(LIGHTHOUSE_FLAGS)
 
 audit:
 	$(PNPM) audit --prod --audit-level=low
