@@ -25,14 +25,16 @@ description: GitHub上でPRがリンクされていないopen Issueを古い順�
 1. 次のコマンドで候補を最大1000件取得する。
 
    ```bash
-   gh issue list --state open --search '-linked:pr sort:created-asc' --limit 1000 --json number,title,url,createdAt
+   gh issue list --state open --search '-linked:pr -label:codex:feature-request sort:created-asc' --limit 1000 --json number,title,url,createdAt
    ```
 
    取得条件は次のとおり。
 
    - open Issue
    - GitHub上でリンクされたPRがない（`-linked:pr`）
+   - Approved Featureレーンの候補ではない（`-label:codex:feature-request`）。承認labelを迂回しない。
    - 作成日時が古い順（`sort:created-asc`）
+
 2. Issue番号、タイトル、URLを取得し、古い候補から順に確認する。
 3. Issueごとにbranchを `codex/issue-<番号>-task`、worktreeを `.worktrees/issue-<番号>` とする。
 4. `git show-ref`、`git ls-remote --heads origin`、`git worktree list --porcelain`、worktreeパスの存在確認により、local branch、remote branch、登録済みworktree、またはパスの衝突を判定する。衝突するIssueは変更・削除・再利用せず、理由を記録して次の候補へ進む。
