@@ -10,7 +10,7 @@ Last run: 2026-08-06 11:36 +09:00（Portfolio Triage / L3 report-only / 結果: 
 
 ## High Priority（ループが対応中／人間の判断待ち）
 
-- **L3昇格差分が未commit**: `LOOP.md` は `current_level: L3` だが、この昇格を含む運用文書は `feature/level-up-loop` 作業ツリーで未commitである。影響は、レビュー済み・commit済みの権限基準が成立する前にL3権限を適用する可能性。対象は `LOOP.md`、`docs/autonomy-levels.md`、`docs/autonomy/l3-unattended-draft-pr.md`、`docs/safety.md`、`loop-budget.md`、`.agents/skills/loop-triage/SKILL.md`。実行頻度はSchedulerを正本とし、本runのfindingからは除外した。次は人間がL3昇格差分とゲートをレビューし、feature branchへcommitする。
+- 現時点でなし。
 
 ## Watch List（監視のみ・まだ動かない）
 
@@ -26,7 +26,7 @@ Last run: 2026-08-06 11:36 +09:00（Portfolio Triage / L3 report-only / 結果: 
 - **SEO・計測要件を保持**: 両ページの生成HTMLで `lang="ja"`、description、canonical、OG、Twitter Card、Person JSON-LD、`G-HR4K43KTKS` を確認し、`src/layouts/BaseLayout.astro:29-33,51-53` のGA・JSON-LDスクリプトに `is:inline` を確認した。対応不要。
 - **画像参照は解決可能**: `/images/favicon.ico`、`/images/myphoto-384.webp`、`/images/myphoto.webp`、`/images/og.png` の参照先が `public/images/` に存在する。対象は `src/layouts/BaseLayout.astro:24,60` と `src/data/profile.ts:13,324,373`。対応不要。
 - **前回run後の変更で回帰なし**: 2026-08-06 09:07 +09:00以降は供給網ポリシーを更新する `c6dc967` 1件のみ。既存依存環境でcheck、build、E2Eが成功し、サイト挙動への回帰は確認されなかった。対象は `README.md`、`pnpm-workspace.yaml`、`pnpm-lock.yaml`。fresh installだけWatch Listで継続する。
-- **必須参照と主要コマンドにdriftなし**: L3 runbook、maker/checker、レビュー基準、Issue手順、Playwright設定はすべて読み取り可能で、`AGENTS.md`・`README.md`・Skillsの主要コマンドは `Makefile` と一致した。対象は運用文書と設定。L3開始条件の不一致だけをHigh Priorityへ分離した。
+- **必須参照と主要コマンドにdriftなし**: L3 runbook、maker/checker、レビュー基準、Issue手順、Playwright設定はすべて読み取り可能で、`AGENTS.md`・`README.md`・Skillsの主要コマンドは `Makefile` と一致した。対象は運用文書と設定。
 - **具体的なリファクタリング候補なし**: 直近変更は供給網設定と説明文に限定され、重複、責務過多、不要な分岐・状態・変換を示す静的証拠はなかった。対象は `c6dc967` の差分。好みだけの提案は記録しない。
 
 ## Post-Run Critique
@@ -34,8 +34,7 @@ Last run: 2026-08-06 11:36 +09:00（Portfolio Triage / L3 report-only / 結果: 
 - 4 viewportのDOM計測とE2Eで横溢れ、配色、メニュー操作、Contact CTAを確認した。in-app Browser自体はOSのダーク配色だけだったため、ライト配色はPlaywright E2Eの検証結果に依存した。次回、表示関連差分がある場合はライト・ダーク双方の通常スクリーンショットも残す。
 - GitHub APIとnpm registryの疎通が不安定で、週次Lychee結果と依存監査を完了できなかった。次回は外部検査の前に各endpointの疎通を1回確認し、利用不可なら即座に未確認へ分類する。
 - 供給網ポリシー変更後のfresh installは現在のtriage権限外のため未実施で、既存依存環境の成功だけではクリーン環境の再現性を証明できない。次回はCI結果を読み取り確認する。
-- L3昇格差分が未commitのため、最小権限側へ倒してreport-onlyで終了した。次回run前に人間が昇格基準と差分をレビューする必要がある。実行頻度はSchedulerを正本とし、リポジトリ内では重複定義しない。
-- 既存の未コミット運用文書差分は保持し、本runでは許可された `STATE.md` と `loop-run-log.md` 以外のソース、依存関係、CI、Issue、PR、外部システムを変更していない。
+- 前回runで指摘したL3昇格差分は `feature/level-up-loop` にcommit済みであり、未commitを理由とする停止条件は解消した。実行頻度はSchedulerを正本とし、リポジトリ内では重複定義しない。
 
 ---
 

@@ -25,13 +25,6 @@ Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO
 
 両チェックは同じrunで文書やコードを修正しない。提案は原則Watch Listへ記録し、具体的な不具合・安全上の矛盾・人間判断が必要な項目だけHigh Priorityへ記録する。
 
-Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
-
-- ドキュメントドリフト: 文書内の構成、コマンド、権限境界、相互参照を実ファイル・設定と照合する。
-- リファクタリング提案: 直近変更と静的な証拠から、重複、責務過多、不要な複雑性を抽出する。
-
-両チェックは同じrunで文書やコードを修正しない。提案は原則Watch Listへ記録し、具体的な不具合・安全上の矛盾・人間判断が必要な項目だけHigh Priorityへ記録する。
-
 ## Scheduled Task設定
 
 ChatGPTデスクトップアプリのScheduled Tasksで次を設定する。
@@ -70,7 +63,6 @@ push、PR、mergeの拘束ルールは `loop-constraints.md`、保護パスと�
 次をすべて満たし、人間が `current_level` をL3へ変更するまで現在レベルを維持する。
 
 - 人間が本節のallowlist、auto-eligible判定、通知、circuit breakerを承認した。
-- GitHub認証が有効で、`master` のbranch protectionと必須チェック `Check and build` を読み取り確認できる。
 - `STATE.md` のkill switchを人間がテストし、停止中にチェック、編集、push、PR作成を行わないことを確認した。
 - `.agents/skills/minimal-fix/SKILL.md`、`.agents/skills/loop-verifier/SKILL.md`、`.codex/agents/verifier.toml` が読み取り可能である。
 - `STATE.md` と `loop-run-log.md` の直近結果を人間がレビューし、昇格時点の差分をcommitしている。
@@ -110,7 +102,7 @@ Auto-eligible条件（すべて必須）:
 
 - L3開始時は低頻度、同時実行数1、1 run 1項目のcanaryとする。実行頻度はSchedulerで管理する。
 - open中のL3作成ドラフトPRが1件ある場合、新しい修正runはreport-onlyで終了する。
-- allowlist外変更、未承認パス、checkerのREJECTまたはESCALATE_HUMAN、認証・branch protection確認失敗、通知失敗、監査ログ欠落、同じ失敗の反復を検出した場合はcommit・push・PR作成を行わない。
+- allowlist外変更、未承認パス、checkerのREJECTまたはESCALATE_HUMAN、認証失敗、通知失敗、監査ログ欠落、同じ失敗の反復を検出した場合はcommit・push・PR作成を行わない。
 - 許可外変更、checker迂回、通知失敗、監査ログ欠落が発生した場合は `pause_all: true` にして停止し、人間がScheduled Taskを無効化する。
 - token 80%到達時はreport-only、100%到達時は停止する。修正試行とサブエージェント上限は `loop-budget.md` に従う。
 
