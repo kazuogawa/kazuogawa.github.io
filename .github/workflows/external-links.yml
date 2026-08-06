@@ -17,17 +17,22 @@ jobs:
     name: Check published site
     runs-on: ubuntu-latest
     steps:
-      - name: Check links with Lychee
-        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
         with:
-          args: >-
-            --verbose
-            --no-progress
-            --max-retries 3
-            --retry-wait-time 2
-            --timeout 30
-            https://kazuogawa.github.io/
-          fail: true
-          failIfEmpty: true
-          format: markdown
-          jobSummary: true
+          version: 11.13.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check links with Linkinator
+        run: pnpm check:links
