@@ -30,6 +30,14 @@ make preview
 make test-e2e
 ```
 
+### 依存関係のセキュリティ
+
+pnpmは、直接・推移依存とも公開から3日（4320分）以上経過したversionだけをinstallします。公開時刻を取得できない場合や、条件を満たすversionがない場合もinstallは失敗します。公開後1週間は過去versionより公開時の信頼レベルが低下していないかも検証します。
+
+依存関係の追加・更新直後に `make install` がrelease ageを理由に失敗した場合は、3日経過後に再実行してください。緊急対応で例外が必要な場合もpackage全体を除外せず、対象versionだけを `minimumReleaseAgeExclude` に指定し、理由をPull Requestへ記録します。
+
+依存packageのinstall scriptは `pnpm-workspace.yaml` の `allowBuilds` にあるpackageだけを実行します。許可を追加する前にscriptの内容と配布元を確認してください。
+
 ## Lighthouse計測
 
 Lighthouseはローカルのプロダクションビルドを対象に計測します。最初のターミナルでビルドしてからpreviewを起動します。
