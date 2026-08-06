@@ -10,7 +10,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 ## 開始・継続条件
 
-- L2で十分な成功実績があり、別途 `LOOP.md` に定義したL3昇格ゲートをすべて満たしている。
+- `LOOP.md` に定義したL3昇格ゲートをすべて満たしている。
 - 人間が `LOOP.md` の現在レベルをL3へ変更している。
 - `STATE.md` の `pause_all` が `false` である。
 - L3用の対象allowlist、auto-eligible判定、予算、同時実行数、通知、circuit breakerが定義されている。

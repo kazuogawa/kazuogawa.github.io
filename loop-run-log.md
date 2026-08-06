@@ -73,3 +73,42 @@ JSON のキー名は機械可読のため英語のまま維持すること。
   "outcome": "report-only"
 }
 ```
+
+```json
+{
+  "run_id": "2026-08-05T09:08:29+09:00",
+  "pattern": "daily-triage",
+  "duration_s": 381,
+  "items_found": 2,
+  "actions_taken": 0,
+  "escalations": 0,
+  "tokens_estimate": 22000,
+  "outcome": "report-only"
+}
+```
+
+```json
+{
+  "run_id": "2026-08-06T09:07:53+09:00",
+  "pattern": "daily-triage",
+  "duration_s": 310,
+  "items_found": 2,
+  "actions_taken": 0,
+  "escalations": 0,
+  "tokens_estimate": 22000,
+  "outcome": "report-only"
+}
+```
+
+```json
+{
+  "run_id": "2026-08-06T11:35:51+09:00",
+  "pattern": "daily-triage",
+  "duration_s": 262,
+  "items_found": 4,
+  "actions_taken": 0,
+  "escalations": 1,
+  "tokens_estimate": 24000,
+  "outcome": "escalated"
+}
+```
