@@ -6,7 +6,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 ## 目的
 
-事前承認されたallowlistの範囲で、低リスクかつ再現可能な1項目を自動選択し、検証済みドラフトPRとして人間へ提示する。
+事前承認されたallowlistの範囲で、低リスクかつ再現可能な不具合、または人間が承認したFeature Issueを1件選択し、検証済みドラフトPRとして人間へ提示する。
 
 ## 開始・継続条件
 
@@ -18,7 +18,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 上記のいずれかが未定義または未確認の場合、L3を開始しない。
 
-## Auto-eligibleの最低条件
+## Portfolio TriageのAuto-eligible最低条件
 
 - High Priorityにあり、L3用ルールでauto-eligibleと機械判定できる。
 - 影響範囲と対象ファイルが特定されている。
@@ -30,12 +30,15 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 ## 許可する操作
 
 - auto-eligibleな1項目の自動選択
+- Feature Issueのレビューコメント、状態label、最大3件のSub-issue作成と、承認済み1件の選択
 - L2と同じworktree、maker、checker、検証手順
 - checkerのAPPROVE後のcommit、作業ブランチへのpush、ドラフトPR作成
 - 結果と残存リスクの人間への通知
 - `STATE.md` と `loop-run-log.md` の更新
 
 ## 実行フロー
+
+### Portfolio Triage
 
 1. `$loop-constraints` と `$loop-budget` を実行し、circuit breakerを確認する。
 2. `$loop-triage` で品質信号、ドキュメントドリフト、リファクタリング候補をreport-onlyで収集し、`STATE.md` を更新する。
@@ -46,9 +49,21 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 7. APPROVE後だけcommitし、push予定を通知してから作業ブランチへpushし、ドラフトPRを作成する。通知後の追加承認は待たない。
 8. `STATE.md` と `loop-run-log.md` に結果、残存リスク、次の人間操作を記録する。
 
+### Approved Feature
+
+1. Portfolio Triageとは別のScheduled Taskで`$loop-constraints`と`$loop-budget`を実行する。
+2. `$approved-feature-loop`で候補Issueを1件だけレビューし、作成者へのメンション付きコメントと状態labelを記録する。レビューrunでは実装しない。
+3. レビュー済みで、信頼された人間が`codex:approved`を付与したIssueがある次回runだけ、Issue本文hash、承認actor、既存PR、branch、worktreeを検証する。
+4. `LOOP.md`のApproved Feature allowlistを満たす1件を専用worktreeで実装する。
+5. makerとは別のcheckerが`$loop-verifier`でIssueの受入条件、差分、検証結果を確認する。
+6. APPROVE後だけcommitし、通知後に作業ブランチへpushしてdraft PRを作成する。
+7. IssueへPR URLをコメントし、状態label、`STATE.md`、`loop-run-log.md`を更新する。ready化、merge、deploy、Issue closeは行わない。
+
+大きなIssueは実装前レビューで最大3件のSub-issueへ分割できる。各Sub-issueは独立してレビューし、人間が個別承認する。親Issueの承認を継承しない。
+
 ## 禁止する操作
 
-- allowlist外またはauto-eligibleと判定できない項目の修正
+- Portfolio Triageではallowlist外またはauto-eligibleと判定できない項目、Approved Featureでは専用allowlist外または有効な人間承認がないIssueの修正
 - checkerを省略したcommit、push、PR作成
 - 複数項目を同じrunまたはPRで修正すること
 - 自動ready化、merge、deploy、Issue・PRのclose

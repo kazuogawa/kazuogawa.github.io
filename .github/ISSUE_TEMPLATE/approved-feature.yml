@@ -1,0 +1,98 @@
+name: Approved Feature request
+description: 人間承認後にCodexが実装・検証・draft PR作成まで行うFeature Issue
+title: '[Feature] '
+labels:
+  - 'codex:feature-request'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        このIssueは最初に自動レビューされ、作成者へのメンション付きコメントで結果が通知されます。
+        `codex:approved`はリポジトリ管理者がレビュー後に手動付与します。Issue作成だけでは実装を開始しません。
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的
+      description: 解決する課題と、この機能が必要な理由を記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-value
+    attributes:
+      label: ユーザーへの価値
+      description: 誰にどのような価値を提供するか記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 対象範囲
+      description: 変更する画面、機能、振る舞いを記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 対象外
+      description: 変更しないものを記載してください。ない場合は「なし」と記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 受入条件
+      description: 機械的に確認できる完了条件をチェックリストで記載してください。
+      value: |
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: allowed-paths
+    attributes:
+      label: 変更を許可するパス
+      description: src/components/、src/pages/、tests/から具体的に記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: 検証方法
+      description: 受入条件を確認するコマンドや操作を記載してください。
+      value: |
+        - [ ] make check
+        - [ ] make build
+    validations:
+      required: true
+
+  - type: textarea
+    id: decisions
+    attributes:
+      label: UI・コンテンツ判断
+      description: 文言、デザイン、仕様判断が残っていないことを確認してください。ない場合は「なし」と記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: external-impact
+    attributes:
+      label: 外部影響
+      description: 認証、決済、秘密情報、SEO、Analytics、外部サービス、依存関係への影響を記載してください。ない場合は「なし」と記載してください。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: 確認
+      options:
+        - label: Issue本文、コメント、添付資料に秘密情報や公開できない情報を含めていません。
+          required: true
+        - label: draft PRのready化とmergeは人間が行うことを理解しています。
+          required: true

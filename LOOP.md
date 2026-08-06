@@ -1,6 +1,6 @@
 # Loop設定 — kazuogawa-portfolio（Codex）
 
-Astroポートフォリオの品質、問い合わせ導線、運用文書の整合性、保守性を継続的に確認するCodex向けループ。
+Astroポートフォリオの品質、問い合わせ導線、運用文書の整合性、保守性を継続的に確認し、人間承認済みFeatureを安全にdraft PRへするCodex向けループ。
 
 L1・L2・L3の意味と権限境界は `docs/autonomy-levels.md` を正本とし、本ファイルは現在のレベル、Scheduled Taskの実行内容、プロジェクト固有の昇格ゲートを管理する。
 
@@ -14,9 +14,10 @@ current_level: L3
 
 ## 有効なループ
 
-| パターン         | 実行手順                                             |
-| ---------------- | ---------------------------------------------------- |
-| Portfolio Triage | `$loop-constraints` → 現在レベルのrunbookと必須Skill |
+| パターン         | 実行手順                                                                  |
+| ---------------- | ------------------------------------------------------------------------- |
+| Portfolio Triage | `$loop-constraints` → 現在レベルのrunbookと必須Skill                      |
+| Approved Feature | `$loop-constraints` → `$loop-budget` → `$approved-feature-loop`（L3のみ） |
 
 Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
 
@@ -27,7 +28,9 @@ Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO
 
 ## Scheduled Task設定
 
-ChatGPTデスクトップアプリのScheduled Tasksで次を設定する。
+ChatGPTデスクトップアプリのScheduled Tasksで、次の2タスクを別々に設定する。実行頻度は各Schedulerを正本とし、本ファイルでは固定しない。
+
+### Portfolio Triage
 
 | 項目        | 設定値         |
 | ----------- | -------------- |
@@ -44,6 +47,22 @@ STATE.mdとloop-run-log.mdをrunbookで許可された範囲だけ更新して�
 ```
 
 手動実行では、同じプロンプトをCodexへ入力する。
+
+### Approved Feature
+
+| 項目        | 設定値         |
+| ----------- | -------------- |
+| Project     | このリポジトリ |
+| Environment | Local          |
+| Prompt      | 下記           |
+
+```text
+LOOP.mdのcurrent_levelを確認し、$loop-constraintsと$loop-budgetを順に実行してください。
+続いて$approved-feature-loopに従い、Feature Issueのレビュー、または承認済みIssue 1件の処理を行ってください。
+終了時にSTATE.mdとloop-run-log.mdを許可された範囲だけ更新してください。
+```
+
+Issueレビューと実装は同じrunで連続実行せず、レビューコメントを人間が確認する機会を残す。Approved Featureの候補、承認、処理状態はGitHub labelを正本とする。
 
 ## L2昇格ゲート
 
@@ -91,9 +110,22 @@ Auto-eligible条件（すべて必須）:
 
 条件を1つでも機械判定できない場合はauto-eligibleではなく、report-onlyで人間へescalateする。
 
+## Approved Feature allowlist
+
+Approved Featureが実装できるのは、`.github/ISSUE_TEMPLATE/approved-feature.yml`の必須項目を満たし、信頼された人間が`codex:approved`を付与したIssue 1件だけとする。
+
+- 変更は最大5ファイル、追加・削除合計300行以内。
+- 対象パスは`src/components/`、`src/pages/`、`tests/`のみ。
+- 依存関係、workflow、設定、snapshot、`src/data/profile.ts`、`src/layouts/`、`src/styles/`、`public/`を変更しない。
+- 認証、決済、秘密情報、SEO、構造化データ、Google Analytics、外部サービス仕様、コンテンツ判断に影響しない。
+- 受入条件を自動検証でき、`make check`、`make build`、Issue指定の検証が成功する。
+- maker/checkerを分離し、checkerのAPPROVE後だけdraft PRを作成する。
+
+Issueが上限を超える場合は、独立した受入条件と検証を持つGitHub Sub-issue最大3件へ分割できる。親の承認は継承せず、各Sub-issueに人間が`codex:approved`を付与する。安全に分割できない場合は実装しない。
+
 ## L3通知
 
-- 修正開始時に、対象、再現証拠、予定パスをScheduled Taskの実行結果へ出力する。
+- 修正開始時に、対象、再現証拠またはIssue受入条件、予定パスをScheduled Taskの実行結果へ出力する。
 - checkerのAPPROVE後、commit・push前に、ブランチ名、変更ファイル、検証結果を同じ実行結果へ出力する。
 - 終了時に、verdict、PR URLまたは未作成理由、残存リスク、必要な人間操作を実行結果、`STATE.md`、`loop-run-log.md` に記録する。
 - 通知を出力または記録できない場合はpushとPR作成を行わず、circuit breakerを作動させる。
@@ -101,7 +133,7 @@ Auto-eligible条件（すべて必須）:
 ## L3 circuit breaker / canary
 
 - L3開始時は低頻度、同時実行数1、1 run 1項目のcanaryとする。実行頻度はSchedulerで管理する。
-- open中のL3作成ドラフトPRが1件ある場合、新しい修正runはreport-onlyで終了する。
+- open中の同じパターンが作成したドラフトPRが1件ある場合、そのパターンの新しい実装runは開始しない。
 - allowlist外変更、未承認パス、checkerのREJECTまたはESCALATE_HUMAN、認証失敗、通知失敗、監査ログ欠落、同じ失敗の反復を検出した場合はcommit・push・PR作成を行わない。
 - 許可外変更、checker迂回、通知失敗、監査ログ欠落が発生した場合は `pause_all: true` にして停止し、人間がScheduled Taskを無効化する。
 - token 80%到達時はreport-only、100%到達時は停止する。修正試行とサブエージェント上限は `loop-budget.md` に従う。
