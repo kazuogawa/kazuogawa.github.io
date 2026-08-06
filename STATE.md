@@ -6,38 +6,36 @@
 pause_all: false
 ```
 
-Last run: 2026-08-04 09:04 +09:00（Portfolio Triage / L1 report-only / 結果: report-only）
+Last run: 2026-08-06 11:36 +09:00（Portfolio Triage / L3 report-only / 結果: escalated）
 
 ## High Priority（ループが対応中／人間の判断待ち）
 
-- なし。
+- **L3昇格差分が未commit**: `LOOP.md` は `current_level: L3` だが、この昇格を含む運用文書は `feature/level-up-loop` 作業ツリーで未commitである。影響は、レビュー済み・commit済みの権限基準が成立する前にL3権限を適用する可能性。対象は `LOOP.md`、`docs/autonomy-levels.md`、`docs/autonomy/l3-unattended-draft-pr.md`、`docs/safety.md`、`loop-budget.md`、`.agents/skills/loop-triage/SKILL.md`。実行頻度はSchedulerを正本とし、本runのfindingからは除外した。次は人間がL3昇格差分とゲートをレビューし、feature branchへcommitする。
 
 ## Watch List（監視のみ・まだ動かない）
 
-- **目視・レスポンシブ・操作確認が未実施**: Chrome 151を一時プロファイル付きheadlessで起動したが、終了コード0のままスクリーンショットが生成されず、PC（1440x900 / 1280x720）、スマホ（390x844 / 320x568）、ライト・ダーク、横スクロール、メニュー開閉、Contact遷移を確認できなかった。影響は表示崩れや操作不良を見逃す可能性。対象は `src/components/Header.tsx`、`src/pages/index.astro`、`src/pages/services.astro`。次は [Issue #4](https://github.com/kazuogawa/kazuogawa.github.io/issues/4) のPlaywright環境で指定4 viewportと操作を検証する。
-- **ContactフォームとXの死活が未確定**: 読み取り専用の外部確認でZenn、極予測AI、CyberAgent記事、PR TIMES 2件、極予測Swipeは取得できた一方、`form.run` は安全制約で取得不可、Xは本文なしの応答だった。影響は主要な問い合わせ・SNS導線の障害を見逃す可能性。対象は `src/data/profile.ts:17-18,212`。次は [Issue #5](https://github.com/kazuogawa/kazuogawa.github.io/issues/5) の許可済みブラウザ環境で実遷移を確認する。
-- **依存脆弱性が未確認**: pnpm移行前の `npm audit --omit=dev --audit-level=low` は `registry.npmjs.org` のDNS解決失敗（`ENOTFOUND`）で終了し、脆弱性の有無を判定できなかった。影響は既知脆弱性の見逃し。現在の対象は `pnpm-lock.yaml`。次はネットワーク利用可能な環境で [Issue #6](https://github.com/kazuogawa/kazuogawa.github.io/issues/6) に従い `make audit` を実行する。
-- **Browserslistデータ旧化警告**: `make build` は成功したが、`caniuse-lite` が6か月古いという警告が出た。現時点の生成物への失敗はないが、ブラウザ対象判定が古くなる可能性がある。対象は `pnpm-lock.yaml`。L1では更新せず、依存更新を人間が承認する際に `update-browserslist-db` の実行を検討する。
+- **ContactフォームとXの外部到達性が未確定**: ローカルE2EではCTAの表示、URL、`target="_blank"`、`rel="noopener"` が成功したが、GitHub APIへ接続できず週次Lycheeの最新結果を取得できなかった。影響は外部遷移先の障害を見逃す可能性。対象は `src/data/profile.ts:17-18,212` と `.github/workflows/external-links.yml`。次はGitHub疎通時に最新の `Check external links` runを確認し、失敗時のみ許可済みブラウザで実遷移を読み取り検証する。
+- **依存脆弱性が未確認**: `make audit`（`pnpm audit --prod --audit-level=low`）は `registry.npmjs.org` のDNS解決失敗（`ENOTFOUND`）で再試行待ちとなり、脆弱性の有無を判定できなかった。影響は既知脆弱性の見逃し。対象は `package.json` と `pnpm-lock.yaml`。次はregistry疎通を先に確認し、利用可能な環境で監査を完了する。
+- **供給網ポリシーのfresh installが未確認**: 前回run後の `c6dc967` は `pnpm-workspace.yaml` のrelease age、trust、build-script制限と `pnpm-lock.yaml` を変更した。既存 `node_modules` でcheck/build/E2Eは成功したが、`loop-triage` の許可操作にinstallは含まれないため `make install --frozen-lockfile` 相当の再現性は未検証。影響はクリーン環境だけでinstallが失敗する可能性。対象は `pnpm-workspace.yaml` と `pnpm-lock.yaml`。次はCIまたは人間承認済みのクリーン環境で `make install` を確認する。
 
 ## Recent Noise（直近runで確認したが対応不要）
 
-- **品質チェック成功**: `make check` でtypecheck、lint、format-checkがすべて成功。対象はリポジトリ全体で、対応不要。次回runでも再実行する。
-- **本番ビルド成功**: `make build` は `/` と `/services/` の2ページを生成した。Browserslist警告はWatch Listへ分離し、ビルド自体は成功。対象は `src/pages/index.astro` と `src/pages/services.astro`。次回runでも再実行する。
-- **SEO・計測要件を保持**: 両ページの生成HTMLで `lang="ja"`、description、canonical、OG、Twitter Card、Person JSON-LD、`G-HR4K43KTKS` を確認し、`src/layouts/BaseLayout.astro:38-41,60` のGA・JSON-LDスクリプトに `is:inline` を確認。対応不要。
-- **画像参照は解決可能**: `/images/favicon.ico`、`/images/myphoto.jpg`、`/images/og.png` の参照先が `public/images/` に存在。対象は `src/layouts/BaseLayout.astro:24` と `src/data/profile.ts:13,324,373`。対応不要。
-- **未完マーカーなし**: `src/` のTODO、FIXME、placeholder、準備中、coming soonを検索して該当なし。影響なし、対応不要。
-- **直近48時間のソース変更なし**: `bee5a8c` と `0ce2e36` は状態・実行ログ・ループ運用文書のみを変更し、`src/`、`public/`、依存関係、ビルド設定は未変更。サイト挙動への新規影響は見つからず、次回も変更範囲を確認する。
-- **外部リンク6件を取得**: Zenn、極予測AI、CyberAgent記事、PR TIMES 2件、極予測Swipeは読み取り専用の確認で内容を取得できた。対象は `src/data/profile.ts:17,65,76,87,116,149,342,355,362`。変更不要で、未確定のContact/XのみWatch Listで継続する。
-- **GitHubへの直接導線は設置しない方針**: GitHub Pagesで公開している本ポートフォリオでは、ソースコードやGitHubプロフィールへの直接導線を追加せず、Zenn、X、問い合わせフォームを主要導線とすることを人間が確認した。追加対応は不要。
-- **Pages workflowはmerge後に監視する方針**: `master` へのmerge後にGitHub Actionsの失敗を人間が検知して対応する運用を許容した。merge前の実行確認は行わず、追加対応は不要。
+- **品質チェック成功**: `make check` でTypeScriptのtypecheck、lint、format-checkがすべて成功した。対象はリポジトリ全体。対応不要で、次回runでも再実行する。
+- **本番ビルド成功**: `make build` は警告なしで `/` と `/services/` の2ページを生成した。対象は `src/pages/index.astro` と `src/pages/services.astro`。対応不要で、次回runでも再実行する。
+- **レスポンシブ・配色・操作確認成功**: `make test-e2e` は24件成功・8件はdesktopでモバイル専用テストを意図的にskipした。2ページを1440x900、1280x720、390x844、320x568のライト・ダークで検査し、横溢れなし、主要CTA、Contact導線、スマホのリンク選択・外側クリック・Escape・再クリックによるメニュー閉動作を確認した。in-app BrowserのダークモードDOM計測でも4 viewportの横溢れなし、氏名・Contact CTA表示、リンク選択・Escapeによる閉動作を確認した。対象は `tests/e2e/portfolio.spec.ts`、`src/components/Header.tsx`、`src/pages/index.astro`、`src/pages/services.astro`。対応不要。
+- **SEO・計測要件を保持**: 両ページの生成HTMLで `lang="ja"`、description、canonical、OG、Twitter Card、Person JSON-LD、`G-HR4K43KTKS` を確認し、`src/layouts/BaseLayout.astro:29-33,51-53` のGA・JSON-LDスクリプトに `is:inline` を確認した。対応不要。
+- **画像参照は解決可能**: `/images/favicon.ico`、`/images/myphoto-384.webp`、`/images/myphoto.webp`、`/images/og.png` の参照先が `public/images/` に存在する。対象は `src/layouts/BaseLayout.astro:24,60` と `src/data/profile.ts:13,324,373`。対応不要。
+- **前回run後の変更で回帰なし**: 2026-08-06 09:07 +09:00以降は供給網ポリシーを更新する `c6dc967` 1件のみ。既存依存環境でcheck、build、E2Eが成功し、サイト挙動への回帰は確認されなかった。対象は `README.md`、`pnpm-workspace.yaml`、`pnpm-lock.yaml`。fresh installだけWatch Listで継続する。
+- **必須参照と主要コマンドにdriftなし**: L3 runbook、maker/checker、レビュー基準、Issue手順、Playwright設定はすべて読み取り可能で、`AGENTS.md`・`README.md`・Skillsの主要コマンドは `Makefile` と一致した。対象は運用文書と設定。L3開始条件の不一致だけをHigh Priorityへ分離した。
+- **具体的なリファクタリング候補なし**: 直近変更は供給網設定と説明文に限定され、重複、責務過多、不要な分岐・状態・変換を示す静的証拠はなかった。対象は `c6dc967` の差分。好みだけの提案は記録しない。
 
 ## Post-Run Critique
 
-- check、build、生成HTML、画像、直近履歴、外部リンク6件は確認できたが、Chrome headlessが画像を生成せず、指定viewport、ライト・ダーク、ハンバーガーメニュー、Contact遷移の実操作を検証できなかった。次回はIssue #4のPlaywright環境を優先し、4 viewportのスクリーンショットと操作結果を残す。
-- 外部リンク確認は前回より進んだが、最重要のContactフォームとXは取得結果だけで正常判定できなかった。次回はIssue #5のブラウザ検査で遷移先URLと表示完了を確認する。
-- pnpm移行前の `npm audit` はDNS解決失敗で未完了だった。次回はネットワーク疎通を先に確認してからIssue #6に従い `make audit` を実行し、失敗理由と監査結果を分離して記録する。
-- build警告を成功結果から分離してWatch Listへ記録した。次回は警告の継続有無を比較し、依存更新はL1で行わない。
-- L1方針どおり、ソース、依存関係、CI、Issue、PR、外部システムは変更していない。
+- 4 viewportのDOM計測とE2Eで横溢れ、配色、メニュー操作、Contact CTAを確認した。in-app Browser自体はOSのダーク配色だけだったため、ライト配色はPlaywright E2Eの検証結果に依存した。次回、表示関連差分がある場合はライト・ダーク双方の通常スクリーンショットも残す。
+- GitHub APIとnpm registryの疎通が不安定で、週次Lychee結果と依存監査を完了できなかった。次回は外部検査の前に各endpointの疎通を1回確認し、利用不可なら即座に未確認へ分類する。
+- 供給網ポリシー変更後のfresh installは現在のtriage権限外のため未実施で、既存依存環境の成功だけではクリーン環境の再現性を証明できない。次回はCI結果を読み取り確認する。
+- L3昇格差分が未commitのため、最小権限側へ倒してreport-onlyで終了した。次回run前に人間が昇格基準と差分をレビューする必要がある。実行頻度はSchedulerを正本とし、リポジトリ内では重複定義しない。
+- 既存の未コミット運用文書差分は保持し、本runでは許可された `STATE.md` と `loop-run-log.md` 以外のソース、依存関係、CI、Issue、PR、外部システムを変更していない。
 
 ---
 

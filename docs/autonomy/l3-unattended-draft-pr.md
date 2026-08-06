@@ -10,7 +10,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 ## 開始・継続条件
 
-- L2で十分な成功実績があり、別途 `LOOP.md` に定義したL3昇格ゲートをすべて満たしている。
+- `LOOP.md` に定義したL3昇格ゲートをすべて満たしている。
 - 人間が `LOOP.md` の現在レベルをL3へ変更している。
 - `STATE.md` の `pause_all` が `false` である。
 - L3用の対象allowlist、auto-eligible判定、予算、同時実行数、通知、circuit breakerが定義されている。
@@ -38,12 +38,13 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 ## 実行フロー
 
 1. `$loop-constraints` と `$loop-budget` を実行し、circuit breakerを確認する。
-2. High Priorityからauto-eligibleな項目を最大1件選ぶ。0件なら早期終了する。
-3. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
-4. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
-5. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。
-6. APPROVE後だけcommitし、push予定を通知してから作業ブランチへpushし、ドラフトPRを作成する。通知後の追加承認は待たない。
-7. `STATE.md` と `loop-run-log.md` に結果、残存リスク、次の人間操作を記録する。
+2. `$loop-triage` で品質信号、ドキュメントドリフト、リファクタリング候補をreport-onlyで収集し、`STATE.md` を更新する。
+3. High Priorityからauto-eligibleな項目を最大1件選ぶ。0件なら早期終了する。ドキュメントドリフトとリファクタリング提案は選ばない。
+4. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
+5. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
+6. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。
+7. APPROVE後だけcommitし、push予定を通知してから作業ブランチへpushし、ドラフトPRを作成する。通知後の追加承認は待たない。
+8. `STATE.md` と `loop-run-log.md` に結果、残存リスク、次の人間操作を記録する。
 
 ## 禁止する操作
 

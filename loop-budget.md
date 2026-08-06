@@ -1,6 +1,6 @@
 # Loop 予算 — kazuogawa-portfolio
 
-> 主ループ: **Portfolio Triage**（周期 1d / 現在の自律レベルは `LOOP.md` を参照）
+> 主ループ: **Portfolio Triage**（現在の自律レベルは `LOOP.md` を参照）
 
 ## 集計期間
 
@@ -10,9 +10,9 @@ tokensは、現在時刻から過去24時間に含まれる `run_id` を対象�
 
 | ループ           | 最大 tokens/24h | 最大 サブエージェント spawn/run |
 | ---------------- | --------------- | ------------------------------- |
-| Portfolio Triage | 100k            | 0（L1） / 2（L2）               |
+| Portfolio Triage | 100k            | 0（L1） / 2（L2・L3）           |
 
-L2の1項目あたりの修正試行は最大3回。3回失敗、または同じエラー・差分を繰り返す無進捗時は停止してescalateする。
+L2・L3の1項目あたりの修正試行は最大3回。3回失敗、または同じエラー・差分を繰り返す無進捗時は停止してescalateする。L3は同時実行数1、open中のL3作成ドラフトPRは最大1件とする。
 
 ## 閾値と超過時の対応
 
@@ -35,8 +35,10 @@ tokensが100%以上で停止した場合は次を行う。
 
 ## コスト見積り
 
+Schedulerに設定したcadenceと現在の自律レベルを引数に渡す。
+
 ```bash
-npx @cobusgreyling/loop-cost --pattern daily-triage --level L1 --cadence 1d
+npx @cobusgreyling/loop-cost --pattern daily-triage --level "$LOOP_LEVEL" --cadence "$SCHEDULER_CADENCE"
 ```
 
 ## Alerts This Period
