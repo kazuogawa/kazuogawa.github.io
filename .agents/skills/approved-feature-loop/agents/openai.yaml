@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Approved Feature Loop'
+  short_description: '承認済みFeature Issueを検証しdraft PRまで処理します'
+  default_prompt: '$approved-feature-loop を使い、Feature Issueをレビューし、承認済みの1件だけをdraft PRまで処理してください。'

@@ -52,10 +52,12 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 - `.agents/skills/`: Codexが自動検出するリポジトリ固有スキル群。
   - `loop-constraints`（ガードレール）→ `loop-budget`（予算確認）→ `loop-triage`（信号抽出）の順で実行。
   - L2 以降の修正は `minimal-fix`（maker）→ `loop-verifier`（checker）で maker/checker を分離する。
+  - L3のApproved Featureは、別Scheduled Taskで`loop-constraints`→`loop-budget`→`approved-feature-loop`の順に実行し、Issue作成者へのレビューコメント、人間承認、必要なSub-issue分割、独立checkerを必須とする。
 
 運用ルール:
 
 - 現在の自律レベルは `LOOP.md` を正本とし、対応する `docs/autonomy/` runbookに従う。
 - push・PR・mergeは `loop-constraints.md`、保護パスは `docs/safety.md` の拘束ルールに従う。
 - 予算・修正試行・停止条件は `loop-budget.md` の上限に従う。
+- Approved Featureの`codex:approved`は人間だけが付与し、親Issueの承認をSub-issueへ継承しない。
 - 参照先が存在しない、または読み取れない場合は実行を開始せず、その旨を報告すること。
