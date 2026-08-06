@@ -1,6 +1,6 @@
 # Loop設定 — kazuogawa-portfolio（Codex）
 
-Astroポートフォリオの品質と問い合わせ導線を継続的に確認するCodex向けループ。
+Astroポートフォリオの品質、問い合わせ導線、運用文書の整合性、保守性を継続的に確認するCodex向けループ。
 
 L1・L2・L3の意味と権限境界は `docs/autonomy-levels.md` を正本とし、本ファイルは現在のレベル、Scheduled Task、プロジェクト固有の昇格ゲートを管理する。
 
@@ -17,6 +17,13 @@ current_level: L1
 | パターン         | 周期 | 実行手順                                             |
 | ---------------- | ---- | ---------------------------------------------------- |
 | Portfolio Triage | 1日  | `$loop-constraints` → 現在レベルのrunbookと必須Skill |
+
+Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
+
+- ドキュメントドリフト: 文書内の構成、コマンド、権限境界、相互参照を実ファイル・設定と照合する。
+- リファクタリング提案: 直近変更と静的な証拠から、重複、責務過多、不要な複雑性を抽出する。
+
+両チェックは同じrunで文書やコードを修正しない。提案は原則Watch Listへ記録し、具体的な不具合・安全上の矛盾・人間判断が必要な項目だけHigh Priorityへ記録する。
 
 ## Scheduled Task設定
 
