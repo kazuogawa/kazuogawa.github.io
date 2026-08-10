@@ -14,3 +14,6 @@ strictDepBuilds: true
 allowBuilds:
   esbuild: true
   sharp: true
+
+minimumReleaseAgeExclude:
+  - nanoid@3.3.17
