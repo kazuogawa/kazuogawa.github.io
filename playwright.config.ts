@@ -32,6 +32,9 @@ export default defineConfig({
   ),
   webServer: {
     command: 'pnpm run build && pnpm run preview --host 127.0.0.1 --port 4321',
+    env: {
+      ASTRO_PREVIEW_BACKGROUND: '1',
+    },
     url: 'http://127.0.0.1:4321',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
