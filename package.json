@@ -2,7 +2,7 @@
   "name": "kazuogawa-portfolio",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.13.1",
+  "packageManager": "pnpm@11.23.0",
   "engines": {
     "node": ">=24 <25",
     "pnpm": ">=11 <12"
