@@ -84,7 +84,6 @@ export const profile: Profile = {
         },
         {
           title: '縦型スワイプLP構築サービスの開発・運用・保守',
-          link: 'https://swipe.cyberace.co.jp/',
           details: [
             'React、TypeScriptによる管理画面と、GoによるバックエンドAPIを開発',
             'Firestore、Cloud Run、GCS、Cloud Load Balancing等を用いたインフラを構築',
