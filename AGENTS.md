@@ -28,6 +28,14 @@
 - ダークモードは `dark:` プレフィックスで対応（`darkMode: 'media'`）。
 - `docs/superpowers/` などの一時的な設計書・作業計画・原稿Markdownはコミットしない。
 
+## デザイン・配色
+
+UI、スタイル、コンポーネントを変更する前に `docs/design-system.md` を読むこと。
+
+- 色の実装上の正本は `tailwind.config.mjs` の `theme.extend.colors`。
+- ブランドカラーには `brand-*` を使用し、`blue-*` や任意のHEX値をコンポーネントへ直接追加しない。
+- ライトモードとダークモードの両方を確認する。
+
 ## GitHub IssueからのCodex実行
 
 GitHub Issueを起点とするタスクでは、作業開始前に
