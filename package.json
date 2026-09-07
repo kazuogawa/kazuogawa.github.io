@@ -2,7 +2,7 @@
   "name": "kazuogawa-portfolio",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.23.0",
+  "packageManager": "pnpm@12.3.2",
   "engines": {
     "node": ">=24 <25",
     "pnpm": ">=11 <12"
@@ -26,6 +26,7 @@
   "dependencies": {
     "@astrojs/react": "^6.0.4",
     "@astrojs/tailwind": "^6.0.2",
+    "@openai/codex-security": "^0.1.25",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.2.5",
     "astro": "^7.2.9",
