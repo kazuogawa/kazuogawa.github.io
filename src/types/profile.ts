@@ -66,6 +66,62 @@ export interface SeoMetadata {
   ogTitle: string;
 }
 
+export interface AudienceLink {
+  title: string;
+  description: string;
+  href: string;
+}
+
+export interface LandingContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  audiences: AudienceLink[];
+  historyTitle: string;
+  history: string[];
+  seo: SeoMetadata;
+}
+
+export interface ContentItem {
+  title: string;
+  description: string;
+}
+
+export interface ServiceCase {
+  title: string;
+  paragraphs: string[];
+}
+
+export interface ServicePageContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  availability: string;
+  challenges: string[];
+  processTitle: string;
+  process: ContentItem[];
+  casesTitle: string;
+  cases: ServiceCase[];
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaLabel: string;
+  seo: SeoMetadata;
+}
+
+export interface PortfolioContent {
+  eyebrow: string;
+  description: string;
+  highlights: ContentItem[];
+  decision: {
+    title: string;
+    request: string;
+    constraint: string;
+    result: string;
+  };
+  availability: string;
+  seo: SeoMetadata;
+}
+
 export interface ServicesContent {
   eyebrow: string;
   title: string;
@@ -90,6 +146,13 @@ export interface Profile {
   experience: ExperienceEntry[];
   projects: Project[];
   contact: Contact;
+  landing: LandingContent;
+  servicePages: {
+    aiDevelopment: ServicePageContent;
+    productDevelopment: ServicePageContent;
+    businessImprovement: ServicePageContent;
+  };
+  portfolio: PortfolioContent;
   services: ServicesContent;
   analytics: { googleAnalyticsId: string };
   seo: SeoMetadata;

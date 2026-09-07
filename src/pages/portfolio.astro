@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { profile } from '../data/profile';
+
+const { portfolio } = profile;
+---
+
+<BaseLayout title="小川 和久の経歴・技術実績 | 業務委託の選考・案件紹介向け" seo={portfolio.seo}>
+  <Header client:visible />
+  <main>
+    <Hero />
+
+    <section class="bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
+      <div class="mx-auto max-w-5xl">
+        <p
+          class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400"
+        >
+          {portfolio.eyebrow}
+        </p>
+        <h2 class="mt-4 text-3xl font-bold text-slate-900 dark:text-white">代表実績</h2>
+        <p class="mt-4 max-w-3xl leading-7 text-slate-600 dark:text-slate-300">
+          {portfolio.description}
+        </p>
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {
+            portfolio.highlights.map((highlight) => (
+              <article class="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="text-xl font-semibold text-slate-900 dark:text-white">
+                  {highlight.title}
+                </h3>
+                <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+                  {highlight.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+        <p class="mt-6 text-sm leading-7 text-slate-500 dark:text-slate-400">
+          CARUの頻度は参画前と環境構築後を週あたりで比較したものです。体感の生産性は横断支援したメンバーへのGoogleフォームによる自己評価で、デプロイ頻度とは別の指標です。
+        </p>
+      </div>
+    </section>
+
+    <section class="px-6 py-20">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
+          {portfolio.decision.title}
+        </h2>
+        <h3 class="mt-8 text-lg font-semibold text-slate-900 dark:text-white">要望・担当</h3>
+        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+          {portfolio.decision.request}
+        </p>
+        <h3 class="mt-8 text-lg font-semibold text-slate-900 dark:text-white">制約と判断</h3>
+        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+          {portfolio.decision.constraint}
+        </p>
+        <h3 class="mt-8 text-lg font-semibold text-slate-900 dark:text-white">結果</h3>
+        <p class="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+          {portfolio.decision.result}
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="scroll-mt-20 bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h2>
+        <Skills skills={profile.skills} />
+      </div>
+    </section>
+    <Projects />
+    <Experience />
+
+    <section class="px-6 py-12">
+      <p
+        class="mx-auto max-w-3xl text-center font-medium leading-7 text-slate-700 dark:text-slate-200"
+      >
+        {portfolio.availability}
+      </p>
+    </section>
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

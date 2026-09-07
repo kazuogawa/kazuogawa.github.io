@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceDetail from '../../components/ServiceDetail.astro';
+import { profile } from '../../data/profile';
+
+const page = profile.servicePages.productDevelopment;
+---
+
+<BaseLayout title="Web・AI・データ基盤の開発支援 | 小川 和久" seo={page.seo}>
+  <ServiceDetail page={page} />
+</BaseLayout>
