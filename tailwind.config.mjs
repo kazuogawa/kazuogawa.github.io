@@ -5,12 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: {
-          light: '#FAFAFA',
-          dark: '#0F172A',
-        },
         card: {
-          light: '#FFFFFF',
           dark: '#1E293B',
         },
         tag: {

@@ -4,12 +4,10 @@ export const profile: Profile = {
   name: {
     ja: '小川 和久',
     en: 'Kazuhisa Ogawa',
-    aka: '',
   },
   title: 'Software Engineer / AI-Enabled Development',
   tagline:
     'Web開発、データ基盤、機械学習、AI/LLM活用を横断し、プロダクト開発とチームの開発生産性向上を支援するエンジニア',
-  location: 'Tokyo, Japan',
   photo: '/images/myphoto-384.webp',
   lastUpdated: '2026-07-13',
 
@@ -47,7 +45,6 @@ export const profile: Profile = {
       company: '株式会社サイバーエース（株式会社サイバーエージェントから出向）',
       period: '2025.01 - 2026.07',
       tech: 'React, TypeScript, Next.js, Go, Python, FastAPI, GCP, Claude Code, Kiro',
-      tools: 'GitHub, GitHub Actions, Repsona',
       projects: [
         {
           title: 'プロダクト横断でのAI開発生産性向上',
@@ -108,7 +105,6 @@ export const profile: Profile = {
       company: '株式会社サイバーエージェント',
       period: '2018.11 - 2024.12',
       tech: 'Python, Scala, TensorFlow, BigQuery, Dataflow, Apache Beam, Docker, GCP, AWS',
-      tools: 'GitHub, CircleCI, Repsona',
       projects: [
         {
           title: '極予測AIの開発・運用・保守',
