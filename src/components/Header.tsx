@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 const navItems = [
   { label: 'トップ', href: '/' },
+  { label: 'AI開発支援', href: '/ai-development/' },
+  { label: 'プロダクト開発', href: '/product-development/' },
+  { label: '業務改善', href: '/business-improvement/' },
   { label: '経歴・技術実績', href: '/portfolio/' },
   { label: 'お問い合わせ', href: '#contact' },
 ];

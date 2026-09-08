@@ -71,6 +71,16 @@ for (const pageUnderTest of pages) {
         'href',
         '/',
       );
+      for (const item of [
+        { label: 'AI開発支援', href: '/ai-development/' },
+        { label: 'プロダクト開発', href: '/product-development/' },
+        { label: '業務改善', href: '/business-improvement/' },
+      ]) {
+        await expect(navigation.locator('a', { hasText: item.label }).first()).toHaveAttribute(
+          'href',
+          item.href,
+        );
+      }
       await expect(navigation.locator('a', { hasText: '経歴・技術実績' }).first()).toHaveAttribute(
         'href',
         '/portfolio/',

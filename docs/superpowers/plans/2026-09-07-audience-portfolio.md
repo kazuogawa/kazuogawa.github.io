@@ -94,7 +94,7 @@ Expected: exit 0
 
 - [x] **Step 1: Headerを共通URLナビゲーションへ変更する**
 
-リンクは「トップ `/`」「経歴・技術実績 `/portfolio/`」「お問い合わせ 外部フォーム」とする。モバイル開閉の既存挙動を保つ。
+リンクは「トップ `/`」「AI開発支援 `/ai-development/`」「プロダクト開発 `/product-development/`」「業務改善 `/business-improvement/`」「経歴・技術実績 `/portfolio/`」「お問い合わせ 外部フォーム」とする。モバイル開閉の既存挙動を保つ。
 
 - [x] **Step 2: トップを4入口中心に変更する**
 

@@ -176,10 +176,11 @@
 - `/portfolio/` の代表実績カードはProjects・Experienceと内容が重複するため削除する。選考向けページであることを示す短い導入文は残し、設計判断から詳細へ進む構成とする。
 - `/portfolio/` の短い導入と単独の設計判断セクションも削除し、Hero直後からSkills、Projects、Experienceを表示する。設計判断の素材は本書内に保持する。
 - 著作権表記と手動更新日の表示は利用者に必要な情報ではないため、footer自体を全ページから削除する。未使用になるFooterコンポーネントと `lastUpdated` データも保持しない。
+- headerには「AI開発支援」「プロダクト開発」「業務改善」を追加し、全ページからトップ直下の3支援ページへ直接移動できるようにする。
 - Playwrightはリポジトリ標準の `pnpm test:e2e` と `pnpm exec playwright test|screenshot` から実行する。`.codex/rules/playwright.rules` ではこの範囲だけを許可し、依存関係の導入やブラウザ操作の記録は対象に含めない。
 - 公開文面は `src/data/profile.ts` に集約。60%以上はGoogleフォームによる自己評価として、デプロイ頻度と分離して掲載した。
-- `make check`、`make build`、Playwright全条件を実行済み。E2Eは80件成功、デスクトップで対象外のモバイルメニュー試験24件をskip。
+- `make check`、`make build`、Playwright全条件を実行済み。E2Eは68件成功、デスクトップで対象外のモバイルメニュー試験20件をskip。
 - Chromeで主要ページを確認し、Playwrightで320×568のダーク表示を目視確認済み。previewは `http://127.0.0.1:4321/`。
 - `grill-me` は読み込み済みだが、指定された呼び出し先 `grilling` が環境にないため、設計書に同等の敵対レビューを記録。実画面確認で見つけた旧「約6倍」表記も全表示箇所から修正した。
 - 既存の未コミット変更（STATE.md、loop-budget.md、loop-run-log.md、pnpm-lock.yaml）は保持し、今回のコミット対象から除外する。
-- サイトの公開、フォーム変更、pushは行っていない。
+- サイトの公開とフォーム変更は行っていない。作業ブランチはpushし、PR #56を更新済み。
