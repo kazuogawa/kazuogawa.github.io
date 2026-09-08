@@ -11,7 +11,6 @@ export const profile: Profile = {
     'Web開発、データ基盤、機械学習、AI/LLM活用を横断し、プロダクト開発とチームの開発生産性向上を支援するエンジニア',
   location: 'Tokyo, Japan',
   photo: '/images/myphoto-384.webp',
-  lastUpdated: '2026-07-13',
 
   social: [
     { platform: 'Zenn', url: 'https://zenn.dev/kazz_ogawa', icon: 'zenn' },

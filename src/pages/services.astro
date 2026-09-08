@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header';
 import AudienceCards from '../components/AudienceCards.astro';
 import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
 import { profile } from '../data/profile';
 
 const audiences = profile.landing.audiences.slice(0, 3);
@@ -39,5 +38,4 @@ const audiences = profile.landing.audiences.slice(0, 3);
     </section>
     <Contact />
   </main>
-  <Footer />
 </BaseLayout>

@@ -131,7 +131,6 @@ export interface Profile {
   tagline: string;
   location: string;
   photo: string;
-  lastUpdated: string;
   social: SocialLink[];
   skills: SkillCategory[];
   experience: ExperienceEntry[];

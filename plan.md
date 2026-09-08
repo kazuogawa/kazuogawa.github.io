@@ -176,6 +176,7 @@
 - `/services/business-improvement/` の稼働目安は他の支援ページと単位を揃えて週1日程度とする。実績は、広告設定改善支援Webアプリケーションを要件整理からリリースまで一貫して担当した経験と、AIの提案内容を定量評価して継続改善できる基盤の構築へ差し替える。
 - `/portfolio/` の代表実績カードはProjects・Experienceと内容が重複するため削除する。選考向けページであることを示す短い導入文は残し、設計判断から詳細へ進む構成とする。
 - `/portfolio/` の短い導入と単独の設計判断セクションも削除し、Hero直後からSkills、Projects、Experienceを表示する。設計判断の素材は本書内に保持する。
+- 著作権表記と手動更新日の表示は利用者に必要な情報ではないため、footer自体を全ページから削除する。未使用になるFooterコンポーネントと `lastUpdated` データも保持しない。
 - Playwrightはリポジトリ標準の `pnpm test:e2e` と `pnpm exec playwright test|screenshot` から実行する。`.codex/rules/playwright.rules` ではこの範囲だけを許可し、依存関係の導入やブラウザ操作の記録は対象に含めない。
 - 公開文面は `src/data/profile.ts` に集約。60%以上はGoogleフォームによる自己評価として、デプロイ頻度と分離して掲載した。
 - `make check`、`make build`、Playwright全条件を実行済み。E2Eは80件成功、デスクトップで対象外のモバイルメニュー試験24件をskip。
