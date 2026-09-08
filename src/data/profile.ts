@@ -113,7 +113,7 @@ export const profile: Profile = {
       tools: 'GitHub, CircleCI, Repsona',
       projects: [
         {
-          title: '極予測AIの開発・運用・保守',
+          title: '広告効果予測プロダクトの開発・運用・保守',
           link: 'https://www.ca-kiwami.ai/',
           details: [
             '広告クリエイティブの効果予測モデル、学習パイプライン、モデルAPI、データ処理基盤を開発・運用',
@@ -130,7 +130,7 @@ export const profile: Profile = {
           ],
         },
         {
-          title: 'CA DashBoardの開発・運用・保守',
+          title: 'インターネット広告実績統合BIサービスの開発・運用・保守',
           details: [
             'Scala、Python、http4s、Digdag、EMRを用いて、広告主向けBIツールの集計基盤、API、予測機能を改善',
             '集計処理のチューニングにより、バッチ処理時間を約1時間から約30分へ短縮',
@@ -161,7 +161,7 @@ export const profile: Profile = {
       tech: 'Scala, Akka, Spark, Colossus, Python, AWS, EMR, Athena, MySQL, Redis',
       projects: [
         {
-          title: 'X-liftの集計・配信基盤の開発・運用・保守',
+          title: 'レコメンドウィジェット配信サービスの集計・配信基盤の開発・運用・保守',
           details: [
             'EMR、Sparkを用いて、1日2億件以上の広告配信ログを集計する基盤を開発・運用',
             '集計バッチのリファクタリングと起動設定のチューニングにより、月額約150万円のインフラコストを削減',
@@ -381,8 +381,8 @@ export const profile: Profile = {
         {
           title: '機械学習・データ基盤の開発と運用改善',
           paragraphs: [
-            '極予測AIでは、効果予測モデル、学習パイプライン、モデルAPI、データ処理基盤を開発・運用しました。',
-            'CA DashBoardでは集計バッチを約1時間から約30分へ短縮。X-liftでは1日2億件以上の広告配信ログを扱う集計基盤を改善し、月額約150万円のインフラコストを削減しました。',
+            '広告効果予測モデルの開発では、学習パイプライン、モデルAPI、データ処理基盤を開発・運用しました。',
+            'インターネット広告実績統合BIサービスでは集計バッチを約1時間から約30分へ短縮。レコメンドウィジェット配信サービスでは1日2億件以上の広告配信ログを扱う集計基盤を改善し、月額約150万円のインフラコストを削減しました。',
           ],
         },
       ],
@@ -479,12 +479,12 @@ export const profile: Profile = {
           'WebUI・API・クラウドインフラと、DeepEvalによるLLM評価基盤を開発。開発速度を評価され社内表彰を受賞しました。',
       },
       {
-        title: 'CA DashBoard',
+        title: 'インターネット広告実績統合BIサービス',
         description:
           '集計バッチを約1時間から約30分へ短縮。Aurora Databaseの負荷削減と運用品質の改善に取り組みました。',
       },
       {
-        title: 'X-lift',
+        title: 'レコメンドウィジェット配信サービス',
         description:
           '1日2億件以上の広告配信ログを扱う集計基盤を開発・運用。バッチ改善により月額約150万円のインフラコストを削減しました。',
       },
@@ -648,7 +648,7 @@ export const profile: Profile = {
       link: 'https://prtimes.jp/main/html/rd/p/000000042.000085778.html',
     },
     {
-      title: '極予測AI',
+      title: '広告効果予測プロダクト',
       description:
         '広告クリエイティブの効果予測モデル、学習パイプライン、モデルAPI、データ処理基盤を開発・運用。学習データ拡充と継続的なモデル改善を支援。',
       tags: ['Python', 'TensorFlow', 'BigQuery', 'Dataflow', 'Docker'],
