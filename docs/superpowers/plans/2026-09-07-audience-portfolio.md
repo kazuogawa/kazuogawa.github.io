@@ -29,16 +29,16 @@
 
 **Interfaces:**
 - Consumes: `profile.contact.primaryAction.url`
-- Produces: 6ルート、トップの4入口、共通ナビゲーション、固有見出しを検証するE2E契約
+- Produces: 5ルート、トップの4入口、共通ナビゲーション、固有見出しを検証するE2E契約
 
 - [x] **Step 1: 新ルートと入口の失敗するE2Eテストを書く**
 
-`/`、`/services/`、3支援詳細、`/portfolio/`の固有見出しを配列化する。トップで4つの予定リンクが見えること、ヘッダーにトップ・支援内容・経歴と技術実績・問い合わせがあることを実ブラウザで検証する。
+`/`、トップ直下の3支援詳細、`/portfolio/`の固有見出しを配列化する。トップで4つの予定リンクが見えること、ヘッダーにトップ・経歴と技術実績・問い合わせがあることを実ブラウザで検証する。
 
 - [x] **Step 2: テストを実行し、未実装ルートで失敗することを確認する**
 
 Run: `pnpm test:e2e --project=desktop-1280x720-light`
-Expected: `/services/ai-development/`等が404、または予定見出し・リンクが存在せずFAIL
+Expected: `/ai-development/`等が404、または予定見出し・リンクが存在せずFAIL
 
 - [x] **Step 3: REDの結果を記録し、実装前にテストを変更しない**
 
@@ -77,15 +77,15 @@ Expected: `/services/ai-development/`等が404、または予定見出し・リ�
 Run: `pnpm run typecheck`
 Expected: exit 0
 
-### Task 3: 6ルートと共通ナビゲーション
+### Task 3: 5ルートと共通ナビゲーション
 
 **Files:**
 - Modify: `src/components/Header.tsx`
 - Modify: `src/pages/index.astro`
-- Modify: `src/pages/services.astro`
-- Create: `src/pages/services/ai-development.astro`
-- Create: `src/pages/services/product-development.astro`
-- Create: `src/pages/services/business-improvement.astro`
+- Delete: `src/pages/services.astro`
+- Create: `src/pages/ai-development.astro`
+- Create: `src/pages/product-development.astro`
+- Create: `src/pages/business-improvement.astro`
 - Create: `src/pages/portfolio.astro`
 
 **Interfaces:**
@@ -94,7 +94,7 @@ Expected: exit 0
 
 - [x] **Step 1: Headerを共通URLナビゲーションへ変更する**
 
-リンクは「トップ `/`」「支援内容 `/services/`」「経歴・技術実績 `/portfolio/`」「お問い合わせ 外部フォーム」とする。モバイル開閉の既存挙動を保つ。
+リンクは「トップ `/`」「経歴・技術実績 `/portfolio/`」「お問い合わせ 外部フォーム」とする。モバイル開閉の既存挙動を保つ。
 
 - [x] **Step 2: トップを4入口中心に変更する**
 
@@ -104,9 +104,9 @@ Expected: exit 0
 
 各ルートは `profile.servicePages` の対応データを `ServiceDetail`へ渡し、固有titleとSEOを設定する。
 
-- [x] **Step 4: `/services/`を3支援の案内へ変更する**
+- [x] **Step 4: 重複する`/services/`と未使用データを削除する**
 
-トップと同じデータを使って3支援への入口、稼働目安、共通問い合わせを表示する。
+`/services/`ページ、headerの支援内容リンク、未使用になった`profile.services`と型定義を削除する。3つの支援詳細はトップ直下のURLへ配置する。
 
 - [x] **Step 5: 既存ポートフォリオを `/portfolio/`へ移す**
 

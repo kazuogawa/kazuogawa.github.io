@@ -225,19 +225,19 @@ export const profile: Profile = {
         title: 'チームにAI開発を導入したい',
         description:
           'AI開発ツールの導入から、プロジェクトに合ったルールづくり、実務での活用・定着まで伴走します。',
-        href: '/services/ai-development/',
+        href: '/ai-development/',
       },
       {
         title: 'プロダクト開発を任せたい',
         description:
           '新規サービスの立ち上げと、既存プロダクトの機能追加・改善に対応。Web・AI・データ基盤を横断して開発します。',
-        href: '/services/product-development/',
+        href: '/product-development/',
       },
       {
         title: 'IT活用・業務改善を相談したい',
         description:
           '手作業を減らしたい、業務のアイデアを形にしたい。課題の整理からツールの設定・実装、使い方の説明まで支援します。',
-        href: '/services/business-improvement/',
+        href: '/business-improvement/',
       },
       {
         title: '経歴・技術実績を確認したい',
@@ -322,7 +322,7 @@ export const profile: Profile = {
         description:
           'AI開発ツールをこれから導入するチーム向けに、環境構築、開発コンテキスト・ルール整備、実務での活用と定着を支援します。',
         ogImage: 'https://kazuogawa.github.io/images/og.png',
-        canonicalUrl: 'https://kazuogawa.github.io/services/ai-development/',
+        canonicalUrl: 'https://kazuogawa.github.io/ai-development/',
         ogTitle: 'チームへのAI開発導入・定着支援 | 小川 和久',
       },
     },
@@ -393,7 +393,7 @@ export const profile: Profile = {
         description:
           '新規サービスの立ち上げから既存プロダクトの改善まで、Web・AI・データ基盤の設計・実装・運用を支援します。',
         ogImage: 'https://kazuogawa.github.io/images/og.png',
-        canonicalUrl: 'https://kazuogawa.github.io/services/product-development/',
+        canonicalUrl: 'https://kazuogawa.github.io/product-development/',
         ogTitle: 'Web・AI・データ基盤の開発支援 | 小川 和久',
       },
     },
@@ -454,7 +454,7 @@ export const profile: Profile = {
         description:
           '手作業の削減や業務のアイデアの実現を、課題整理、ツール設定、自動化の実装、使い方の説明まで支援します。',
         ogImage: 'https://kazuogawa.github.io/images/og.png',
-        canonicalUrl: 'https://kazuogawa.github.io/services/business-improvement/',
+        canonicalUrl: 'https://kazuogawa.github.io/business-improvement/',
         ogTitle: 'IT活用・業務改善の相談 | 小川 和久',
       },
     },
@@ -469,118 +469,6 @@ export const profile: Profile = {
       ogImage: 'https://kazuogawa.github.io/images/og.png',
       canonicalUrl: 'https://kazuogawa.github.io/portfolio/',
       ogTitle: '小川 和久の経歴・技術実績 | 業務委託の選考・案件紹介向け',
-    },
-  },
-
-  services: {
-    eyebrow: 'Services',
-    title: 'AI活用・Web・データ基盤の技術支援',
-    description:
-      '副業・業務委託として、課題の整理や技術レビューなどのスポット支援から、設計・実装・運用改善を含む継続支援まで対応します。',
-    offerings: [
-      {
-        title: '生成AIを活用した開発プロセス改善',
-        summary:
-          'AI開発支援ツールをプロダクト固有の開発フローへ組み込み、チームで継続的に活用できる環境を整備します。',
-        challenges: [
-          'AIの出力品質が安定せず、レビューや手戻りが増えている',
-          'ドメイン知識や実装規約が暗黙知化している',
-          'ツールを導入したものの、チームでの活用が定着していない',
-        ],
-        support: [
-          'AIが参照する開発コンテキストとルールの整備',
-          'Spec-Driven Developmentを用いた開発フローの設計',
-          'Claude Code、Kiro、MCP、GitHub Actions等の導入とチーム展開',
-          'LLM評価基盤の設計・実装と評価プロセスの整備',
-        ],
-        evidence: [
-          '自社プロダクト開発チームでは、デプロイ頻度の1日平均が0.2回から1.2回へ向上',
-          '横断支援した複数プロダクトのメンバーへのアンケートでは、体感の生産性が平均60%以上向上したという回答を確認',
-        ],
-      },
-      {
-        title: 'Webプロダクト開発',
-        summary:
-          'フロントエンド、バックエンド、クラウドを横断し、要件整理からリリース後の改善まで支援します。',
-        challenges: [
-          'フロントエンドからインフラまで、複数領域にまたがる開発を一貫して進めたい',
-          '要件や仕様を整理しながら短期間で形にしたい',
-          'リリース後の運用や改善まで見据えて設計したい',
-        ],
-        support: [
-          'Go、Python、TypeScript、Reactを用いた設計・実装',
-          '管理画面、API、クラウドインフラを横断した設計・実装',
-          'テスト、リリース、運用保守、継続的な改善',
-          '既存システムの技術レビューと改善方針の整理',
-        ],
-        evidence: [
-          '社内向けWebアプリケーションのWebUI、API、インフラを一貫して開発し、開発速度への貢献を評価され社内表彰を受賞',
-          '縦型スワイプLP生成サービスを開発し、先行導入8社中7社で広告効果改善を確認',
-        ],
-      },
-      {
-        title: '機械学習・データ基盤',
-        summary:
-          '機械学習をプロダクトで継続運用するためのパイプライン、モデルAPI、データ処理基盤の設計・開発・運用改善を支援します。',
-        challenges: [
-          'モデル開発からサービス提供までの流れが分断されている',
-          '集計処理に時間がかかり、クラウドコストも増大している',
-          'データ処理やモデルAPIを安定して運用したい',
-        ],
-        support: [
-          '学習・評価パイプラインとモデルAPIの設計・実装',
-          'BigQuery、Dataflow、Apache Beam等を用いたデータ処理基盤の構築',
-          'バッチ処理の性能改善とクラウドコストの最適化',
-          'モデルの評価・運用と継続的な改善',
-        ],
-        evidence: [
-          '広告主向けBIツールの集計バッチを改善し、処理時間を約1時間から約30分へ短縮',
-          '1日2億件以上の広告配信ログを扱う集計基盤を最適化し、月額約150万円のインフラコストを削減',
-        ],
-      },
-    ],
-    process: [
-      {
-        title: 'お問い合わせ',
-        description: '現在の課題、相談したい内容、希望時期を分かる範囲でお知らせください。',
-      },
-      {
-        title: 'ヒアリング',
-        description: '背景と期待する成果を確認し、対応可能な範囲と進め方を整理します。',
-      },
-      {
-        title: 'ご提案・合意',
-        description: '支援範囲、成果物、進行方法、契約条件を相談のうえ決定します。',
-      },
-      {
-        title: '実装・改善',
-        description: '合意した範囲の実装や改善を進め、結果と継続運用に必要な知識を共有します。',
-      },
-    ],
-    engagementOptions: [
-      {
-        title: 'スポット支援',
-        description: '課題を絞り、短期間で現状整理や改善方針を提示します。',
-        examples: ['技術レビュー', '導入方針・アーキテクチャ設計', '検証・プロトタイプ開発'],
-      },
-      {
-        title: '継続支援',
-        description: 'チームの一員として、設計・実装・運用改善を継続的に支援します。',
-        examples: ['プロダクト開発', 'AI活用の定着支援', 'データ・ML基盤の改善'],
-      },
-    ],
-    termsNote:
-      '副業・業務委託として対応します。料金、稼働時間、契約期間は、支援範囲と期待する成果を確認したうえで個別に調整します。',
-    overviewAction: {
-      label: '詳しい支援内容を見る',
-      url: '/services/',
-    },
-    seo: {
-      description:
-        'AI開発プロセス改善、Webプロダクト開発、機械学習・データ基盤について、スポット・継続の技術支援を提供します。',
-      ogImage: 'https://kazuogawa.github.io/images/og.png',
-      canonicalUrl: 'https://kazuogawa.github.io/services/',
-      ogTitle: 'Services | 小川 和久',
     },
   },
 

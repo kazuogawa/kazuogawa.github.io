@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 
 const navItems = [
   { label: 'トップ', href: '/' },
-  { label: '支援内容', href: '/services/' },
   { label: '経歴・技術実績', href: '/portfolio/' },
   { label: 'お問い合わせ', href: '#contact' },
 ];

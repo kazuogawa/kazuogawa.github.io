@@ -24,19 +24,19 @@ Webアプリケーション、機械学習、データ基盤の開発から、�
 
 AI開発ツールの導入から、プロジェクトに合ったルールづくり、実務での活用・定着まで伴走します。
 
-[AI開発プロセス改善の支援を見る](/services/ai-development/)
+[AI開発プロセス改善の支援を見る](/ai-development/)
 
 #### プロダクト開発を任せたい
 
 新規サービスの立ち上げと、既存プロダクトの機能追加・改善に対応。Web・AI・データ基盤を横断して開発します。
 
-[プロダクト開発の支援を見る](/services/product-development/)
+[プロダクト開発の支援を見る](/product-development/)
 
 #### IT活用・業務改善を相談したい
 
 手作業を減らしたい、業務のアイデアを形にしたい。課題の整理からツールの設定・実装、使い方の説明まで支援します。
 
-[IT活用・業務改善の支援を見る](/services/business-improvement/)
+[IT活用・業務改善の支援を見る](/business-improvement/)
 
 #### 経歴・技術実績を確認したい
 
@@ -56,7 +56,7 @@ AI開発ツールの導入から、プロジェクトに合ったルールづく
 
 [お問い合わせ（フォーム）](https://form.run/@kazuogawa-consultation)
 
-## ① AI開発プロセス改善 `/services/ai-development/`
+## ① AI開発プロセス改善 `/ai-development/`
 
 タイトル：チームへのAI開発導入・定着支援 | 小川 和久
 
@@ -117,7 +117,7 @@ AI開発ツールを導入しても開発効率が変わらない状況に対し
 
 [経歴・技術実績を見る](/portfolio/) · [相談の入口へ戻る](/)
 
-## ② プロダクト開発 `/services/product-development/`
+## ② プロダクト開発 `/product-development/`
 
 タイトル：Web・AI・データ基盤の開発支援 | 小川 和久
 
@@ -184,7 +184,7 @@ MVPで実績を確認した後、他部署が運営するプロダクトへ移�
 
 [経歴・技術実績を見る](/portfolio/) · [相談の入口へ戻る](/)
 
-## ③ IT活用・業務改善 `/services/business-improvement/`
+## ③ IT活用・業務改善 `/business-improvement/`
 
 タイトル：IT活用・業務改善の相談 | 小川 和久
 
@@ -326,22 +326,6 @@ PHP・CakePHP2を用いたショッピングモール向けCMSの機能追加・
 [案件・面談について連絡する（フォーム）](https://form.run/@kazuogawa-consultation)
 
 [相談の入口へ戻る](/)
-
-## 既存の支援案内 `/services/`
-
-タイトル：技術支援・業務改善のご案内 | 小川 和久
-
-検索結果向け説明：AI開発の導入・定着、Web・AI・データ基盤の開発、IT活用・業務改善の支援をご案内します。
-
-### ご相談内容に合う支援をご覧ください
-
-チームへのAI開発導入、プロダクト開発、日々の業務改善に対応しています。詳しい支援内容と実績を、相談目的ごとにまとめました。
-
-- [AI開発の導入・定着支援](/services/ai-development/) — チームの環境・ルール整備から、実務での活用まで。
-- [Web・AI・データ基盤の開発支援](/services/product-development/) — 新規立ち上げから、既存プロダクトの機能追加・改善まで。
-- [IT活用・業務改善の相談](/services/business-improvement/) — 課題整理から、設定・実装・使い方の説明まで。
-
-[経歴・技術実績を見る](/portfolio/) · [お問い合わせ（フォーム）](https://form.run/@kazuogawa-consultation) · [相談の入口へ戻る](/)
 
 ## 編集メモ（非掲載）
 

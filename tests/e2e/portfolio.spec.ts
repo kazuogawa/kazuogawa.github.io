@@ -3,17 +3,16 @@ import { profile } from '../../src/data/profile';
 
 const pages = [
   { path: '/', heading: '小川 和久' },
-  { path: '/services/', heading: 'ご相談内容に合う支援をご覧ください' },
   {
-    path: '/services/ai-development/',
+    path: '/ai-development/',
     heading: 'AI開発の導入から、チームで使い続けられる仕組みづくりまで。',
   },
   {
-    path: '/services/product-development/',
+    path: '/product-development/',
     heading: '新規サービスの立ち上げも、既存プロダクトの改善も。',
   },
   {
-    path: '/services/business-improvement/',
+    path: '/business-improvement/',
     heading: '業務の「こうしたい」を、使える仕組みに。',
   },
   { path: '/portfolio/', heading: '小川 和久' },
@@ -72,10 +71,6 @@ for (const pageUnderTest of pages) {
         'href',
         '/',
       );
-      await expect(navigation.locator('a', { hasText: '支援内容' }).first()).toHaveAttribute(
-        'href',
-        '/services/',
-      );
       await expect(navigation.locator('a', { hasText: '経歴・技術実績' }).first()).toHaveAttribute(
         'href',
         '/portfolio/',
@@ -94,9 +89,9 @@ for (const pageUnderTest of pages) {
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
       await page
         .locator('#mobile-navigation')
-        .getByRole('link', { name: '支援内容', exact: true })
+        .getByRole('link', { name: '経歴・技術実績', exact: true })
         .click();
-      await expect(page).toHaveURL(/\/services\/$/);
+      await expect(page).toHaveURL(/\/portfolio\/$/);
       await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
 
       await menuButton.click();
@@ -119,9 +114,9 @@ test('トップから4つの目的別ページへ進める', async ({ page }) =>
   await page.goto('/');
 
   const destinations = [
-    '/services/ai-development/',
-    '/services/product-development/',
-    '/services/business-improvement/',
+    '/ai-development/',
+    '/product-development/',
+    '/business-improvement/',
     '/portfolio/',
   ];
 
