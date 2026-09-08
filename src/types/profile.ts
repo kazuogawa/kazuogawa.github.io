@@ -109,14 +109,6 @@ export interface ServicePageContent {
 }
 
 export interface PortfolioContent {
-  eyebrow: string;
-  description: string;
-  decision: {
-    title: string;
-    request: string;
-    constraint: string;
-    result: string;
-  };
   availability: string;
   seo: SeoMetadata;
 }
