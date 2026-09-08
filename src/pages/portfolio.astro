@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header';
-import Hero from '../components/Hero.astro';
 import Skills from '../components/Skills.astro';
 import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
@@ -14,11 +13,9 @@ const { portfolio } = profile;
 <BaseLayout title="小川 和久の経歴・技術実績 | 業務委託の選考・案件紹介向け" seo={portfolio.seo}>
   <Header client:visible />
   <main>
-    <Hero />
-
     <section id="skills" class="scroll-mt-20 bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
       <div class="mx-auto max-w-5xl">
-        <h2 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h2>
+        <h1 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h1>
         <Skills skills={profile.skills} />
       </div>
     </section>

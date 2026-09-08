@@ -15,7 +15,7 @@ const pages = [
     path: '/business-improvement/',
     heading: '業務の「こうしたい」を、使える仕組みに。',
   },
-  { path: '/portfolio/', heading: '小川 和久' },
+  { path: '/portfolio/', heading: 'Skills' },
 ] as const;
 
 for (const pageUnderTest of pages) {

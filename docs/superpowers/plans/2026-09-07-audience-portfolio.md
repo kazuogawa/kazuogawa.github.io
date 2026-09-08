@@ -110,7 +110,7 @@ Expected: exit 0
 
 - [x] **Step 5: 既存ポートフォリオを `/portfolio/`へ移す**
 
-Hero、Skills、Experience、Projectsを再利用し、技術選考向けの代表実績・設計判断・稼働目安を追加する。
+Skills、Experience、Projectsを再利用し、稼働目安と問い合わせ導線を追加する。トップと重複するプロフィールHeroは表示しない。
 
 - [x] **Step 6: E2Eを再実行してGREENを確認する**
 
