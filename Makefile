@@ -5,7 +5,7 @@ LIGHTHOUSE_FLAGS ?= --view
 LIGHTHOUSE_OUTPUT_DIR ?= lighthouse-reports
 LIGHTHOUSE_REPORT ?= $(LIGHTHOUSE_OUTPUT_DIR)/latest.report.html
 
-.PHONY: install dev typecheck lint format format-check check build preview test-e2e lighthouse audit update verify codex-issues
+.PHONY: install dev typecheck lint format format-check check-design-tokens check build preview test-e2e lighthouse audit update verify codex-issues
 
 install:
 	$(PNPM) install --frozen-lockfile
@@ -25,7 +25,11 @@ format:
 format-check:
 	$(PNPM) run format:check
 
-check: typecheck lint format-check
+check-design-tokens:
+	@if rg --hidden -n 'blue-[0-9]+' src/components src/pages; then echo 'Use brand-* instead of blue-*.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
+	@if rg --hidden -n '#[0-9A-Fa-f]{3,8}\b' src/components src/pages; then echo 'Define custom colors in tailwind.config.mjs.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
+
+check: check-design-tokens typecheck lint format-check
 
 build:
 	$(PNPM) run build

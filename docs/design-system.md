@@ -9,7 +9,7 @@
 
 - Primary action: `bg-brand-600 hover:bg-brand-700`
 - Text link: `text-brand-600 dark:text-brand-400`
-- Focus ring: `focus:ring-brand-500`
+- Focus ring: `focus-visible:ring-brand-500`
 - Neutral colors: Tailwind CSS の `slate-*`
 - Background: `#FAFAFA` / `#0F172A`
 - Card: `card-dark`

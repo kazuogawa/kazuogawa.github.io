@@ -32,7 +32,7 @@
 
 UI、スタイル、コンポーネントを変更する前に `docs/design-system.md` を読むこと。
 
-- 色の実装上の正本は `tailwind.config.mjs` の `theme.extend.colors`。
+- ブランド色とカスタム色の実装上の正本は `tailwind.config.mjs` の `theme.extend.colors`。
 - ブランドカラーには `brand-*` を使用し、`blue-*` や任意のHEX値をコンポーネントへ直接追加しない。
 - ライトモードとダークモードの両方を確認する。
 
