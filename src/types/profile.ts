@@ -90,17 +90,6 @@ export interface ContentItem {
 export interface ServiceCase {
   title: string;
   paragraphs: string[];
-  trend?: {
-    title: string;
-    ariaLabel: string;
-    beforeLabel: string;
-    beforeValue: string;
-    afterLabel: string;
-    afterValue: string;
-    unit: string;
-    xAxisLabel: string;
-    note: string;
-  };
 }
 
 export interface ServicePageContent {
