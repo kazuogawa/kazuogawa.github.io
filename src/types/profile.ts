@@ -39,25 +39,6 @@ export interface Contact {
   responseNote: string;
 }
 
-export interface ServiceOffering {
-  title: string;
-  summary: string;
-  challenges: string[];
-  support: string[];
-  evidence: string[];
-}
-
-export interface ServiceProcessStep {
-  title: string;
-  description: string;
-}
-
-export interface EngagementOption {
-  title: string;
-  description: string;
-  examples: string[];
-}
-
 export interface SeoMetadata {
   description: string;
   ogImage: string;
@@ -65,15 +46,50 @@ export interface SeoMetadata {
   ogTitle: string;
 }
 
-export interface ServicesContent {
+export interface AudienceLink {
+  title: string;
+  description: string;
+  href: string;
+}
+
+export interface LandingContent {
   eyebrow: string;
   title: string;
   description: string;
-  offerings: ServiceOffering[];
-  process: ServiceProcessStep[];
-  engagementOptions: EngagementOption[];
-  termsNote: string;
-  overviewAction: { label: string; url: string };
+  audiences: AudienceLink[];
+  historyTitle: string;
+  history: string[];
+  seo: SeoMetadata;
+}
+
+export interface ContentItem {
+  title: string;
+  description: string;
+}
+
+export interface ServiceCase {
+  title: string;
+  paragraphs: string[];
+}
+
+export interface ServicePageContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  availability: string;
+  challenges: string[];
+  processTitle: string;
+  process: ContentItem[];
+  casesTitle: string;
+  cases: ServiceCase[];
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaLabel: string;
+  seo: SeoMetadata;
+}
+
+export interface PortfolioContent {
+  availability: string;
   seo: SeoMetadata;
 }
 
@@ -82,13 +98,18 @@ export interface Profile {
   title: string;
   tagline: string;
   photo: string;
-  lastUpdated: string;
   social: SocialLink[];
   skills: SkillCategory[];
   experience: ExperienceEntry[];
   projects: Project[];
   contact: Contact;
-  services: ServicesContent;
+  landing: LandingContent;
+  servicePages: {
+    aiDevelopment: ServicePageContent;
+    productDevelopment: ServicePageContent;
+    businessImprovement: ServicePageContent;
+  };
+  portfolio: PortfolioContent;
   analytics: { googleAnalyticsId: string };
   seo: SeoMetadata;
 }

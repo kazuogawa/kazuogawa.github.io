@@ -2,14 +2,38 @@ import { expect, test } from '@playwright/test';
 import { profile } from '../../src/data/profile';
 
 const pages = [
-  { path: '/', menuLink: 'Skills', expectedHash: '#skills' },
-  { path: '/services/', menuLink: 'Process', expectedHash: '#process' },
+  { path: '/', heading: '小川 和久' },
+  {
+    path: '/ai-development/',
+    heading: 'AI開発の導入から、チームで使い続けられる仕組みづくりまで。',
+  },
+  {
+    path: '/product-development/',
+    heading: '新規サービスの立ち上げも、既存プロダクトの改善も。',
+  },
+  {
+    path: '/business-improvement/',
+    heading: '業務の「こうしたい」を、使える仕組みに。',
+  },
+  { path: '/portfolio/', heading: '経歴・技術実績', title: '経歴・技術実績 | 小川 和久' },
 ] as const;
 
 for (const pageUnderTest of pages) {
   test.describe(pageUnderTest.path, () => {
-    test('レスポンシブ表示、配色、主要CTA、Contact導線が正しい', async ({ page }, testInfo) => {
+    test('レスポンシブ表示、配色、主要CTA、共通導線が正しい', async ({ page }, testInfo) => {
       await page.goto(pageUnderTest.path);
+
+      if ('title' in pageUnderTest) {
+        await expect(page).toHaveTitle(pageUnderTest.title);
+      }
+
+      await expect(
+        page.getByRole('heading', { level: 1, name: pageUnderTest.heading }),
+      ).toBeVisible();
+
+      if (pageUnderTest.path === '/portfolio/') {
+        await expect(page.getByRole('heading', { level: 2, name: 'Skills' })).toBeVisible();
+      }
 
       const colorScheme = testInfo.project.use.colorScheme;
       expect(colorScheme).toBeDefined();
@@ -49,6 +73,26 @@ for (const pageUnderTest of pages) {
         await expect(link).toHaveAttribute('target', '_blank');
         await expect(link).toHaveAttribute('rel', /noopener/);
       }
+
+      const navigation = page.getByRole('navigation');
+      await expect(navigation.locator('a', { hasText: 'トップ' }).first()).toHaveAttribute(
+        'href',
+        '/',
+      );
+      for (const item of [
+        { label: 'AI開発支援', href: '/ai-development/' },
+        { label: 'プロダクト開発', href: '/product-development/' },
+        { label: '業務改善', href: '/business-improvement/' },
+      ]) {
+        await expect(navigation.locator('a', { hasText: item.label }).first()).toHaveAttribute(
+          'href',
+          item.href,
+        );
+      }
+      await expect(navigation.locator('a', { hasText: '経歴・技術実績' }).first()).toHaveAttribute(
+        'href',
+        '/portfolio/',
+      );
     });
 
     test('モバイルメニューを各操作で閉じられる', async ({ page }, testInfo) => {
@@ -63,9 +107,9 @@ for (const pageUnderTest of pages) {
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
       await page
         .locator('#mobile-navigation')
-        .getByRole('link', { name: pageUnderTest.menuLink })
+        .getByRole('link', { name: '経歴・技術実績', exact: true })
         .click();
-      await expect(page).toHaveURL(new RegExp(`${pageUnderTest.expectedHash}$`));
+      await expect(page).toHaveURL(/\/portfolio\/$/);
       await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
 
       await menuButton.click();
@@ -83,3 +127,18 @@ for (const pageUnderTest of pages) {
     });
   });
 }
+
+test('トップから4つの目的別ページへ進める', async ({ page }) => {
+  await page.goto('/');
+
+  const destinations = [
+    '/ai-development/',
+    '/product-development/',
+    '/business-improvement/',
+    '/portfolio/',
+  ];
+
+  for (const destination of destinations) {
+    await expect(page.locator(`main a[href="${destination}"]`)).toBeVisible();
+  }
+});

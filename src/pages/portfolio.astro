@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import { profile } from '../data/profile';
+
+const { portfolio } = profile;
+---
+
+<BaseLayout title={portfolio.seo.ogTitle} seo={portfolio.seo}>
+  <Header client:visible />
+  <main>
+    <section id="skills" class="scroll-mt-20 bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
+      <div class="mx-auto max-w-5xl">
+        <h1 class="text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">
+          経歴・技術実績
+        </h1>
+        <h2 class="mb-12 mt-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h2>
+        <Skills skills={profile.skills} />
+      </div>
+    </section>
+    <Projects />
+    <Experience />
+
+    <section class="px-6 py-12">
+      <p
+        class="mx-auto max-w-3xl text-center font-medium leading-7 text-slate-700 dark:text-slate-200"
+      >
+        {portfolio.availability}
+      </p>
+    </section>
+    <Contact />
+  </main>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import { profile } from '../data/profile';
+
+const page = profile.servicePages.aiDevelopment;
+---
+
+<BaseLayout title={page.seo.ogTitle} seo={page.seo}>
+  <ServiceDetail page={page} />
+</BaseLayout>
