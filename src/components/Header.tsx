@@ -49,7 +49,7 @@ export default function Header() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                className="text-sm font-medium text-slate-600 transition-colors hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
               >
                 {item.label}
               </a>
@@ -63,7 +63,7 @@ export default function Header() {
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsOpen((open) => !open)}
-          className="flex h-11 w-11 items-center justify-center text-slate-700 transition-colors hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:hidden dark:text-slate-200 dark:hover:text-blue-400 dark:focus:ring-offset-slate-900"
+          className="flex h-11 w-11 items-center justify-center text-slate-700 transition-colors hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 md:hidden dark:text-slate-200 dark:hover:text-brand-400 dark:focus-visible:ring-offset-slate-900"
         >
           <span className="relative block h-5 w-6" aria-hidden="true">
             <span
@@ -96,7 +96,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-3 text-base font-medium text-slate-700 transition-colors hover:text-blue-600 focus:text-blue-600 focus:outline-none dark:text-slate-200 dark:hover:text-blue-400 dark:focus:text-blue-400"
+                  className="block py-3 text-base font-medium text-slate-700 transition-colors hover:text-brand-600 focus-visible:text-brand-600 focus-visible:outline-none dark:text-slate-200 dark:hover:text-brand-400 dark:focus-visible:text-brand-400"
                 >
                   {item.label}
                 </a>
