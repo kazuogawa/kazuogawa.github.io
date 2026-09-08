@@ -15,13 +15,17 @@ const pages = [
     path: '/business-improvement/',
     heading: '業務の「こうしたい」を、使える仕組みに。',
   },
-  { path: '/portfolio/', heading: 'Skills' },
+  { path: '/portfolio/', heading: 'Skills', title: '経歴・技術実績 | 小川 和久' },
 ] as const;
 
 for (const pageUnderTest of pages) {
   test.describe(pageUnderTest.path, () => {
     test('レスポンシブ表示、配色、主要CTA、共通導線が正しい', async ({ page }, testInfo) => {
       await page.goto(pageUnderTest.path);
+
+      if ('title' in pageUnderTest) {
+        await expect(page).toHaveTitle(pageUnderTest.title);
+      }
 
       await expect(
         page.getByRole('heading', { level: 1, name: pageUnderTest.heading }),

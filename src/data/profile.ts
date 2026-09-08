@@ -468,7 +468,7 @@ export const profile: Profile = {
         '小川和久の職務経歴、担当範囲、技術スタックを紹介。Web開発、データ基盤、機械学習、AI開発プロセス改善を経験しています。',
       ogImage: 'https://kazuogawa.github.io/images/og.png',
       canonicalUrl: 'https://kazuogawa.github.io/portfolio/',
-      ogTitle: '小川 和久の経歴・技術実績 | 業務委託の選考・案件紹介向け',
+      ogTitle: '経歴・技術実績 | 小川 和久',
     },
   },
 
