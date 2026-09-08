@@ -6,5 +6,6 @@ dist/
 playwright-report/
 test-results/
 .worktrees/
+docs/superpowers/
 lighthouse-reports/
 *.report.html

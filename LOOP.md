@@ -1,6 +1,6 @@
 # Loop設定 — kazuogawa-portfolio（Codex）
 
-Astroポートフォリオの品質、問い合わせ導線、運用文書の整合性、保守性を継続的に確認し、人間承認済みFeatureを安全にdraft PRへするCodex向けループ。
+Astroポートフォリオの品質、問い合わせ導線、運用文書の整合性、保守性、セキュリティを継続的に確認し、人間承認済みFeatureを安全にdraft PRへするCodex向けループ。
 
 L1・L2・L3の意味と権限境界は `docs/autonomy-levels.md` を正本とし、本ファイルは現在のレベル、Scheduled Taskの実行内容、プロジェクト固有の昇格ゲートを管理する。
 
@@ -18,6 +18,7 @@ current_level: L3
 | ---------------- | ------------------------------------------------------------------------- |
 | Portfolio Triage | `$loop-constraints` → 現在レベルのrunbookと必須Skill                      |
 | Approved Feature | `$loop-constraints` → `$loop-budget` → `$approved-feature-loop`（L3のみ） |
+| Codex Security   | `$loop-constraints` → `$loop-budget` → `$codex-security:security-scan`    |
 
 Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
 
@@ -28,7 +29,7 @@ Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO
 
 ## Scheduled Task設定
 
-ChatGPTデスクトップアプリのScheduled Tasksで、次の2タスクを別々に設定する。実行頻度は各Schedulerを正本とし、本ファイルでは固定しない。
+ChatGPTデスクトップアプリのScheduled Tasksで、次の3タスクを別々に設定する。実行頻度は各Schedulerを正本とし、本ファイルでは固定しない。
 
 ### Portfolio Triage
 
@@ -63,6 +64,28 @@ LOOP.mdのcurrent_levelを確認し、$loop-constraintsと$loop-budgetを順に�
 ```
 
 Issueレビューと実装は同じrunで連続実行せず、レビューコメントを人間が確認する機会を残す。Approved Featureの候補、承認、処理状態はGitHub labelを正本とする。
+
+### Codex Security
+
+| 項目        | 設定値                      |
+| ----------- | --------------------------- |
+| Name        | Codex Security Monthly Scan |
+| Project     | このリポジトリ              |
+| Environment | Local                       |
+| Prompt      | 下記                        |
+
+Codex Securityプラグインを有効にし、standard modeでリポジトリ全体を読み取り専用スキャンする。成果物はSecurity Workbenchが管理するリポジトリ外の保存先へ出力する。
+
+```text
+LOOP.mdのcurrent_levelを確認し、$loop-constraintsを最初に実行してください。
+続いて$loop-budgetをsecurity-scan patternとして実行し、kill switch、過去24時間のtoken予算、同時実行中のスキャンがないことを確認してください。
+開始条件を満たす場合だけ、$codex-security:security-scanを使い、最大2 subagentsでstandard modeのリポジトリ全体セキュリティスキャンを実行してください。
+対象リポジトリは読み取り専用として扱い、docs/safety.mdの禁止パスを読んだり表示したりしないでください。STATE.mdとloop-run-log.md以外のソース、依存関係、workflow、設定、Issue、PRを変更せず、所見の修正へ進まないでください。
+終了時にtarget、revision、plugin version、model、reasoning effort、findings件数、deferred/follow-up、Security Workbenchの成果物参照先を報告してください。
+STATE.mdとloop-run-log.mdは許可された範囲だけ更新し、loop-run-log.mdのpatternにはsecurity-scanを使用してください。最後に$loop-budgetの停止条件を再確認してください。
+```
+
+最初のrunは手動実行し、成果物、通知、kill switch、予算、ログ記録を人間が確認してからSchedulerを有効化する。
 
 ## L2昇格ゲート
 
@@ -137,6 +160,7 @@ Issueが上限を超える場合は、独立した受入条件と検証を持つ
 - allowlist外変更、未承認パス、checkerのREJECTまたはESCALATE_HUMAN、認証失敗、通知失敗、監査ログ欠落、同じ失敗の反復を検出した場合はcommit・push・PR作成を行わない。
 - 許可外変更、checker迂回、通知失敗、監査ログ欠落が発生した場合は `pause_all: true` にして停止し、人間がScheduled Taskを無効化する。
 - token 80%到達時はreport-only、100%到達時は停止する。修正試行とサブエージェント上限は `loop-budget.md` に従う。
+- Codex Securityは進行中の同一リポジトリscan、認証失敗、対象revision不明、成果物保存失敗を検出した場合、新しいscanを開始せず人間へ通知する。security-scan patternが80%到達時も新しいscanを開始しない。
 
 ## Maker / checker
 

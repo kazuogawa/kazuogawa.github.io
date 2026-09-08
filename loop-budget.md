@@ -1,6 +1,6 @@
 # Loop 予算 — kazuogawa-portfolio
 
-> 対象ループ: **Portfolio Triage / Approved Feature**（現在の自律レベルは `LOOP.md` を参照）
+> 対象ループ: **Portfolio Triage / Approved Feature / Codex Security**（現在の自律レベルは `LOOP.md` を参照）
 
 ## 集計期間
 
@@ -12,13 +12,14 @@ tokensは、現在時刻から過去24時間に含まれる `run_id` を対象�
 | ---------------- | --------------- | ------------------------------- |
 | Portfolio Triage | 100k            | 0（L1） / 2（L2・L3）           |
 | Approved Feature | 150k            | 2（L3のみ）                     |
+| Codex Security   | 100k            | 2                               |
 
-L2・L3の1項目あたりの修正試行は最大3回。3回失敗、または同じエラー・差分を繰り返す無進捗時は停止してescalateする。L3はパターンごとに同時実行数1、open中の各パターン作成ドラフトPRは最大1件とする。Approved FeatureのIssueレビューまたはSub-issue分割は1 run 1件、Sub-issue作成は最大3件とする。
+L2・L3の1項目あたりの修正試行は最大3回。3回失敗、または同じエラー・差分を繰り返す無進捗時は停止してescalateする。L3はパターンごとに同時実行数1、open中の各パターン作成ドラフトPRは最大1件とする。Approved FeatureのIssueレビューまたはSub-issue分割は1 run 1件、Sub-issue作成は最大3件とする。`security-scan`も同時実行数1とし、同じリポジトリに進行中のスキャンがある場合は新しいスキャンを開始しない。
 
 ## 閾値と超過時の対応
 
 - 対応候補も監視候補もないrun: 5k tokens未満を目安に早期終了する。
-- tokensが80%以上: Portfolio Triageはreport-only、Approved Featureは実装とSub-issue作成を行わないreview-onlyへ切り替える。
+- tokensが80%以上: Portfolio Triageはreport-only、Approved Featureは実装とSub-issue作成を行わないreview-onlyへ切り替える。Codex Securityは新しいスキャンを開始せず、停止理由だけを報告する。
 - tokensが100%以上: runを開始せず、停止記録だけを行う。
 - kill switch有効: チェックや編集を行わず即時終了する。
 

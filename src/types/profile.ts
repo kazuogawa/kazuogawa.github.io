@@ -1,7 +1,7 @@
 export interface SocialLink {
   platform: string;
   url: string;
-  icon: 'facebook' | 'x' | 'qiita' | 'zenn';
+  icon: 'x' | 'zenn';
 }
 
 export interface SkillCategory {
@@ -21,7 +21,6 @@ export interface ExperienceEntry {
   company: string;
   period: string;
   tech?: string;
-  tools?: string;
   projects: ExperienceProject[];
   compact?: boolean;
 }
@@ -95,10 +94,9 @@ export interface PortfolioContent {
 }
 
 export interface Profile {
-  name: { ja: string; en: string; aka: string };
+  name: { ja: string; en: string };
   title: string;
   tagline: string;
-  location: string;
   photo: string;
   social: SocialLink[];
   skills: SkillCategory[];
