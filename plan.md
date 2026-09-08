@@ -179,6 +179,7 @@
 - `/portfolio/` は「経歴・技術実績」をH1、SkillsをH2とし、Projects・ExperienceをSkillsの下位項目として誤解されない見出し構造にする。
 - ブラウザタブのtitleは各ページの `seo.ogTitle` を参照し、`src/data/profile.ts` に一元化する。
 - `profile.services` の削除により参照不能となった未使用の `ServicesOverview.astro` も削除する。
+- 実装時だけ使用した `docs/superpowers/` 配下の設計書・作業計画は `plan.md` と重複するため、PRには含めない。
 - 著作権表記と手動更新日の表示は利用者に必要な情報ではないため、footer自体を全ページから削除する。未使用になるFooterコンポーネントと `lastUpdated` データも保持しない。
 - headerには「AI開発支援」「プロダクト開発」「業務改善」を追加し、全ページからトップ直下の3支援ページへ直接移動できるようにする。
 - Playwrightはリポジトリ標準の `pnpm test:e2e` と `pnpm exec playwright test|screenshot` から実行する。`.codex/rules/playwright.rules` ではこの範囲だけを許可し、依存関係の導入やブラウザ操作の記録は対象に含めない。

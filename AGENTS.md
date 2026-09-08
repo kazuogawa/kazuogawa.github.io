@@ -26,6 +26,7 @@
 - `.astro` は静的HTML出力（JS 0）、`.tsx` は `client:visible` で遅延読み込み。
 - inline style は禁止。Tailwind CSS のユーティリティクラスを使用すること。
 - ダークモードは `dark:` プレフィックスで対応（`darkMode: 'media'`）。
+- `docs/superpowers/` などの一時的な設計書・作業計画Markdownはコミットしない。セッションをまたいで残す決定事項はルートの `plan.md` に追記する。
 
 ## GitHub IssueからのCodex実行
 
