@@ -110,7 +110,7 @@ Expected: exit 0
 
 - [x] **Step 5: 既存ポートフォリオを `/portfolio/`へ移す**
 
-Skills、Experience、Projectsを再利用し、稼働目安と問い合わせ導線を追加する。トップと重複するプロフィールHeroは表示しない。
+「経歴・技術実績」をページH1とし、Skills、Experience、Projectsを再利用する。稼働目安と問い合わせ導線を追加し、トップと重複するプロフィールHeroは表示しない。
 
 - [x] **Step 6: E2Eを再実行してGREENを確認する**
 

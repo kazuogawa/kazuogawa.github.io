@@ -9,7 +9,7 @@ import { profile } from '../data/profile';
 const { landing, name, photo, social } = profile;
 ---
 
-<BaseLayout title="小川 和久 | AI開発支援・Web開発・IT活用相談" seo={landing.seo}>
+<BaseLayout title={landing.seo.ogTitle} seo={landing.seo}>
   <Header client:visible />
   <main>
     <section class="px-6 py-16 md:py-24">

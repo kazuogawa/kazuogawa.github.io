@@ -10,12 +10,15 @@ import { profile } from '../data/profile';
 const { portfolio } = profile;
 ---
 
-<BaseLayout title="経歴・技術実績 | 小川 和久" seo={portfolio.seo}>
+<BaseLayout title={portfolio.seo.ogTitle} seo={portfolio.seo}>
   <Header client:visible />
   <main>
     <section id="skills" class="scroll-mt-20 bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
       <div class="mx-auto max-w-5xl">
-        <h1 class="mb-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h1>
+        <h1 class="text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">
+          経歴・技術実績
+        </h1>
+        <h2 class="mb-12 mt-12 text-3xl font-bold text-slate-900 dark:text-white">Skills</h2>
         <Skills skills={profile.skills} />
       </div>
     </section>

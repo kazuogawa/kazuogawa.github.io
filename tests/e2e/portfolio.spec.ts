@@ -15,7 +15,7 @@ const pages = [
     path: '/business-improvement/',
     heading: '業務の「こうしたい」を、使える仕組みに。',
   },
-  { path: '/portfolio/', heading: 'Skills', title: '経歴・技術実績 | 小川 和久' },
+  { path: '/portfolio/', heading: '経歴・技術実績', title: '経歴・技術実績 | 小川 和久' },
 ] as const;
 
 for (const pageUnderTest of pages) {
@@ -30,6 +30,10 @@ for (const pageUnderTest of pages) {
       await expect(
         page.getByRole('heading', { level: 1, name: pageUnderTest.heading }),
       ).toBeVisible();
+
+      if (pageUnderTest.path === '/portfolio/') {
+        await expect(page.getByRole('heading', { level: 2, name: 'Skills' })).toBeVisible();
+      }
 
       const colorScheme = testInfo.project.use.colorScheme;
       expect(colorScheme).toBeDefined();
