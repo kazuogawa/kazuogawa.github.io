@@ -90,7 +90,12 @@ make codex-issues LIMIT=5
 ```
 src/
 ├── layouts/BaseLayout.astro    # HTML shell, meta, OG, GA
-├── pages/index.astro           # メインページ
+├── pages/
+│   ├── index.astro             # 4つの目的別ページへの入口
+│   ├── ai-development.astro    # AI開発支援
+│   ├── product-development.astro # プロダクト開発
+│   ├── business-improvement.astro # 業務改善
+│   └── portfolio.astro         # 経歴・技術実績
 ├── components/                 # UIコンポーネント
 │   ├── *.astro                 # 静的コンポーネント（JS 0）
 │   └── *.tsx                   # Reactコンポーネント（client:visible）
@@ -101,7 +106,7 @@ src/
 
 ## コンテンツ更新
 
-`src/data/profile.ts` を編集するだけで、全セクション（Skills, Experience, Projects等）に反映されます。
+公開文面は `src/data/profile.ts` に集約しています。ページ構造を変更する場合は、関連する型・コンポーネント・ページも更新します。
 
 ## デプロイ
 
