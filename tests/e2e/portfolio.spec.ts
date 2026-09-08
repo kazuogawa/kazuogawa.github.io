@@ -129,3 +129,14 @@ test('トップから4つの目的別ページへ進める', async ({ page }) =>
     await expect(page.locator(`main a[href="${destination}"]`)).toBeVisible();
   }
 });
+
+test('AI開発支援のデプロイ頻度をグラフで確認できる', async ({ page }) => {
+  await page.goto('/services/ai-development/');
+
+  await expect(
+    page.getByRole('img', { name: 'デプロイ頻度が1日平均0.2回から1.2回へ上昇した推移' }),
+  ).toBeVisible();
+  await expect(page.getByText('0.2回', { exact: true })).toBeVisible();
+  await expect(page.getByText('1.2回', { exact: true })).toBeVisible();
+  await expect(page.getByText('Findy Teamで確認した実測値')).toBeVisible();
+});

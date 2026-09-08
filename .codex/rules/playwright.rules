@@ -1,0 +1,11 @@
+prefix_rule(
+    pattern = ["pnpm", "test:e2e"],
+    decision = "allow",
+    justification = "Allow the repository's Playwright test script.",
+)
+
+prefix_rule(
+    pattern = ["pnpm", "exec", "playwright", ["test", "screenshot"]],
+    decision = "allow",
+    justification = "Allow Playwright tests and local preview screenshots.",
+)
