@@ -26,8 +26,8 @@ format-check:
 	$(PNPM) run format:check
 
 check-design-tokens:
-	@if rg --hidden -n 'blue-[0-9]+' src/components src/pages; then echo 'Use brand-* instead of blue-*.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
-	@if rg --hidden -n '#[0-9A-Fa-f]{3,8}\b' src/components src/pages; then echo 'Define custom colors in tailwind.config.mjs.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
+	@if grep -rEn 'blue-[0-9]+' src/components src/pages; then echo 'Use brand-* instead of blue-*.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
+	@if grep -rEn '#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})([^0-9A-Fa-f]|$$)' src/components src/pages; then echo 'Define custom colors in tailwind.config.mjs.' >&2; exit 1; else status=$$?; [ $$status -eq 1 ]; fi
 
 check: check-design-tokens typecheck lint format-check
 
