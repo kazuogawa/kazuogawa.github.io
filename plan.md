@@ -173,6 +173,7 @@
 - `/services/product-development/` では周知されていないプロダクト名を一般名称に置き換え、読み手が業務領域を直接理解できる表現を優先する。選考向けの `/portfolio/` では具体的なプロダクト名を掲載する。
 - アカウントカルテは、`/services/product-development/` では「広告設定改善支援サービスへのAI導入・評価基盤構築」と表現し、選考向けの `/portfolio/` では正式名称を維持する。
 - 縦型スワイプLP構築サービスは、MVPとして小さく立ち上げ、実績確認後に他部署プロダクトへ移管・展開した流れをサービス紹介で示す。管理画面、API、公開基盤、運用、移管先の主要機能開発まで担当したことを記載する。
+- `/services/business-improvement/` の稼働目安は他の支援ページと単位を揃えて週1日程度とする。実績は、広告設定改善支援Webアプリケーションを要件整理からリリースまで一貫して担当した経験と、AIの提案内容を定量評価して継続改善できる基盤の構築へ差し替える。
 - Playwrightはリポジトリ標準の `pnpm test:e2e` と `pnpm exec playwright test|screenshot` から実行する。`.codex/rules/playwright.rules` ではこの範囲だけを許可し、依存関係の導入やブラウザ操作の記録は対象に含めない。
 - 公開文面は `src/data/profile.ts` に集約。60%以上はGoogleフォームによる自己評価として、デプロイ頻度と分離して掲載した。
 - `make check`、`make build`、Playwright全条件を実行済み。E2Eは80件成功、デスクトップで対象外のモバイルメニュー試験24件をskip。
