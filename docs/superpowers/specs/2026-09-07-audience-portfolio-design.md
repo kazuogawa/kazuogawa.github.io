@@ -10,7 +10,7 @@
 - `/services/ai-development/`: AI開発ツールの導入、開発コンテキスト整備、実務への組み込み、定着を説明する。
 - `/services/product-development/`: 新規立ち上げと既存改善、要件整理から実装・運用までの対応範囲を説明する。
 - `/services/business-improvement/`: 非技術者の困りごとを起点に、課題整理、設定・実装、使い方の説明までを平易な言葉で示す。
-- `/portfolio/`: 既存トップのSkills、Experience、Projectsを移し、業務委託選考向けの技術実績と設計判断を追加する。
+- `/portfolio/`: 既存トップのSkills、Experience、Projectsを移し、業務委託選考向けの短い導入と設計判断を追加する。Projects・Experienceと重複する代表実績カードは置かない。
 - `/services/`: 3つの支援詳細への案内として維持する。
 
 全ページからトップ、`/portfolio/`、共通問い合わせフォームへ移動できるようにする。ヘッダーはページ内アンカーに依存せず、共通ナビゲーションとして使える構成へ変更する。

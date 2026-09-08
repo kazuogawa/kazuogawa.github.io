@@ -111,7 +111,6 @@ export interface ServicePageContent {
 export interface PortfolioContent {
   eyebrow: string;
   description: string;
-  highlights: ContentItem[];
   decision: {
     title: string;
     request: string;

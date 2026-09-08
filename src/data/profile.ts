@@ -465,28 +465,6 @@ export const profile: Profile = {
     eyebrow: 'For Selection',
     description:
       '業務委託の選考・案件紹介に向けて、担当経験、技術スタック、設計判断と成果をまとめています。',
-    highlights: [
-      {
-        title: 'AI開発環境整備・プロダクト横断支援',
-        description:
-          '開発コンテキストと運用ルールを整備。自社プロダクト開発チームでは、デプロイ頻度の1日平均が0.2回から1.2回へ向上。複数プロダクトのメンバーへのアンケートでは、体感の生産性が平均60%以上向上したという回答を確認しました。',
-      },
-      {
-        title: 'アカウントカルテ',
-        description:
-          'WebUI・API・クラウドインフラと、DeepEvalによるLLM評価基盤を開発。開発速度を評価され社内表彰を受賞しました。',
-      },
-      {
-        title: 'CA DashBoard',
-        description:
-          '集計バッチを約1時間から約30分へ短縮。Aurora Databaseの負荷削減と運用品質の改善に取り組みました。',
-      },
-      {
-        title: 'X-lift',
-        description:
-          '1日2億件以上の広告配信ログを扱う集計基盤を開発・運用。バッチ改善により月額約150万円のインフラコストを削減しました。',
-      },
-    ],
     decision: {
       title: '設計判断：リリース速度を優先したモデル拡張',
       request:
