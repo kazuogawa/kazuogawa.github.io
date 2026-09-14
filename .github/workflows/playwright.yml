@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      # pnpm 10 is intentionally pinned because Dependabot could not resolve pnpm 12's standalone binary.
-      # Keep this aligned with package.json until a Dependabot run confirms newer pnpm support.
+      # Dependabotがpnpm 12の実行バイナリを解決できなかったため、pnpm 10へ意図的に固定する。
+      # 新しいpnpmへの更新は、Dependabotでの動作確認後にpackage.jsonと同時に行うこと。
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
