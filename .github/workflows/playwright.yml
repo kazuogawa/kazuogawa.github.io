@@ -13,12 +13,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Setup pnpm and Node
-        uses: pnpm/setup@v2
+      # Dependabotがpnpm 12の実行バイナリを解決できなかったため、pnpm 10へ意図的に固定する。
+      # 新しいpnpmへの更新は、Dependabotでの動作確認後にpackage.jsonと同時に行うこと。
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
-          runtime: node@24.18.0
-          cache: true
-          install: false
+          version: 10.34.5
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          cache: pnpm
       - name: Install dependencies
         run: make install
       - name: Install Playwright Chromium
