@@ -16,13 +16,10 @@ const { entry, isLast = false } = Astro.props;
       'absolute left-0 top-1 rounded-full border-2 border-brand-600 dark:border-brand-400',
       entry.compact ? 'h-3 w-3 bg-transparent' : 'h-4 w-4 bg-brand-600 dark:bg-brand-400',
     ]}
-  >
-  </div>
-  {
-    isLast ? null : (
-      <div class="absolute left-[7px] top-5 h-full w-px bg-slate-200 dark:bg-slate-700" />
-    )
-  }
+  ></div>
+  {isLast ? null : (
+    <div class="absolute left-[7px] top-5 h-full w-px bg-slate-200 dark:bg-slate-700" />
+  )}
 
   <!-- Content -->
   <div>
@@ -35,47 +32,41 @@ const { entry, isLast = false } = Astro.props;
       >
         {entry.role}
       </h3>
-      <span class="text-sm font-medium text-brand-600 dark:text-brand-400">
-        {entry.period}
-      </span>
+      <span class="text-sm font-medium text-brand-600 dark:text-brand-400">{entry.period}</span>
     </div>
     <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{entry.company}</p>
 
-    {
-      entry.tech ? (
-        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{entry.tech}</p>
-      ) : null
-    }
+    {entry.tech ? (
+      <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{entry.tech}</p>
+    ) : null}
 
     <div class:list={['mt-4 space-y-4', { 'mt-2 space-y-2': entry.compact }]}>
-      {
-        entry.projects.map((project) => (
-          <div>
-            <h4 class="font-medium text-slate-800 dark:text-slate-200">
-              {project.link ? (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="underline decoration-brand-600/30 underline-offset-2 transition-colors hover:text-brand-600 dark:decoration-brand-400/30 dark:hover:text-brand-400"
-                >
-                  {project.title}
-                </a>
-              ) : (
-                project.title
-              )}
-            </h4>
-            <ul class="mt-1 space-y-1">
-              {project.details.map((detail) => (
-                <li class="flex gap-2 text-sm text-slate-600 dark:text-slate-300">
-                  <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
-                  {detail}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      {entry.projects.map((project) => (
+        <div>
+          <h4 class="font-medium text-slate-800 dark:text-slate-200">
+            {project.link ? (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline decoration-brand-600/30 underline-offset-2 transition-colors hover:text-brand-600 dark:decoration-brand-400/30 dark:hover:text-brand-400"
+              >
+                {project.title}
+              </a>
+            ) : (
+              project.title
+            )}
+          </h4>
+          <ul class="mt-1 space-y-1">
+            {project.details.map((detail) => (
+              <li class="flex gap-2 text-sm text-slate-600 dark:text-slate-300">
+                <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+                {detail}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </div>
 </div>
