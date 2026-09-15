@@ -29,7 +29,8 @@ const pageSeo = seoOverride ?? profile.seo;
     <script
       is:inline
       src={`https://www.googletagmanager.com/gtag/js?id=${analytics.googleAnalyticsId}`}
-      async></script>
+      async
+    ></script>
     <script is:inline define:vars={{ gaId: analytics.googleAnalyticsId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -38,7 +39,6 @@ const pageSeo = seoOverride ?? profile.seo;
       gtag('js', new Date());
       gtag('config', gaId);
     </script>
-
     <!-- Open Graph / Twitter Cards -->
     <meta property="og:title" content={pageSeo.ogTitle} />
     <meta property="og:description" content={pageSeo.description} />
@@ -67,7 +67,7 @@ const pageSeo = seoOverride ?? profile.seo;
           availableLanguage: ['ja', 'en'],
         },
       })}
-    />
+    ></script>
   </head>
   <body class="min-h-screen font-sans antialiased">
     <slot />
