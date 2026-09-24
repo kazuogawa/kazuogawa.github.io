@@ -20,15 +20,9 @@ current_level: L3
 | Approved Feature | `$loop-constraints` → `$loop-budget` → `$approved-feature-loop`（L3のみ） |
 | Codex Security   | `$loop-constraints` → `$loop-budget` → `$codex-security:security-scan`    |
 
-Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
+Portfolio Triageは品質確認、ドキュメントドリフト、リファクタリング候補、モデル更新に伴うスキル棚卸しを行う。対象・実行条件・判定方法・記録方法は [`loop-triage`](.agents/skills/loop-triage/SKILL.md) を正本とする。
 
-- ドキュメントドリフト: 文書内の構成、コマンド、権限境界、相互参照を実ファイル・設定と照合する。
-- リファクタリング提案: 直近変更と静的な証拠から、重複、責務過多、不要な複雑性を抽出する。
-- モデル更新に伴うスキル棚卸し: リポジトリ内・個人用・プラグイン提供のスキルを対象に、新モデルが追加指示なしでも同じ品質で作業できるかを比較し、削除・縮小候補を報告する。未使用かどうかでは判断せず、固有の知識・制約・資産は区別する。
-
-これらのチェックは同じrunで文書やコードを修正しない。スキルやプラグインの削除・無効化も行わない。提案は原則Watch Listへ記録し、具体的な不具合・安全上の矛盾・人間判断が必要な項目だけHigh Priorityへ記録する。
-
-スキル棚卸しは初回、モデル・reasoning effort・スキル構成の変更時、または人間からの再評価指示時に行う。同条件で新しい証拠がなければ前回結果を保持し、比較不能な項目は未検証とする。判定方法と記録項目は `$loop-triage` を正本とし、比較も既存の権限・token予算・サブエージェント上限内に限る。
+トリアージ工程はreport-onlyとし、`STATE.md`と`loop-run-log.md`以外を変更しない。スキルの削除・縮小・無効化、プラグインのアンインストールやキャッシュの直接編集も行わない。後続の修正工程は、現在レベルのrunbookと本ファイルのallowlistに従う。
 
 ## Scheduled Task設定
 
