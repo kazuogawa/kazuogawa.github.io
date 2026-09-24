@@ -41,8 +41,8 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 ### Portfolio Triage
 
 1. `$loop-constraints` と `$loop-budget` を実行し、circuit breakerを確認する。
-2. `$loop-triage` で品質信号、ドキュメントドリフト、リファクタリング候補をreport-onlyで収集し、`STATE.md` を更新する。
-3. High Priorityからauto-eligibleな項目を最大1件選ぶ。0件なら早期終了する。ドキュメントドリフトとリファクタリング提案は選ばない。
+2. `$loop-triage` で品質信号、ドキュメントドリフト、リファクタリング候補、モデル更新に伴うスキル棚卸しの結果をreport-onlyで収集し、`STATE.md` を更新する。
+3. High Priorityからauto-eligibleな項目を最大1件選ぶ。0件なら早期終了する。ドキュメントドリフト、リファクタリング提案、スキル棚卸しは選ばない。
 4. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
 5. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
 6. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。
