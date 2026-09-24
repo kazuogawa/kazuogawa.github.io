@@ -20,12 +20,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 ## Portfolio TriageのAuto-eligible最低条件
 
-- High Priorityにあり、L3用ルールでauto-eligibleと機械判定できる。
-- 影響範囲と対象ファイルが特定されている。
-- 許可された低リスクパスだけで修正できる。
-- 再現手順と成功条件を自動検証できる。
-- workflow、依存関係、デプロイ、認証情報、SEO・計測の保持要件を変更しない。
-- 仕様判断、コンテンツ判断、外部サービスへの書き込みを必要としない。
+対象パス・必須条件・除外対象は、[LOOP.mdのL3 allowlist / auto-eligible](../../LOOP.md#l3-allowlist--auto-eligible) を正本とする。
 
 ## 許可する操作
 
@@ -41,8 +36,8 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 ### Portfolio Triage
 
 1. `$loop-constraints` と `$loop-budget` を実行し、circuit breakerを確認する。
-2. `$loop-triage` で品質信号、ドキュメントドリフト、リファクタリング候補をreport-onlyで収集し、`STATE.md` を更新する。
-3. High Priorityからauto-eligibleな項目を最大1件選ぶ。0件なら早期終了する。ドキュメントドリフトとリファクタリング提案は選ばない。
+2. [`$loop-triage`](../../.agents/skills/loop-triage/SKILL.md) に従って証拠を収集し、`STATE.md` を更新する。
+3. `LOOP.md`のauto-eligible条件に従い、High Priorityから最大1件選ぶ。0件なら早期終了する。
 4. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
 5. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
 6. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。

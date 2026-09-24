@@ -30,7 +30,7 @@
 ## 5. ツール / MCPスコープ（最小権限）
 
 - 各スキルの手順とCodexのsandbox／approval設定で必要最小限の権限に制限する。
-  - `loop-triage`: 読み取り + `git log` / `make check` / `make build` / `make audit` + リンク検査 + ドキュメントドリフト／リファクタリング候補のreport-only検査 + 読み取り専用のMCP／外部コネクタ + `STATE.md` / `loop-run-log.md` の編集のみ。
+  - `loop-triage`: 読み取り + `git log` / `make check` / `make build` / `make audit` + リンク検査 + ドキュメントドリフト／リファクタリング候補／モデル更新に伴うスキル棚卸しのreport-only検査 + 読み取り専用のMCP／外部コネクタ + `STATE.md` / `loop-run-log.md` の編集のみ。棚卸しではリポジトリ内・個人用・プラグイン提供のスキルと必要な同梱資産を読み取れるが、削除・縮小・無効化、プラグインのアンインストールやキャッシュの直接編集は行わない。比較検証も現在レベルの権限と既存予算内に限る。
   - `minimal-fix`: L2・L3のみ。上記 + ファイル編集 + `git worktree` / `commit`。checkerのAPPROVE後は、現在レベルのrunbookに従って `master` 以外の専用作業ブランチへのpushとドラフトPR作成を許可する。L3の自動対象は `LOOP.md` のallowlistを追加上限とする。
   - `approved-feature-loop`: L3のみ。Feature Issueの読み取り、作成者へのレビューコメント、状態label、最大3件のSub-issue作成 + `LOOP.md`の専用allowlist内の編集、worktree、commit。信頼された人間の承認とcheckerのAPPROVE後だけpushとドラフトPR作成を許可する。
   - `loop-verifier`: 読み取り + `git diff` / `make check` / `make build` のみ。編集不可。

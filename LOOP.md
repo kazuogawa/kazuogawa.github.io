@@ -20,12 +20,9 @@ current_level: L3
 | Approved Feature | `$loop-constraints` → `$loop-budget` → `$approved-feature-loop`（L3のみ） |
 | Codex Security   | `$loop-constraints` → `$loop-budget` → `$codex-security:security-scan`    |
 
-Portfolio Triageは既存のcheck、build、表示、問い合わせ導線、SEO、直近変更に加え、次をreport-onlyで確認する。
+Portfolio Triageは品質確認、ドキュメントドリフト、リファクタリング候補、モデル更新に伴うスキル棚卸しを行う。対象・実行条件・判定方法・記録方法は [`loop-triage`](.agents/skills/loop-triage/SKILL.md) を正本とする。
 
-- ドキュメントドリフト: 文書内の構成、コマンド、権限境界、相互参照を実ファイル・設定と照合する。
-- リファクタリング提案: 直近変更と静的な証拠から、重複、責務過多、不要な複雑性を抽出する。
-
-両チェックは同じrunで文書やコードを修正しない。提案は原則Watch Listへ記録し、具体的な不具合・安全上の矛盾・人間判断が必要な項目だけHigh Priorityへ記録する。
+トリアージ工程はreport-onlyとし、`STATE.md`と`loop-run-log.md`以外を変更しない。スキルの削除・縮小・無効化、プラグインのアンインストールやキャッシュの直接編集も行わない。後続の修正工程は、現在レベルのrunbookと本ファイルのallowlistに従う。
 
 ## Scheduled Task設定
 
@@ -129,7 +126,7 @@ Auto-eligible条件（すべて必須）:
 - 依存関係、テスト、snapshot、設定、workflow、`src/data/profile.ts`、`src/layouts/`、`src/styles/`、`public/` を変更しない。
 - SEO、構造化データ、Google Analytics、外部サービス、コンテンツ・仕様判断に影響しない。
 - `make check` と `make build` に加え、修正前に失敗した検証で成功を証明できる。
-- ドキュメントドリフトとリファクタリング提案ではない。これらは人間が別途修正対象として承認するまでreport-onlyとする。
+- ドキュメントドリフト、リファクタリング提案、スキル棚卸しではない。これらは人間が別途修正対象として承認するまでreport-onlyとする。
 
 条件を1つでも機械判定できない場合はauto-eligibleではなく、report-onlyで人間へescalateする。
 
