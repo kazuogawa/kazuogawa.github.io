@@ -1,3 +1,5 @@
+# This workflow is managed by gh actions-lock.
+
 name: Deploy to GitHub Pages
 
 on:
@@ -25,15 +27,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
       # Dependabotがpnpm 12の実行バイナリを解決できなかったため、pnpm 10へ意図的に固定する。
       # 新しいpnpmへの更新は、Dependabotでの動作確認後にpackage.jsonと同時に行うこと。
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v6.0.10
         with:
           version: 10.34.5
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.4.0
         with:
           node-version: 24.18.0
           cache: pnpm
@@ -44,7 +46,7 @@ jobs:
       - name: Build
         run: make build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: dist
 
@@ -57,4 +59,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v5.0.1
