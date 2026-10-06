@@ -23,7 +23,7 @@ jobs:
       # Dependabotがpnpm 12の実行バイナリを解決できなかったため、pnpm 10へ意図的に固定する。
       # 新しいpnpmへの更新は、Dependabotでの動作確認後にpackage.jsonと同時に行うこと。
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+        uses: pnpm/action-setup@v6.1.0
         with:
           version: 10.34.5
       - name: Setup Node
