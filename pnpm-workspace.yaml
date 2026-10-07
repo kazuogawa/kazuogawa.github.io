@@ -13,6 +13,10 @@ strictDepBuilds: true
 
 overrides:
   js-yaml: 4.3.2
+  # Tailwind 3系とそのネスト処理は6系を要求するため、GHSA-rj75-hqrm-r3gf修正版へ限定する。
+  # Tailwind側が7.1.6以降に対応したら削除する。CSS生成と表示テストで互換性を確認する。
+  'tailwindcss@3>postcss-selector-parser': 7.1.6
+  'postcss-nested@6>postcss-selector-parser': 7.1.6
 
 allowBuilds:
   esbuild: true
