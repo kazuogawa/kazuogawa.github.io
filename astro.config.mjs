@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://kazuogawa.github.io',
-  integrations: [react(), tailwind()],
+  integrations: [react()],
+  vite: { plugins: [tailwind()] },
 });

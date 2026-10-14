@@ -63,16 +63,16 @@ export default function Header() {
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsOpen((open) => !open)}
-          className="flex h-11 w-11 items-center justify-center text-slate-700 transition-colors hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 md:hidden dark:text-slate-200 dark:hover:text-brand-400 dark:focus-visible:ring-offset-slate-900"
+          className="flex h-11 w-11 items-center justify-center text-slate-700 transition-colors hover:text-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none md:hidden dark:text-slate-200 dark:hover:text-brand-400 dark:focus-visible:ring-offset-slate-900"
         >
           <span className="relative block h-5 w-6" aria-hidden="true">
             <span
-              className={`absolute left-0 top-0 block h-0.5 w-6 bg-current transition-transform ${
+              className={`absolute top-0 left-0 block h-0.5 w-6 bg-current transition-transform ${
                 isOpen ? 'translate-y-[9px] rotate-45' : ''
               }`}
             />
             <span
-              className={`absolute left-0 top-[9px] block h-0.5 w-6 bg-current transition-opacity ${
+              className={`absolute top-[9px] left-0 block h-0.5 w-6 bg-current transition-opacity ${
                 isOpen ? 'opacity-0' : ''
               }`}
             />
@@ -86,7 +86,7 @@ export default function Header() {
 
         <div
           id="mobile-navigation"
-          className={`absolute left-0 right-0 top-full border-b border-slate-200 bg-white px-6 py-3 shadow-md md:hidden dark:border-slate-700 dark:bg-slate-900 ${
+          className={`absolute top-full right-0 left-0 border-b border-slate-200 bg-white px-6 py-3 shadow-md md:hidden dark:border-slate-700 dark:bg-slate-900 ${
             isOpen ? 'block' : 'hidden'
           }`}
         >
