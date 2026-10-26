@@ -111,10 +111,15 @@ for (const pageUnderTest of pages) {
         { label: 'プロダクト開発', href: '/product-development/' },
         { label: '業務改善', href: '/business-improvement/' },
       ]) {
-        await expect(navigation.locator('a', { hasText: item.label }).first()).toHaveAttribute(
-          'href',
-          item.href,
-        );
+        const serviceLinks = navigation.getByRole('link', {
+          name: item.label,
+          exact: true,
+          includeHidden: true,
+        });
+        await expect(serviceLinks).toHaveCount(profile.contact.enabled ? 2 : 0);
+        if (profile.contact.enabled) {
+          await expect(serviceLinks.first()).toHaveAttribute('href', item.href);
+        }
       }
       await expect(navigation.locator('a', { hasText: '経歴・技術実績' }).first()).toHaveAttribute(
         'href',
@@ -155,17 +160,18 @@ for (const pageUnderTest of pages) {
   });
 }
 
-test('トップから4つの目的別ページへ進める', async ({ page }) => {
+test('トップの相談案内とサービスカードは受付中のみ表示される', async ({ page }) => {
   await page.goto('/');
 
-  const destinations = [
-    '/ai-development/',
-    '/product-development/',
-    '/business-improvement/',
-    '/portfolio/',
-  ];
+  const destinations = ['/ai-development/', '/product-development/', '/business-improvement/'];
 
+  await expect(
+    page.getByRole('heading', { name: 'ご相談・確認したい内容からお選びください' }),
+  ).toHaveCount(profile.contact.enabled ? 1 : 0);
+  await expect(page.locator('main a[href="/portfolio/"]')).toBeVisible();
   for (const destination of destinations) {
-    await expect(page.locator(`main a[href="${destination}"]`)).toBeVisible();
+    const serviceCard = page.locator(`main a[href="${destination}"]`);
+    await expect(serviceCard).toHaveCount(profile.contact.enabled ? 1 : 0);
+    if (profile.contact.enabled) await expect(serviceCard).toBeVisible();
   }
 });

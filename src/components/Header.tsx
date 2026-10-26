@@ -11,7 +11,7 @@ const navItems = [
 export default function Header({ contactEnabled }: { contactEnabled: boolean }) {
   const items = contactEnabled
     ? [...navItems, { label: 'お問い合わせ', href: '#contact' }]
-    : navItems;
+    : navItems.filter((item) => item.href === '/' || item.href === '/portfolio/');
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
