@@ -10,7 +10,7 @@ const { landing, name, photo, social } = profile;
 ---
 
 <BaseLayout title={landing.seo.ogTitle} seo={landing.seo}>
-  <Header client:visible />
+  <Header contactEnabled={profile.contact.enabled} client:visible />
   <main>
     <section class="px-6 py-16 md:py-24">
       <div class="mx-auto grid max-w-5xl gap-10 md:grid-cols-[auto_1fr] md:items-center">
@@ -48,11 +48,19 @@ const { landing, name, photo, social } = profile;
 
     <section class="bg-slate-50 px-6 py-20 dark:bg-slate-800/50">
       <div class="mx-auto max-w-5xl">
-        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
-          ご相談・確認したい内容からお選びください
-        </h2>
-        <div class="mt-10">
-          <AudienceCards audiences={landing.audiences} />
+        {profile.contact.enabled && (
+          <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
+            ご相談・確認したい内容からお選びください
+          </h2>
+        )}
+        <div class:list={{ 'mt-10': profile.contact.enabled }}>
+          <AudienceCards
+            audiences={
+              profile.contact.enabled
+                ? landing.audiences
+                : landing.audiences.filter((audience) => audience.href === '/portfolio/')
+            }
+          />
         </div>
       </div>
     </section>

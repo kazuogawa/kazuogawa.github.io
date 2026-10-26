@@ -33,6 +33,7 @@ export interface Project {
 }
 
 export interface Contact {
+  enabled: boolean;
   title: string;
   description: string;
   primaryAction: { label: string; url: string };

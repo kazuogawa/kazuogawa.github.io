@@ -200,6 +200,7 @@ export const profile: Profile = {
   ],
 
   contact: {
+    enabled: false,
     title: 'お問い合わせ',
     description:
       'AI活用、Webアプリケーション開発、データ基盤、開発プロセス改善などのご相談を受け付けています。内容が固まっていない段階でもお気軽にご連絡ください。',

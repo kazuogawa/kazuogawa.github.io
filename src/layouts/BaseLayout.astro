@@ -60,12 +60,14 @@ const pageSeo = seoOverride ?? profile.seo;
         image: `${profile.seo.canonicalUrl}images/myphoto.webp`,
         description: profile.seo.description,
         sameAs: profile.social.map((s) => s.url),
-        contactPoint: {
-          '@type': 'ContactPoint',
-          url: profile.contact.primaryAction.url,
-          contactType: 'inquiries',
-          availableLanguage: ['ja', 'en'],
-        },
+        contactPoint: profile.contact.enabled
+          ? {
+              '@type': 'ContactPoint',
+              url: profile.contact.primaryAction.url,
+              contactType: 'inquiries',
+              availableLanguage: ['ja', 'en'],
+            }
+          : undefined,
       })}
     ></script>
   </head>

@@ -67,14 +67,48 @@ for (const pageUnderTest of pages) {
       expect(overflow.overflowingElements).toEqual([]);
 
       const contactLinks = page.locator(`a[href="${profile.contact.primaryAction.url}"]`);
-      expect(await contactLinks.count()).toBeGreaterThan(0);
-      for (const link of await contactLinks.all()) {
-        await expect(link).toBeVisible();
-        await expect(link).toHaveAttribute('target', '_blank');
-        await expect(link).toHaveAttribute('rel', /noopener/);
+      const navigation = page.getByRole('navigation');
+      const contactNavigation = navigation.locator('a[href="#contact"]');
+      const structuredData = JSON.parse(
+        (await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}',
+      );
+      if (profile.contact.enabled) {
+        expect(await contactLinks.count()).toBeGreaterThan(0);
+        for (const link of await contactLinks.all()) {
+          await expect(link).toBeVisible();
+          await expect(link).toHaveAttribute('target', '_blank');
+          await expect(link).toHaveAttribute('rel', /noopener/);
+        }
+        await expect(contactNavigation).toHaveCount(2);
+        expect(structuredData.contactPoint.url).toBe(profile.contact.primaryAction.url);
+        await expect(page.locator('#contact')).toBeVisible();
+      } else {
+        await expect(contactLinks).toHaveCount(0);
+        await expect(contactNavigation).toHaveCount(0);
+        expect(structuredData).not.toHaveProperty('contactPoint');
+        await expect(page.locator('#contact')).toHaveCount(0);
+        await expect(page.getByText('新規受付を一時停止しています', { exact: true })).toHaveCount(
+          0,
+        );
+        await expect(
+          page.getByText('現在、新規のご依頼・お問い合わせの受付を一時停止しています。', {
+            exact: true,
+          }),
+        ).toHaveCount(0);
+        expect(await page.content()).not.toContain(profile.contact.primaryAction.url);
+      }
+      const availability =
+        pageUnderTest.path === '/portfolio/'
+          ? profile.portfolio.availability
+          : Object.values(profile.servicePages).find(
+              (service) => service.title === pageUnderTest.heading,
+            )?.availability;
+      if (availability) {
+        await expect(page.getByText(availability, { exact: true })).toHaveCount(
+          profile.contact.enabled ? 1 : 0,
+        );
       }
 
-      const navigation = page.getByRole('navigation');
       await expect(navigation.locator('a', { hasText: 'トップ' }).first()).toHaveAttribute(
         'href',
         '/',
@@ -84,10 +118,15 @@ for (const pageUnderTest of pages) {
         { label: 'プロダクト開発', href: '/product-development/' },
         { label: '業務改善', href: '/business-improvement/' },
       ]) {
-        await expect(navigation.locator('a', { hasText: item.label }).first()).toHaveAttribute(
-          'href',
-          item.href,
-        );
+        const serviceLinks = navigation.getByRole('link', {
+          name: item.label,
+          exact: true,
+          includeHidden: true,
+        });
+        await expect(serviceLinks).toHaveCount(profile.contact.enabled ? 2 : 0);
+        if (profile.contact.enabled) {
+          await expect(serviceLinks.first()).toHaveAttribute('href', item.href);
+        }
       }
       await expect(navigation.locator('a', { hasText: '経歴・技術実績' }).first()).toHaveAttribute(
         'href',
@@ -128,17 +167,18 @@ for (const pageUnderTest of pages) {
   });
 }
 
-test('トップから4つの目的別ページへ進める', async ({ page }) => {
+test('トップの相談案内とサービスカードは受付中のみ表示される', async ({ page }) => {
   await page.goto('/');
 
-  const destinations = [
-    '/ai-development/',
-    '/product-development/',
-    '/business-improvement/',
-    '/portfolio/',
-  ];
+  const destinations = ['/ai-development/', '/product-development/', '/business-improvement/'];
 
+  await expect(
+    page.getByRole('heading', { name: 'ご相談・確認したい内容からお選びください' }),
+  ).toHaveCount(profile.contact.enabled ? 1 : 0);
+  await expect(page.locator('main a[href="/portfolio/"]')).toBeVisible();
   for (const destination of destinations) {
-    await expect(page.locator(`main a[href="${destination}"]`)).toBeVisible();
+    const serviceCard = page.locator(`main a[href="${destination}"]`);
+    await expect(serviceCard).toHaveCount(profile.contact.enabled ? 1 : 0);
+    if (profile.contact.enabled) await expect(serviceCard).toBeVisible();
   }
 });
