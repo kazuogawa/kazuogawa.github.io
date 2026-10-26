@@ -17,6 +17,10 @@ description: L2・L3のポートフォリオ修正案または承認済みFeatur
 6. SEOメタ、Person JSON-LD、Google Analyticsが保持されている。
 7. 意図した表示・動作を証明している。目視未確認の場合は残存リスクとして明記する。
 
+依存脆弱性修正では、さらに `LOOP.md` の専用allowlistと `$loop-security-fix` を読み、更新前後の全依存監査、直接・間接依存のバージョン差分、対象advisory消失、新規advisoryなしを独立に確認する。frozen installと `make test-e2e` も再実行する。別パッケージの残存advisoryはID・依存経路・保留理由を返す。テスト未実施、対象の残存、保護設定の緩和、範囲外更新はAPPROVEしない。
+
+既存のviewport条件による対象外skipは、理由と件数を成功件数と分けて報告する。新規skipや必要な検証の省略は認めない。
+
 ファイルは編集しない。次の形式で返す。
 
 ```text
