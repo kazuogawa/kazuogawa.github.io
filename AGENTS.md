@@ -61,6 +61,7 @@ GitHub Issueを起点とするタスクでは、作業開始前に
 - `.agents/skills/`: Codexが自動検出するリポジトリ固有スキル群。
   - `loop-constraints`（ガードレール）→ `loop-budget`（予算確認）→ `loop-triage`（信号抽出）の順で実行。
   - L2 以降の修正は `minimal-fix`（maker）→ `loop-verifier`（checker）で maker/checker を分離する。
+  - L3の依存脆弱性は `loop-security-fix`（maker）→ `loop-verifier`（checker）を使う。専用allowlistと既存daily-triageの予算内でdraft PRまで作成し、mergeしない。
   - L3のApproved Featureは、別Scheduled Taskで`loop-constraints`→`loop-budget`→`approved-feature-loop`の順に実行し、Issue作成者へのレビューコメント、人間承認、必要なSub-issue分割、独立checkerを必須とする。
 
 運用ルール:

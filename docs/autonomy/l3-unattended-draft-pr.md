@@ -20,7 +20,7 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 ## Portfolio TriageのAuto-eligible最低条件
 
-対象パス・必須条件・除外対象は、[LOOP.mdのL3 allowlist / auto-eligible](../../LOOP.md#l3-allowlist--auto-eligible) を正本とする。
+対象パス・必須条件・除外対象は、[LOOP.md](../../LOOP.md) の「L3 allowlist / auto-eligible」と「L3 依存脆弱性修正 allowlist」を正本とする。
 
 ## 許可する操作
 
@@ -37,12 +37,12 @@ L3は自動mergeを意味しない。最大成果物は、検証済みドラフ�
 
 1. `$loop-constraints` と `$loop-budget` を実行し、circuit breakerを確認する。
 2. [`$loop-triage`](../../.agents/skills/loop-triage/SKILL.md) に従って証拠を収集し、`STATE.md` を更新する。
-3. `LOOP.md`のauto-eligible条件に従い、High Priorityから最大1件選ぶ。0件なら早期終了する。
-4. `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。
+3. `LOOP.md`のauto-eligible条件に従い、High Priorityから最大1件選ぶ。適格な依存脆弱性を優先し、なければ表示不具合を選ぶ。0件なら手順8へ進む。
+4. 依存脆弱性は [`$loop-security-fix`](../../.agents/skills/loop-security-fix/SKILL.md)、表示不具合は `$minimal-fix` が専用worktreeで最小修正と必要な検証を行う。依存修正の詳細な作成・停止手順は同Skillに従い、共通のcheckerとPR作成を二重実行しない。
 5. makerとは別のcheckerが `$loop-verifier` で差分と証拠を検証する。
 6. REJECTまたはESCALATE_HUMANならcommit・push・PR作成を行わず、人間へ通知する。
 7. APPROVE後だけcommitし、push予定を通知してから作業ブランチへpushし、ドラフトPRを作成する。通知後の追加承認は待たない。
-8. `STATE.md` と `loop-run-log.md` に結果、残存リスク、次の人間操作を記録する。
+8. `STATE.md` のHigh Priority、Watch List、Recent Noise、Post-Run Critique、Last runを更新する。終了時に `$loop-budget` で停止条件を再確認し、結果、残存リスク、次の人間操作を `loop-run-log.md` へ1件だけ記録する。kill switch有効時は編集せず終了する。
 
 ### Approved Feature
 

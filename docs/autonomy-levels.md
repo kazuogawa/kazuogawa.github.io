@@ -32,6 +32,8 @@
 
 L3は自動mergeを意味しない。このリポジトリにおけるL3の上限は、検証済みドラフトPRの自動作成までとする。
 
+L3のPortfolio Triageは `LOOP.md` の専用allowlistを満たすnpm依存脆弱性も対象とする。表示不具合と依存修正は同じ1項目枠を共有し、major更新や保護設定の変更は人間へescalateする。
+
 ## レベル別runbook
 
 - [L1 — Report-only](autonomy/l1-report-only.md)

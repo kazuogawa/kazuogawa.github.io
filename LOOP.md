@@ -130,6 +130,20 @@ Auto-eligible条件（すべて必須）:
 
 条件を1つでも機械判定できない場合はauto-eligibleではなく、report-onlyで人間へescalateする。
 
+## L3 依存脆弱性修正 allowlist
+
+Portfolio Triageの後に `$loop-security-fix` をmakerとして実行できる。以下の全条件を満たす場合だけ、追加承認なしに独立checkerのAPPROVE後のpushとdraft PR作成を許可する。この許可は本変更がmasterへマージされ、実行元にも同期された後に有効になる。
+
+- 最新の `origin/master` で全依存の `pnpm audit --json` が再現するnpmパッケージ1つを対象とする。同じパッケージの複数advisoryは1項目として扱う。
+- 変更可能なのは `package.json` の既存dependencies・devDependenciesのバージョン値と `pnpm-lock.yaml` だけ。対象の解消に必要な親・間接依存更新に限定し、無関係な更新を含めない。
+- 直接・間接依存とも安定版のpatch・minor更新だけを許可する。major、0.xのminor、prerelease、downgrade、パッケージの追加・削除が必要なら人間へescalateする。同一パッケージの古い解決バージョンの重複除去は許可する。
+- override、Node・pnpm、workflow、テスト・snapshot、ソース、設定は変更しない。release age、trust policy、ビルドスクリプト許可などの供給網保護を緩めない。
+- 更新前後の全依存監査で対象advisoryがすべて消え、新規advisoryがないことを確認する。別パッケージの既知の残存advisoryは理由と依存経路を記録し、解消済みと扱わない。
+- frozen install、`make check`、`make build`、`make test-e2e` の全成功と独立checkerのAPPROVEを必須とする。未実施・skipを成功扱いにしない。既存のviewport条件による対象外skipは理由と件数を記録し、新規skipがないことを確認する。
+- Dependabotを含め同じパッケージまたはadvisoryを扱うopen PRがあれば重複作成しない。Portfolio Triageが作成したopen PRがあれば、draft・readyを問わず新しい修正を開始しない。
+
+依存修正と表示不具合修正は同じ `daily-triage` runの1項目枠・予算・試行上限を共有する。どちらかを試行したrunではもう一方を実装しない。未修正版、条件外、情報不足はreport-onlyとする。ready化・mergeは行わない。
+
 ## Approved Feature allowlist
 
 Approved Featureが実装できるのは、`.github/ISSUE_TEMPLATE/approved-feature.yml`の必須項目を満たし、信頼された人間が`codex:approved`を付与したIssue 1件だけとする。
@@ -162,7 +176,7 @@ Issueが上限を超える場合は、独立した受入条件と検証を持つ
 ## Maker / checker
 
 - 修正を行うrunのworktree、ブランチ、push権限は、現在レベルのrunbookに従う。
-- `$minimal-fix` をmakerとする。checkerは `.codex/agents/verifier.toml` で定義した `verifier` agentが `$loop-verifier` の手順を使って実行する。
+- 表示不具合は `$minimal-fix`、依存脆弱性は `$loop-security-fix` をmakerとする。checkerは `.codex/agents/verifier.toml` で定義した `verifier` agentが `$loop-verifier` の手順を使って実行する。
 - 修正試行の上限とescalation条件は `loop-budget.md` を正本とする。
 
 ## 予算と停止
