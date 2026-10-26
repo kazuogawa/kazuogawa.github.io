@@ -25,11 +25,13 @@ const { portfolio } = profile;
     <Projects />
     <Experience />
 
-    <section class="px-6 py-12">
-      <p class="mx-auto max-w-3xl text-center font-medium leading-7 text-slate-700 dark:text-slate-200">
-        {profile.contact.enabled ? portfolio.availability : profile.contact.pausedMessage}
-      </p>
-    </section>
+    {profile.contact.enabled && (
+      <section class="px-6 py-12">
+        <p class="mx-auto max-w-3xl text-center font-medium leading-7 text-slate-700 dark:text-slate-200">
+          {portfolio.availability}
+        </p>
+      </section>
+    )}
     <Contact />
   </main>
 </BaseLayout>

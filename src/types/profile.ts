@@ -34,8 +34,6 @@ export interface Project {
 
 export interface Contact {
   enabled: boolean;
-  pausedTitle: string;
-  pausedMessage: string;
   title: string;
   description: string;
   primaryAction: { label: string; url: string };

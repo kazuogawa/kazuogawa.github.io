@@ -81,13 +81,20 @@ for (const pageUnderTest of pages) {
         }
         await expect(contactNavigation).toHaveCount(2);
         expect(structuredData.contactPoint.url).toBe(profile.contact.primaryAction.url);
-        await expect(page.getByText(profile.contact.pausedMessage, { exact: true })).toHaveCount(0);
+        await expect(page.locator('#contact')).toBeVisible();
       } else {
         await expect(contactLinks).toHaveCount(0);
         await expect(contactNavigation).toHaveCount(0);
         expect(structuredData).not.toHaveProperty('contactPoint');
-        await expect(page.locator('#contact')).toContainText(profile.contact.pausedMessage);
-        await expect(page.locator('#contact')).toContainText(profile.contact.pausedTitle);
+        await expect(page.locator('#contact')).toHaveCount(0);
+        await expect(page.getByText('新規受付を一時停止しています', { exact: true })).toHaveCount(
+          0,
+        );
+        await expect(
+          page.getByText('現在、新規のご依頼・お問い合わせの受付を一時停止しています。', {
+            exact: true,
+          }),
+        ).toHaveCount(0);
         expect(await page.content()).not.toContain(profile.contact.primaryAction.url);
       }
       const availability =
