@@ -11,7 +11,7 @@
 - 事前に伝えずに push しない。
 - 現在レベルのrunbookで許可された場合は、checkerのAPPROVE後に `master` 以外の専用作業ブランチへpushできる。
 - L2では修正対象の事前承認とpush前の通知を必要とするが、pushごとの追加承認は不要とする。
-- L3のPortfolio Triageでは事前承認された不具合allowlist、Approved Featureでは信頼された人間が`codex:approved`を付与したIssueと専用allowlistの範囲に限り、checkerのAPPROVE後にpushとドラフトPR作成を許可する。
+- L3のPortfolio Triageでは事前承認された不具合allowlistまたは依存脆弱性修正allowlist、Approved Featureでは信頼された人間が`codex:approved`を付与したIssueと専用allowlistの範囲に限り、checkerのAPPROVE後にpushとドラフトPR作成を許可する。
 - 人間の承認なしに `master` へ自動マージしない。
 - 例外として、人間が事前承認した `.github/workflows/dependabot-auto-merge.yml` は、`dependabot[bot]` が作成した `master` 向けnpm semver patch PRに限り、必須チェック成功後のsquash auto-mergeを有効化できる。minor・major更新、GitHub Actions更新、他の作成者・target branchは対象外とする。
 - 上記例外はCodexループの自律レベルと権限を拡張しない。CodexはDependabot PRを直接approve、merge、closeせず、workflowの対象条件も自律的に拡張しない。

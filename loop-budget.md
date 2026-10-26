@@ -18,6 +18,8 @@ L2・L3の1項目あたりの修正試行は最大3回。3回失敗、または�
 
 ## 閾値と超過時の対応
 
+依存脆弱性修正はPortfolio Triageの `daily-triage` に含める。トリアージ・maker・checkerのtokenとspawnを合算し、終了ログは1件だけ記録する。依存修正に別予算を割り当てず、表示不具合修正との合計で1 run 1項目・最大3試行とする。Portfolio Triageではready化されたPRもopen PR上限に数える。
+
 - 対応候補も監視候補もないrun: 5k tokens未満を目安に早期終了する。
 - tokensが80%以上: Portfolio Triageはreport-only、Approved Featureは実装とSub-issue作成を行わないreview-onlyへ切り替える。Codex Securityは新しいスキャンを開始せず、停止理由だけを報告する。
 - tokensが100%以上: runを開始せず、停止記録だけを行う。
