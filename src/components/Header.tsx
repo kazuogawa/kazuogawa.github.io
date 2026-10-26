@@ -6,10 +6,12 @@ const navItems = [
   { label: 'プロダクト開発', href: '/product-development/' },
   { label: '業務改善', href: '/business-improvement/' },
   { label: '経歴・技術実績', href: '/portfolio/' },
-  { label: 'お問い合わせ', href: '#contact' },
 ];
 
-export default function Header() {
+export default function Header({ contactEnabled }: { contactEnabled: boolean }) {
+  const items = contactEnabled
+    ? [...navItems, { label: 'お問い合わせ', href: '#contact' }]
+    : navItems;
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -45,7 +47,7 @@ export default function Header() {
         </a>
 
         <ul className="hidden gap-6 md:flex">
-          {navItems.map((item) => (
+          {items.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
@@ -91,7 +93,7 @@ export default function Header() {
           }`}
         >
           <ul className="mx-auto flex max-w-5xl flex-col py-1">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}

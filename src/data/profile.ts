@@ -200,6 +200,9 @@ export const profile: Profile = {
   ],
 
   contact: {
+    enabled: false,
+    pausedTitle: '新規受付を一時停止しています',
+    pausedMessage: '現在、新規のご依頼・お問い合わせの受付を一時停止しています。',
     title: 'お問い合わせ',
     description:
       'AI活用、Webアプリケーション開発、データ基盤、開発プロセス改善などのご相談を受け付けています。内容が固まっていない段階でもお気軽にご連絡ください。',

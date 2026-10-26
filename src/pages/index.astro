@@ -10,7 +10,7 @@ const { landing, name, photo, social } = profile;
 ---
 
 <BaseLayout title={landing.seo.ogTitle} seo={landing.seo}>
-  <Header client:visible />
+  <Header contactEnabled={profile.contact.enabled} client:visible />
   <main>
     <section class="px-6 py-16 md:py-24">
       <div class="mx-auto grid max-w-5xl gap-10 md:grid-cols-[auto_1fr] md:items-center">

@@ -12,18 +12,26 @@ const { contact } = profile;
       </p>
       <div class="mt-4 grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900 dark:text-white">{contact.title}</h2>
-          <p class="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">{contact.description}</p>
-          <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">{contact.responseNote}</p>
+          <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
+            {contact.enabled ? contact.title : contact.pausedTitle}
+          </h2>
+          <p class="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">
+            {contact.enabled ? contact.description : contact.pausedMessage}
+          </p>
+          {contact.enabled && (
+            <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">{contact.responseNote}</p>
+          )}
         </div>
-        <a
-          href={contact.primaryAction.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
-        >
-          {contact.primaryAction.label}
-        </a>
+        {contact.enabled && (
+          <a
+            href={contact.primaryAction.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+          >
+            {contact.primaryAction.label}
+          </a>
+        )}
       </div>
     </div>
   </div>

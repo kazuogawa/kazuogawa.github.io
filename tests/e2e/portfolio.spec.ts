@@ -67,14 +67,41 @@ for (const pageUnderTest of pages) {
       expect(overflow.overflowingElements).toEqual([]);
 
       const contactLinks = page.locator(`a[href="${profile.contact.primaryAction.url}"]`);
-      expect(await contactLinks.count()).toBeGreaterThan(0);
-      for (const link of await contactLinks.all()) {
-        await expect(link).toBeVisible();
-        await expect(link).toHaveAttribute('target', '_blank');
-        await expect(link).toHaveAttribute('rel', /noopener/);
+      const navigation = page.getByRole('navigation');
+      const contactNavigation = navigation.locator('a[href="#contact"]');
+      const structuredData = JSON.parse(
+        (await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}',
+      );
+      if (profile.contact.enabled) {
+        expect(await contactLinks.count()).toBeGreaterThan(0);
+        for (const link of await contactLinks.all()) {
+          await expect(link).toBeVisible();
+          await expect(link).toHaveAttribute('target', '_blank');
+          await expect(link).toHaveAttribute('rel', /noopener/);
+        }
+        await expect(contactNavigation).toHaveCount(2);
+        expect(structuredData.contactPoint.url).toBe(profile.contact.primaryAction.url);
+        await expect(page.getByText(profile.contact.pausedMessage, { exact: true })).toHaveCount(0);
+      } else {
+        await expect(contactLinks).toHaveCount(0);
+        await expect(contactNavigation).toHaveCount(0);
+        expect(structuredData).not.toHaveProperty('contactPoint');
+        await expect(page.locator('#contact')).toContainText(profile.contact.pausedMessage);
+        await expect(page.locator('#contact')).toContainText(profile.contact.pausedTitle);
+        expect(await page.content()).not.toContain(profile.contact.primaryAction.url);
+      }
+      const availability =
+        pageUnderTest.path === '/portfolio/'
+          ? profile.portfolio.availability
+          : Object.values(profile.servicePages).find(
+              (service) => service.title === pageUnderTest.heading,
+            )?.availability;
+      if (availability) {
+        await expect(page.getByText(availability, { exact: true })).toHaveCount(
+          profile.contact.enabled ? 1 : 0,
+        );
       }
 
-      const navigation = page.getByRole('navigation');
       await expect(navigation.locator('a', { hasText: 'トップ' }).first()).toHaveAttribute(
         'href',
         '/',
